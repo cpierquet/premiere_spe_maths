@@ -1,0 +1,449 @@
+% !TeX TXS-program:compile = txs:///arara
+% arara: lualatex: {shell: yes, synctex: no, interaction: batchmode}
+% arara: pythontex: {rerun: always} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: yes, synctex: no, interaction: batchmode} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: yes, synctex: no, interaction: batchmode} if found('log', '(undefined references|Please rerun|Rerun to get)')
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[revgoku]{cp-base}
+\graphicspath{{./graphics/}}
+\usepackage{ccicons}
+\usepackage{nicematrix}
+\usepackage{standalone}
+\makeatletter
+	\@addtoreset{section}{part}
+\makeatother
+\usepackage{titletoc}
+\addto{\captionsfrench}{%
+	\renewcommand{\contentsname}{\vspace*{-20pt}}
+}
+\dottedcontents{part}[1.5em]{\color{OrangeRed}\large\sffamily\bfseries}{1.5em}{0.25em}[\addvspace{4pt}]
+\dottedcontents{section}[3.8em]{\color{titrebleu}\sffamily\bfseries}{2.3em}{0.25em}[\addvspace{4pt}]
+\dottedcontents{subsection}[7em]{\color{ForestGreen}\sffamily\bfseries}{3.2em}{0.25em}[\addvspace{4pt}]
+
+%variables
+\donnees[classe=1\up*{ère} 2M2,matiere={[SPÉ.MATHS]},typedoc=DOC~,numdoc=1,tailletitre=\LARGE]
+
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfborder=0 0 0,pdfstartview=FitH}
+%fancy
+\lhead{\entete{\matiere}}
+\chead{\entete{C. Pierquet}}
+\rhead{\entete{\lycee{} - 2021/2022}}
+\lfoot{\pied{\matiere}}
+\cfoot{\ccbyncsa}
+\rfoot{\pied{\numeropagetot}}
+\fancypagestyle{entetedm}{\fancyhead[L]{\entete{\matiere{} À rendre avant le \ldots}}}
+\fancypagestyle{enteteds}{\fancyhead[L]{\entete{Durée : \duree}}}
+
+%divers
+\tikzset{tangent/.style={% https://tex.stackexchange.com/a/25940
+		decoration={%
+			markings,mark=at position #1 with{
+				\coordinate (tangent point-\pgfkeysvalueof{/pgf/decoration/mark info/sequence number}) at (0pt,0pt);
+				\coordinate (tangent unit vector-\pgfkeysvalueof{/pgf/decoration/mark info/sequence number}) at (1,0pt);
+				\coordinate (tangent orthogonal unit vector-\pgfkeysvalueof{/pgf/decoration/mark info/sequence number}) at (0pt,1);}
+		},
+		postaction=decorate},
+	use tangent/.style={shift=(tangent point-#1),%
+		x=(tangent unit vector-#1),
+		y=(tangent orthogonal unit vector-#1)
+	},
+	use tangent/.default=1}
+\usepackage{setspace}
+\usepackage{epsdice}
+\tcbset{cartepoker/.style={%
+		fontupper={\vphantom{pf}\scriptsize\sffamily},colback=white,nobeforeafter,%
+		box align=base,boxsep=0pt,enhanced,width=16pt,tcbox width=forced center,%
+		boxrule=0.7pt,left=2pt,right=2pt,top=0pt,bottom=0pt
+	}
+}
+% Commande qui trace la grille entre (xmin,ymin) et (xmax,ymax)
+\newcommand {\grille}
+{\draw[help lines] (\xmin,\ymin) grid (\xmax,\ymax);}
+% Commande \axes
+\newcommand {\axes} {
+	\draw[thick,->,>=stealth'] (\xmin,0) -- (\xmax,0);
+	\draw[thick,->,>=stealth'] (0,\ymin) -- (0,\ymax);
+}
+% Commande qui limite l’affichage à (xmin,ymin) et (xmax,ymax)
+\newcommand {\fenetre}
+{\clip (\xmin,\ymin) rectangle (\xmax,\ymax);}
+
+\begin{document}
+
+\pagestyle{fancy}
+
+\part*{Spécialité Mathématiques en classe de Première}
+
+\tableofcontents
+
+\clearpage
+
+\include{PREM.CHAP01.Second.degre}
+
+\clearpage
+
+\include{PREM.CHAP01.Exercices}
+
+\clearpage
+
+\setcounter{numexos}{0}
+
+\include{PREM.CHAP01.Exercices.-.Correction}
+
+\clearpage
+
+\include{PREM.CHAP02.Suites.numeriques}
+
+\clearpage
+
+\setcounter{numexos}{0}
+
+\include{PREM.CHAP02.Exercices}
+
+\clearpage
+
+\setcounter{numexos}{0}
+
+\include{PREM.CHAP02.Exercices.-.Correction}
+
+\clearpage
+
+\include{PREM.CHAP03.Droites.fonctions.affines}
+
+\clearpage
+
+\setcounter{numexos}{0}
+
+\include{PREM.CHAP03.Exercices}
+
+\clearpage
+
+\setcounter{numexos}{0}
+
+\include{PREM.CHAP03.Exercices.-.Correction}
+
+\clearpage
+
+\include{PREM.CHAP04.Second.degre.et.signes}
+
+\clearpage
+
+\setcounter{numexos}{0}
+
+\include{PREM.CHAP04.Exercices}
+
+\clearpage
+
+\setcounter{numexos}{0}
+
+\include{PREM.CHAP04.Exercices.-.Correction}
+
+\clearpage
+
+\include{PREM.CHAP05.Probas.conditionnelles.independance}
+
+\clearpage
+
+\setcounter{numexos}{0}
+
+\include{PREM.CHAP05.Exercices}
+
+\clearpage
+
+\setcounter{numexos}{0}
+
+\include{PREM.CHAP05.Exercices.-.Correction}
+
+\clearpage
+
+\include{PREM.CHAP06.Trigonometrie}
+
+\clearpage
+
+\setcounter{numexos}{0}
+
+\include{PREM.CHAP06.Exercices}
+
+\clearpage
+
+\setcounter{numexos}{0}
+
+\include{PREM.CHAP06.Exercices.-.Correction}
+
+\clearpage
+
+\include{PREM.CHAP07.Nombre.derive.et.tangente}
+
+\clearpage
+
+\setcounter{numexos}{0}
+
+\include{PREM.CHAP07.Exercices}
+
+\clearpage
+
+\setcounter{numexos}{0}
+
+\include{PREM.CHAP07.Exercices.-.Correction}
+
+\clearpage
+
+\include{PREM.CHAP08.Fonction.derivee}
+
+\clearpage
+
+\setcounter{numexos}{0}
+
+\include{PREM.CHAP08.Exercices}
+
+\clearpage
+
+\setcounter{numexos}{0}
+
+\include{PREM.CHAP08.Exercices.-.Correction}
+
+\clearpage
+
+\include{PREM.CHAP09.Suites.arithm.geom}
+
+\clearpage
+
+\setcounter{numexos}{0}
+
+\include{PREM.CHAP09.Exercices}
+
+\clearpage
+
+\setcounter{numexos}{0}
+
+\include{PREM.CHAP09.Exercices.-.Correction}
+
+\clearpage
+
+\include{PREM.CHAP10.Calcul.vectoriel.produit.scalaire}
+
+\clearpage
+
+\setcounter{numexos}{0}
+
+\include{PREM.CHAP10.Exercices}
+
+\clearpage
+
+\setcounter{numexos}{0}
+
+\include{PREM.CHAP10.Exercices.-.Correction}
+
+\clearpage
+
+\include{PREM.CHAP11.Applications.derivation}
+
+\clearpage
+
+\setcounter{numexos}{0}
+
+\include{PREM.CHAP11.Exercices}
+
+\clearpage
+
+\setcounter{numexos}{0}
+
+\include{PREM.CHAP11.Exercices.-.Correction}
+
+\clearpage
+
+\include{PREM.CHAP12.Variables.aleatoires}
+
+\clearpage
+
+\setcounter{numexos}{0}
+
+\include{PREM.CHAP12.Exercices}
+
+\clearpage
+
+\setcounter{numexos}{0}
+
+\include{PREM.CHAP12.Exercices.-.Correction}
+
+\clearpage
+
+\include{PREM.CHAP13.Fonction.exponentielle}
+
+\clearpage
+
+\setcounter{numexos}{0}
+
+\include{PREM.CHAP13.Exercices}
+
+\clearpage
+
+\setcounter{numexos}{0}
+
+\include{PREM.CHAP13.Exercices.-.Correction}
+
+\clearpage
+
+\include{PREM.CHAP14.Equations.cartesiennes}
+
+\clearpage
+
+\setcounter{numexos}{0}
+
+\include{PREM.CHAP14.Exercices}
+
+\clearpage
+
+\setcounter{numexos}{0}
+
+\include{PREM.CHAP14.Exercices.-.Correction}
+
+\clearpage
+
+\include{PREM.METHODO.Savoirs.faire}
+
+\clearpage
+
+\include{PREM.ROAD.TO.TERM}
+
+%\clearpage
+%
+%\include{PREM.DM01.Mise.en.boite}
+%
+%\clearpage
+%
+%\include{PREM.DM02.Etude.de.benefices}
+%
+%\clearpage
+%
+%\include{PREM.DM03.Second.degre.Suites}
+%
+%\clearpage
+%
+%\include{PREM.DM04.Second.degre.v3}
+%
+%\clearpage
+%
+%\include{PREM.DM05.Probas.v1}
+%
+%\clearpage
+%
+%\include{PREM.DM06.Probas.v2}
+%
+%\clearpage
+%
+%\include{PREM.DM07.Derivation.locale}
+%
+%\clearpage
+%
+%\include{PREM.DM08.Approximation.affine}
+%
+%\clearpage
+%
+%\include{PREM.DM09.Suites.en.situation}
+%
+%\clearpage
+%
+%\include{PREM.DM10.Probas.en.situation}
+%
+%\clearpage
+%
+%\include{PREM.TD01.Second.degre}
+%
+%\clearpage
+%
+%\include{PREM.TD02.Suites.recurrentes}
+%
+%\clearpage
+%
+%\include{PREM.TD03.Probas.conditionnelles}
+%
+%\clearpage
+%
+%\include{PREM.TD04.Derivation.globale}
+%
+%\clearpage
+%
+%\include{PREM.TD05.Comparaison.de.salaires}
+%
+%\clearpage
+%
+%\include{PREM.TD06.Optimisation.au.rugby}
+%
+%\clearpage
+%
+%\include{PREM.TD07.Probas.et.variable.aleatoire}
+%
+%\clearpage
+%
+%\include{PREM.TD08.Fonction.exponentielle}
+
+%\clearpage
+%
+%\makeatletter
+%\renewcommand\exonum[2][]{
+%	\def\hrulefill{\leavevmode\leaders\hrule height 1.1pt\hfill\kern\z@}%épaisseur
+%	\ifthenelse{\equal{#2}{1}}%
+%	{%
+%		\def\pts{point}
+%	}%
+%	{%
+%		\def\pts{points}
+%	}
+%	\addtocounter{numexos}{1}{\sffamily\textbf{\LARGE \textcolor{titrebleu}{Exercice \thenumexos#1~{\color{titrebleu}\hrulefill~(#2 \pts)}}}}%
+%	\def\hrulefill{\leavevmode\leaders\hrule height 0.4pt\hfill\kern\z@}
+%}
+%\newcommand\exoannexe[1]{
+%	\def\hrulefill{\leavevmode\leaders\hrule height 1.1pt\hfill\kern\z@}%épaisseur
+%	{\sffamily\textbf{\LARGE \textcolor{titrebleu}{Annexe Exercice#1~{\color{titrebleu}\hrulefill}}}}%
+%	\def\hrulefill{\leavevmode\leaders\hrule height 0.4pt\hfill\kern\z@}
+%}
+%\newcommand\exocours[1]{
+%	\def\hrulefill{\leavevmode\leaders\hrule height 1.1pt\hfill\kern\z@}%épaisseur
+%	{\sffamily\textbf{\LARGE \textcolor{titrebleu}{Questions de cours~{\color{titrebleu}\hrulefill~(#1 points)}}}}%
+%	\def\hrulefill{\leavevmode\leaders\hrule height 0.4pt\hfill\kern\z@}
+%}
+%\newcommand\exogenerique[2]{
+%	\def\hrulefill{\leavevmode\leaders\hrule height 1.1pt\hfill\kern\z@}%épaisseur
+%	{\sffamily\textbf{\LARGE \textcolor{titrebleu}{#1~{\color{titrebleu}\hrulefill~(#2)}}}}%
+%	\def\hrulefill{\leavevmode\leaders\hrule height 0.4pt\hfill\kern\z@}
+%}
+%\makeatother
+%
+%\clearpage
+%
+%\include{PREM.DS01.Second.degre}
+
+%\clearpage
+%
+%\include{PREM.DS02.Second.degre.suites}
+%
+%\clearpage
+%
+%\include{PREM.DS03.Suites.droites}
+%
+%\clearpage
+%
+%\include{PREM.DS04.Second.degre.probas}
+%
+%\clearpage
+%
+%\include{PREM.DS05.Second.degre.probas.trigo}
+%
+%\clearpage
+%
+%\include{PREM.DS06.Derivation}
+%
+%\clearpage
+%
+%\include{PREM.DS07.Derivation.suites.probas}
+%
+%\clearpage
+%
+%\include{PREM.DS08A.Bilan}
+
+\end{document}
