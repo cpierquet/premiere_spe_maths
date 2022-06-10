@@ -1,0 +1,168 @@
+% !TeX TXS-program:compile = txs:///arara
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode}
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('log', 'undefined references')
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[revgoku]{cp-base}
+\graphicspath{{./graphics/}}
+%variables
+\donnees[classe={1\up{ère} 2M2},matiere={[SPÉ.MATHS]},typedoc=REMISE À NIVEAU~,numdoc=1,mois=Octobre,annee=2021]
+
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfborder=0 0 0,pdfstartview=FitH}
+%fancy
+\lhead{\entete{\matiere}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - \mois{} \annee}}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee{}}
+\rfoot{\pied{\numeropagetot}}
+
+\begin{document}
+
+\pagestyle{fancy}
+
+%\vspace*{-0.8\baselineskip} %si besoin (à tester...)
+
+\part{Calculs algébriques, équations}
+
+\medskip
+
+\section{Calcul littéral}
+
+\begin{cintro}
+Les pré-requis sont :
+\begin{itemize}[label=\small\faInfoCircle]
+	\item les identités remarquables et les priorités de développement
+	\item le repérage ou la mise en évidence d'un facteur commun ou d'une identité remarquable pour factoriser
+	%\item la mise en évidence d'une identité remarquable pour factoriser
+	\item la réduction des fractions au même dénominateur
+\end{itemize}
+\end{cintro}
+
+\begin{cprop}[s]
+On a les identités remarquables :
+
+\qquad $(a+b)^2=a^2+2ab+b^2$ \qquad $(a-b)^2=a^2-2ab+b^2$ \qquad $(a-b)(a+b)=a^2-b^2$
+\end{cprop}
+
+\begin{cexemple}[ - Développement]
+$A=2(3x-1)^2-(5x+3)(2-3x)=2(9x^2-6x+1)-(10x-15x^2+6-9x) = 18x^2-12x+2-10x+15x^2-6+9x$
+
+$\phantom{A}=33x^2-11x-4$.
+\end{cexemple}
+
+\begin{cexercice}
+En utilisant la même méthode, développer les expressions suivantes :
+\vspace*{-0.12cm}
+\begin{enumerate}
+	\item $B=(2x-9)(3-2x)+5(2x+1)^2$ ;
+	\item $C=4(x-6)^2-3(5x+3)(5x-3)$.
+\end{enumerate}
+\end{cexercice}
+
+\begin{cexemple}[s - Factorisation]
+$A=6x+3+4(2x+1)^2=3(2x+1)+4(2x+1)(2x+1)=(2x+1) \left[ 3+ 4(2x+1)\right]$
+
+$\phantom{A}=(2x+1) \left[ 3+ 8x+4\right] = (2x+1)(8x+7)$.
+
+\smallskip
+
+$B=36x^2-(5x+1)^2 = (6x)^2 - (5x+1)^2 = (6x+(5x+1))(6x-(5x+1)) = (11x+1)(x-1)$.
+\end{cexemple}
+
+\begin{cexercice}
+En utilisant les méthodes précédentes, factoriser les expressions suivantes :
+\vspace*{-0.12cm}
+\begin{enumerate}
+	\item $C = (4x-3)^2-25x^2$ ;
+	\item $D = 49 - (5x+2)^2$.
+\end{enumerate}
+\end{cexercice}
+
+\begin{cexemple}[ - Mise au même dénominateur]
+$A=4 + \dfrac{3}{x+2} = \dfrac{4 \times (x+2)}{x+2}+\dfrac{3}{x+2}=\dfrac{4x+8}{x+2}+\dfrac{3}{x+2} = \dfrac{4x+11}{x+2}$
+\end{cexemple}
+
+\begin{cexercice}
+Mettre les expressions suivantes au même dénominateur :
+\vspace*{-0.12cm}
+\begin{enumerate}
+	\item $B = \dfrac{2x}{3x-1} - 5$ ;
+	\item $C = \dfrac{4}{2x+6} - \dfrac{3}{x-5}$.
+\end{enumerate}
+\end{cexercice}
+
+\section{Équations}
+
+\begin{cintro}
+Les pré-requis sont :
+\begin{itemize}[label=\small\faInfoCircle]
+	\item savoir développer et factoriser une expression ;
+	\item connaître et savoir utiliser les identités remarquables ;
+	\item savoir résoudre une équation du premier degré, et une équation produit nul.
+\end{itemize}
+\end{cintro}
+
+\begin{cmethode}
+A la fin de votre année de seconde, vous savez résoudre trois types d’équation.
+\begin{itemize}[label=\small\faArrowCircleRight]
+	\item \textbf{Équation linéaire} (aucune puissance de $x$, pas de $x$ au dénominateur) pour laquelle on se ramène à l’équation $ax = b$ en développant (si besoin), en transposant\ldots
+	\item \textbf{Équation produit nul}
+	\item Équation comportant des \textbf{puissances} de $x$ (qu’il n’est pas possible « d’éliminer » par un simple développement)
+	
+	$\Rightarrow$ il faut tenter de factoriser l’expression afin de se ramener à une équation produit nul
+	\item Équation comportant des \textbf{fractions rationnelles} (\og avec des $x$ au dénominateur \fg)
+	
+	$\Rightarrow$ on pourra commencer par déterminer l’ensemble des valeurs interdites (\og dénominateur nul \fg)
+	
+	$\Rightarrow$ il faudra transformer l’écriture de manière à se ramener à l’égalité de deux fractions
+	
+	$\Rightarrow$ on pourra alors utiliser le produit en croix (ou la mise au même dénominateur) afin de se ramener à l’un des deux cas précédents
+\end{itemize}
+\end{cmethode}
+
+\begin{cexemple}[s]
+\textbf{Équation linéaire} :
+
+\tabula{}$3(2x-3)+3x=5x-2(5-9x) \ssi 6x-9+3x=5x-10+18x \ssi 9x-9=23x-10 \ssi -14x = -1 \ssi \mathscr{S} = \left\lbrace \frac{1}{14} \right\rbrace$.
+
+\textbf{Équation produit} :
+
+\tabula{}$81x^2 - 16 = (9x - 4)(2x - 3) \ssi (9x-4)(9x+4) = (9x - 4)(2x - 3) \ssi  (9x-4)(7x+7)=0 \ssi \mathscr{S} = \left\lbrace \frac{4}{9}\,;\,-1 \right\rbrace$.
+
+\textbf{Équation rationnelle} : pour $x \neq -1$
+
+\tabula{}$x+1 = \dfrac{9}{x+1} \ssi (x+1)^2=9 \ssi \begin{dcases} x+1=3 \\ x+1=-3 \end{dcases} \mathscr{S} = \left\lbrace 2\,;\,-4 \right\rbrace$.
+\end{cexemple}
+
+\begin{cexercice}
+\vspace{-0.5cm}
+\setlength{\columnseprule}{1pt}
+\begin{multicols}{2}
+	Résoudre, dans $\R$, les équations suivantes :
+	\begin{enumerate}
+		\item $2x+3=-3x+7$ ;
+		\item $-x=x+16$ ;
+		\item $(-x-4)(-x+7)=0$ ;
+		\item $-x(x+16)(2-5x)=0$ ;
+		\item $\dfrac{5-8x}{x-2}=3$ ;
+		\item $\dfrac{-3x-1}{8-5x}=0$.
+	\end{enumerate}
+	$\star$ Résoudre, dans $\R$, les équations suivantes :
+	\begin{enumerate}
+		\item $(5x-1)(x-9)-(x-9)(2x-1)=0$ ;
+		\item $(x-1)(2x-7)=4x^2-28x+49$ ;
+		\item $x+1 = \dfrac{9}{x+1}$ ;
+		\item $\dfrac{3x-1}{x-5} = \dfrac{3x-4}{x}$ ;
+		\item $\dfrac{x^2-3x}{(x-3)^2}=0$.
+	\end{enumerate}
+\end{multicols}
+\smallskip
+\end{cexercice}
+
+
+
+\end{document}

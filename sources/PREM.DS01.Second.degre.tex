@@ -1,0 +1,163 @@
+% !TeX TXS-program:compile = txs:///arara
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode}
+% arara: pythontex: {rerun: always}
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode}
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('log', 'undefined references')
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[pythontex,sujet]{cp-base} %avec options possibles parmi breakable (tcbox), sujetl (exos),  (pour faire "comme avant"), etc...
+\graphicspath{{./graphics/}}
+%variables
+\donnees[
+	classe={1\up{ère} 2M2},matiere={[SPÉ.MATHS]},mois={Jeudi 30 Septembre},annee=2021,duree=1 heure,typedoc=DS,numdoc=1
+	]
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfborder=0 0 0,pdfstartview=FitH}
+%divers
+\lhead{\entete{\matiere}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - \mois{} \annee}}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee{}}
+\rfoot{\pied{\numeropagetot}}
+\fancypagestyle{enteteds}{\fancyhead[L]{\entete{Durée : \duree}}}
+
+\begin{document}
+
+\pagestyle{fancy}
+
+\thispagestyle{enteteds}
+
+\setcounter{numexos}{0}
+
+\part{DS01 - Second degré}
+
+\smallskip
+
+\begin{marker}$\leftrightsquigarrow$ Le sujet est à rendre avec la copie. $\leftrightsquigarrow$\end{marker}
+
+\nomprenomtcbox
+
+\medskip
+
+\exonum{6}
+
+\medskip
+
+Soit $f(x)=ax^2+bx+c$ un polynôme du second degré (avec $a \neq 0$), dont la courbe représentative dans un repère orthogonal est une parabole $\mathcallig{P}$.
+%
+\begin{enumerate}
+	\item 
+	\begin{enumerate}
+		\item Rappeler les formules permettant de calculer $\alpha$ et $\beta$.
+		\item Écrire l'expression de $f(x)$ dans laquelle apparaissent $\alpha$ et $\beta$. Comment s'appelle cette forme ?
+	\end{enumerate}
+	\item 
+	\begin{enumerate}
+		\item Comment s'appelle le nombre $\Delta$ ? Rappeler sa formule de calcul.
+		\item Rappeler les formules de calcul des deux racines $x_1$ et $x_2$ lorsqu'elles existent.
+		\item Écrire l'expression de $f(x)$ dans laquelle apparaissent $x_1$ et $x_2$. Comment s'appelle cette forme ?
+	\end{enumerate}
+	\item Si la parabole $\mathcallig{P}$ représentant le trinôme est \og ouverte vers le haut \fg{} et ne coupe pas l'axe des abscisses, que peut-on en déduire ?
+\end{enumerate}
+
+\medskip
+
+\exonum{4}
+
+\medskip
+
+Écrire chacun des polynômes ci-dessous dans la forme demandée :
+%
+\begin{enumerate}
+	\item $P(x)=-2(x+1)(x-5)$ sous forme développée réduite.
+	\item $Q(x)=3x^2+6x-7$ sous forme canonique.
+	\item $R(x)=x^2-6x+5$ sous forme factorisée.
+\end{enumerate}
+
+\medskip
+
+\exonum{5}
+%
+\begin{enumerate}
+	%\item Déterminer, en justifiant, le tableau de variations de la fonction $f$ définie par $f(x)=-2x^2+4x+7$.
+	\item Résoudre l'équation $0,5x^2-x-12=0$.
+	\item Résoudre l'équation $(x-5)(x^2+x+1)=0$.
+	\item Résoudre l'équation $\dfrac{7x}{x+2}={x-5}$ (pour $x \neq -2$).
+\end{enumerate}
+
+\medskip
+
+\exonum{5}
+
+\medskip
+
+Soit $f$ et $g$ deux polynômes du second degré définis par $f(x)=3x^2 + 12x + 27$ et $g(x)=-2x^2-7x+15$.
+%
+\begin{enumerate}
+	\item 
+	\begin{enumerate}
+		\item Déterminer la forme canonique de $f$.
+		\item En déduire le tableau de variation de la fonction $f$.
+	\end{enumerate}
+	\item 
+	\begin{enumerate}
+		\item Déterminer les racines de la fonction $g$.
+		\item Résoudre l'équation $f(x)=g(x)$.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\exonum[ (BONUS)]{1}
+
+\medskip
+
+On considère l'algorithme suivant, donné en langage \calgpython{} :
+%
+\begin{envpython}[8cm]
+def mystere(a,b,c) :
+	res = b**2-4*a*c
+	return res
+\end{envpython}
+%
+Que renverra la commande \cpy{mystere(1,1,1)} ?
+
+
+%\medskip
+%
+%\exonum{5}
+%
+%\smallskip
+%
+%On donne ci-dessous la courbe représentative d'un polynôme du second degré $f(x)$.
+%
+%\begin{center}
+%	\tunits{0.6}{0.6}
+%	\tdefgrille{-1}{7}{1}{0.5}{-3}{7}{1}{0.5}
+%	\begin{tikzpicture}[x=\xunit cm,y=\yunit cm]
+%		\tgrillep[densely dashed,line width=0.6pt,gray!50]
+%		\draw[->,line width=1.25pt] (\xmin,0) -- (\xmax,0);
+%		\draw[->,line width=1.25pt] (0,\ymin) -- (0,\ymax);
+%		\foreach \x in {-1,0,...,6} %à compléter avec itération ou complètement
+%		\draw[line width=1.25pt] (\x,4pt) -- (\x,-4pt) node[below] {\footnotesize \num{\x}}; %éventuellement \xx et taille...
+%		\foreach \y in {-3,-2,...,6}
+%		\draw[line width=1.25pt] (4pt,\y) -- (-4pt,\y) node[left] {\footnotesize \num{\y}};
+%		\draw[line width=1.25pt,red,domain=-1:7,samples=200] plot(\x,{0.5*(\x-3)*(\x-3)-2});
+%	\end{tikzpicture}
+%\end{center}
+%
+%\begin{enumerate}
+%	\item \textit{Aucun calcul n'est attendu dans cette première question.}
+%	\begin{enumerate}
+%		\item Donner les valeurs de $\alpha$, $\beta$ et des racines si elles existent (inutile de justifier).
+%		\item Sans faire de calcul, peut-on dire du coefficient $a$ ? Justifier.
+%		\item Sans faire de calcul, que peut-on dire de $\Delta$ ? Justifier.
+%	\end{enumerate}
+%	\item Déterminer une expression (au choix) de la fonction $f(x)$.
+%	\item \textbf{[Question bonus]} Dans un autre repère, représenter la courbe d'une fonction du second degré $g$ dans laquelle le coefficient $a$ (de plus haut degré) est négatif, et le $\Delta$ est nul.
+%\end{enumerate}
+
+\end{document}

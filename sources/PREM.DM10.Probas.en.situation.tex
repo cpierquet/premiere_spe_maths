@@ -1,0 +1,106 @@
+% !TeX TXS-program:compile = txs:///arara
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode}
+% arara: pythontex: {rerun: modified} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('log', '(undefined references|Please rerun|Rerun to get)')
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[]{cp-base}
+\graphicspath{{./graphics/}}
+%variables
+\donnees[classe=1\up{ère} 2M2,matiere={[SPÉ.MATHS]},typedoc=DM,numdoc=10,mois=Mai,annee=2022]
+
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfborder=0 0 0,pdfstartview=FitH}
+%divers
+%\espcellule
+\lhead{\entete{\matiere}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - \mois{} \annee}}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee{}}
+\rfoot{\pied{\numeropagetot}}
+\fancypagestyle{entetedm}{\fancyhead[L]{\entete{\matiere{} À rendre avant le\ldots}}}
+
+\begin{document}
+
+\pagestyle{fancy}
+
+\thispagestyle{entetedm}
+
+\part{DM10 - Probabilités en situation}
+
+\medskip
+
+\begin{blocexo}Exercice 1 \dotfill{}(Une histoire d'assurance et de coque)\end{blocexo}
+
+\smallskip
+
+Un magasin de téléphonie mobile lance une offre sur ses smartphones de la marque Pomme vendus à $800$\,€ : il propose une assurance complémentaire pour $50$\,€ ainsi qu'une coque à $20$\,€.
+
+Ce magasin a fait les constatations suivantes concernant les acheteurs de ce smartphone :
+
+\begin{itemize}
+	\item 40\,\% des acheteurs ont souscrit à l'assurance complémentaire ;
+	\item parmi les acheteurs qui ont souscrit à l'assurance complémentaire, 20\,\% ont acheté en plus la coque ;
+	\item parmi les acheteurs qui n'ont pas souscrit à l'assurance complémentaire, deux sur trois n'ont pas acheté la coque.
+\end{itemize}
+
+On interroge au hasard un client de ce magasin ayant acheté un smartphone de la marque Pomme. On note :
+
+\begin{itemize}
+	\item $A$ l'évènement : \og le client a souscrit à l'assurance complémentaire \fg{} ;
+	\item $C$ l'évènement : \og le client a acheté la coque \fg.
+\end{itemize}
+%
+\begin{enumerate}
+	\item Construire un arbre pondéré traduisant les données de l’exercice.
+	\item Calculer la probabilité que le client ait souscrit à l'assurance complémentaire et ait acheté la coque.
+	\item Montrer que $P(C) = 0,28$.
+	\item Le client interrogé a acheté la coque. Quelle est la probabilité qu'il n'ait pas souscrit à l'assurance complémentaire ? 
+	\item Déterminer la dépense moyenne d'un client de ce magasin ayant acheté un smartphone de la marque Pomme.
+	
+	{On pourra noter $X$ la variable aléatoire qui représente la dépense en euros d'un client de ce magasin ayant acheté un smartphone de la marque Pomme.}
+\end{enumerate}
+
+\medskip
+
+\begin{blocexo}Exercice 2 \dotfill{}(Une histoire de parfum)\end{blocexo}
+
+\smallskip
+
+Un parfumeur propose l’un de ses parfums, appelé \textit{Fleur Rose}, et cela uniquement avec deux contenances de flacons : un de \np[ml]{30}  ou un de \np[ml]{50}. Pour l'achat d'un flacon \textit{Fleur Rose}, il propose une offre promotionnelle sur un autre parfum appelé \textit{Bois d’ébène}.
+
+\smallskip
+
+On dispose des données suivantes :
+
+\begin{itemize}
+	\item 58\,\% des clients achètent un flacon de parfum \textit{Fleur Rose} de \np[ml]{30} et, parmi ceux là, 24\,\% achètent également un flacon du parfum \textit{Bois d’ébène} ;
+	\item 42\,\% des clients achètent un flacon de parfum \textit{Fleur Rose} de \np[ml]{50}  et, parmi ceux là,
+	13\,\% achètent également un flacon du parfum \textit{Bois d’ébène}.
+\end{itemize}
+
+On admet qu’un client donné n’achète qu’un seul flacon de parfum \textit{Fleur Rose} (soit en \np[ml]{30} soit en \np[ml]{50}), et que s’il achète un flacon du parfum \textit{Bois d’ébène}, il n’en achète aussi qu’un seul flacon.
+
+On choisit au hasard un client achetant un flacon du parfum \textit{Fleur Rose}. On considère les évènements suivants :
+
+\begin{itemize}
+	\item $F$ : \og le client a acheté un flacon \textit{Fleur Rose} de \np[ml]{30} \fg ;
+	\item $B$ : \og le client a acheté un flacon \textit{Bois d’ébène} \fg.
+\end{itemize}
+
+\begin{enumerate}
+	\item Construire un arbre pondéré traduisant les données de l’exercice.
+	\item Calculer la probabilité $p(F \cap B)$.
+	\item Calculer la probabilité que le client ait acheté un flacon \textit{Bois d’ébène} .
+	\item Un flacon \textit{Fleur Rose} de \np[ml]{30} est vendu 40\,€, un flacon \textit{Fleur Rose} de \np[ml]{50} est vendu 60\,€ et un flacon \textit{Bois d’ébène} 25\,€. On note $X$ la variable aléatoire correspondant au montant total des achats par un client du parfum \textit{Fleur Rose}.
+	\begin{enumerate}
+		\item  Déterminer la loi de probabilité de $X$.
+		\item Calculer l’espérance de $X$ et interpréter le résultat dans le contexte de l’exercice.
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

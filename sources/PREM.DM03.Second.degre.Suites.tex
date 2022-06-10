@@ -1,0 +1,146 @@
+% !TeX TXS-program:compile = txs:///lualatex
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[revgoku]{cp-base} %avec options possibles parmi breakable (tcbox), sujetl (exos),  (pour faire "comme avant"), etc...
+\graphicspath{{./graphics/}}
+%variables
+\donnees[%
+	classe=1\up{ère} 2M2,
+	matiere={[SPÉ.MATHS]},
+	mois=Novembre,
+	annee=2021,
+	typedoc=DM,
+	numdoc=03,
+	titre={Second degré, suites}
+	]
+
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{%
+	pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfborder=0 0 0,pdfstartview=FitH}
+%divers
+\lhead{\entete{\matiere}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - \mois{} \annee}}
+%\rhead{\entete{\classe{} - Chapitre }}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee{}}
+\rfoot{\pied{\numeropagetot}}
+\fancypagestyle{entetedm}{\fancyhead[L]{\entete{\matiere{} À rendre avant le\ldots}}}
+
+\begin{document}
+
+\pagestyle{fancy}
+
+\thispagestyle{entetedm}
+
+\part{DM03 - Second degré, suites}
+
+\medskip
+
+\exonum{}
+
+\smallskip
+
+Une entreprise fabriquant des montures de lunettes veut créer un nouveau modèle. Son prix est à fixer entre 150\,€ et 800\,€. Une étude de marché a permis d’estimer que le nombre de personnes disposées à acheter ce modèle au prix unitaire de $x$ euros est $N(x)=-0,7x+588$ pour $x \in \intervFF{150}{800}$.
+\begin{enumerate}
+	\item 
+	\begin{enumerate}
+		\item Justifier que le chiffre d’affaires $R(x)$, en €, pour un prix $x$ est $R(x)=-0,7x^2+588x$ pour $x \in \intervFF{150}{800}$.
+		\item Pour ce modèle de lunettes, les frais fixes de fabrication sont de 10\,000€, les frais variables de fabrication sont de 150\,€ par monture. Le coût total est donné par la formule $C(x)=10\,000+150 \times N(x)$.
+		
+		Justifier que $C(x)=-105x+98\,200$.
+		\item En déduire le bénéfice algébrique $B(x)$ dégagé par la vente de montures au prix unitaire de $x$\,€.
+	\end{enumerate}
+	\item 
+	\begin{enumerate}
+		\item Résoudre l’équation $B(x)=0$ (arrondir au centime près).
+		\item En déduire les solutions de l'inéquation $B(x) \pg 0$. Interpréter le résultat.
+	\end{enumerate}
+	\item Déterminer, en justifiant, le bénéfice maximal ainsi que le prix de vente (arrondi au centième) le garantissant.
+\end{enumerate}
+
+\medskip
+
+\exonum{}
+
+\smallskip
+
+Dans cet exercice, on s'intéresse à la modélisation de l'évolution de la population mondiale à partir de 1800, qui est estimée à 1\,000 millions d'individus en 1800.
+
+\smallskip
+
+\textbf{Partie A - Un premier modèle}
+
+\smallskip
+
+On suppose que la population mondiale augmente (de manière régulière) de 41,1 millions d'individus tous les 5 ans. On note $\suiten$ la suite modélisant la population mondiale, en millions, l'année $1800+5n$, avec $u_0=1\,000$.
+%
+\begin{enumerate}
+	\item Calculer $u_1$ et $u_2$. Interpréter les résultats dans le contexte de l'exercice.
+	\item Exprimer $u_{n+1}$ en fonction de $u_n$.
+	\item 
+	\begin{enumerate}
+		\item À l'aide de la calculatrice, déterminer une estimation de la population mondiale en 1930.
+		\item Faire de même pour la population mondiale en 2020. Ce résultat semble-t-il être cohérent avec les 7\,700 millions d'individus en 2019 ?
+	\end{enumerate}
+\end{enumerate}
+
+\textbf{Partie B - Un second modèle}
+
+\smallskip
+
+On suppose de ce fait que le modèle précédent n'est valable que jusque 1930, année pour laquelle la population mondiale était d'environ 2\,070 millions d'individus. À partir de 1930, on considère que la population mondiale augmente (de manière régulière) de 8,17\,\% tous les 5 ans. On note $\suiten[v]$ la suite modélisant la population mondiale, en millions, l'année $1930+5n$, avec en particulier $v_0=2\,070$.
+%
+\begin{enumerate}
+	\item Calculer $v_1$ et $v_2$. Interpréter les résultats dans le contexte de l'exercice.
+	\item Exprimer $v_{n+1}$ en fonction de $v_n$.
+	\item 
+	\begin{enumerate}
+		\item À l'aide de la calculatrice, déterminer une estimation de la population mondiale en 2000.
+		\item Faire de même pour la population mondiale en 2020. Ce résultat semble-t-il de nouveau être cohérent ?
+	\end{enumerate}
+\end{enumerate}
+
+\textbf{Partie C - Utilisation d'un tableur}
+
+\smallskip
+
+On souhaite, sur un tableur, calculer les termes successifs des suites $\suiten$ et $\suiten[v]$ sur leur domaine de validité.
+%
+\begin{center}
+	\begin{tikzpicture}
+		\tableur*[4]{A/2cm,B/2cm,C/2cm,D/0.75cm,E/2cm,F/2cm,G/2cm}
+		%L1
+		\celtxt[c]{A}{1}{Année}
+		\celtxt[c]{B}{1}{n}
+		\celtxt[c]{C}{1}{u\_n}
+		\celtxt[c]{E}{1}{Année}
+		\celtxt[c]{F}{1}{n}
+		\celtxt[c]{G}{1}{v\_n}
+		%L2
+		\celtxt[c]{A}{2}{1800}
+		\celtxt[c]{B}{2}{0}
+		\celtxt[c]{C}{2}{1000}
+		\celtxt[c]{E}{2}{1930}
+		\celtxt[c]{F}{2}{0}
+		\celtxt[c]{G}{2}{2070}
+		%Les valeurs de n
+		\celtxt[c]{B}{3}{1}
+		\celtxt[c]{B}{4}{2}
+		%\celtxt[c]{B}{5}{3}
+%		\celtxt[c]{B}{6}{4}
+		\celtxt[c]{F}{3}{1}
+		\celtxt[c]{F}{4}{2}
+		%\celtxt[c]{F}{5}{3}
+%		\celtxt[c]{F}{6}{4}
+	\end{tikzpicture}
+\end{center}
+%
+\begin{enumerate}
+	\item Quelles formules, à recopier, doit-on rentrer dans les cellules \csheet{A3} et \csheet{E3} afin d'afficher les années d'étude ?
+	\item Quelles formules, à recopier, doit-on rentrer en \csheet{C3} et \csheet{G3} afin d'afficher l'estimation de la population ?
+\end{enumerate}
+
+\end{document}

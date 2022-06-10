@@ -1,0 +1,370 @@
+% !TeX TXS-program:compile = txs:///arara
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode}
+% arara: pythontex: {rerun: modified} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('log', '(undefined references|Please rerun|Rerun to get)')
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[sujet]{cp-base}
+\graphicspath{{./graphics/}}
+%variables
+\donnees[classe={1\up{ère} 2M2},matiere={[SPÉ.MATHS]},mois={Mardi 24 Mai},annee=2022,duree=2h,typedoc=DS,numdoc=8]
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfborder=0 0 0,pdfstartview=FitH}
+%divers
+\lhead{\entete{\matiere}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - \mois{} \annee}}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee{}}
+\rfoot{\pied{\numeropagetot}}
+\fancypagestyle{entetedsa}{\fancyhead[L]{\entete{[SujetA] Durée : \duree}}}
+\fancypagestyle{entetedsb}{\fancyhead[L]{\entete{[SujetB] Durée : \duree}}}
+\usepackage{luacode}
+
+\begin{document}
+
+\pagestyle{fancy}
+
+\thispagestyle{entetedsa}
+
+\newcommand{\luac}[1]{\directlua{tex.sprint(#1)}}
+
+\begin{luacode*}
+function qcmalea(t)
+	local tbl = {}
+	for i = 1, #t do
+		tbl[i] = t[i]
+	end
+	for i = #tbl, 2, -1 do
+		local j = math.random(i)
+		tbl[i], tbl[j] = tbl[j], tbl[i]
+	end
+	return tbl
+end
+
+--Question1
+Q1A = [[$\mathscr{S}=\intervFF{-2}{2} \cup \intervFO{3}{+\infty}$.]]
+Q1B = [[$\mathscr{S}=\intervOF{-2}{2} \cup \intervFO{3}{+\infty}$.]]
+Q1C = [[$\mathscr{S}=\intervOF{-\infty}{-2} \cup \intervFF{2}{3}$.]]
+Q1D = [[$\mathscr{S}=\intervOF{-\infty}{-2} \cup \intervOO{2}{3}$.]]
+reponsesQ1 = qcmalea({Q1A,Q1B,Q1C,Q1D})
+
+--Question2
+Q2A = [[$\mathscr{S}=\begin{dcases} x = \dfrac{5\pi}{6}+2k\pi \\ x = -\dfrac{5\pi}{6}+2k\pi \end{dcases}$ avec $k$ entier.]]
+Q2B = [[$\mathscr{S}=\begin{dcases} x = \dfrac{\pi}{6}+2k\pi \\ x = -\dfrac{\pi}{6}+2k\pi \end{dcases}$ avec $k$ entier.]]
+Q2C = [[$\mathscr{S}=\begin{dcases} x = \dfrac{\pi}{3}+2k\pi \\ x = \dfrac{2\pi}{6}+2k\pi \end{dcases}$ avec $k$ entier.]]
+Q2D = [[$\mathscr{S}=\begin{dcases} x = \dfrac{7\pi}{12}+2k\pi \\ x = -\dfrac{7\pi}{12}+2k\pi \end{dcases}$ avec $k$ entier.]]
+reponsesQ2 = qcmalea({Q2A,Q2B,Q2C,Q2D})
+
+--Question3
+Q3A = [[$x=-1,2$.]]
+Q3B = [[$x=1,2$.]]
+Q3C = [[$x=7,5$.]]
+Q3D = [[$x=-7,5$.]]
+reponsesQ3 = qcmalea({Q3A,Q3B,Q3C,Q3D})
+
+--Question4
+Q4A = [[$80°$.]]
+Q4B = [[$81,1°$.]]
+Q4C = [[$73,8°$.]]
+Q4D = [[$79,7°$.]]
+reponsesQ4 = qcmalea({Q4A,Q4B,Q4C,Q4D})
+
+--Question5
+Q5A = [[$n=19$.]]
+Q5B = [[$n=20$.]]
+Q5C = [[$n=7$.]]
+Q5D = [[$n=38$.]]
+reponsesQ5 = qcmalea({Q5A,Q5B,Q5C,Q5D})
+\end{luacode*}
+%\luac{reponsesQx[y]} pour récupérer les réponses aléatoires
+
+\setcounter{numexos}{0}
+
+\part{DS08 - Dérivation, suites, probabilités, etc}
+
+\smallskip
+
+\nomprenomtcbox
+
+\begin{marker}$\leftrightsquigarrow$ Le sujet est à rendre avec la copie. $\leftrightsquigarrow$\end{marker}
+
+\smallskip
+
+\exonum{5}
+
+\medskip
+
+Ce QCM comprend 5 questions. Pour chacune des questions, une seule des quatre réponses proposées est correcte.
+
+Les cinq questions sont indépendantes.
+
+Pour chaque question, \textit{entourer} la lettre correspondant à la réponse choisie. Aucune justification n'est demandée.
+
+Chaque réponse correcte rapporte $1$ point. Une réponse incorrecte ou une absence de réponse n'apporte ni ne retire de point.
+
+\medskip
+
+\textbf{\red Question 1 :} Les solutions de l'inéquation $\dfrac{x^2-5x+6}{2x+4} \pg 0$ sont :
+
+\medskip
+
+\begin{tblr}{hlines,vlines,width=\linewidth,colspec={X[l]X[l]}}
+	\textbf{A.}~~\luac{reponsesQ1[1]} & \textbf{B.}~~\luac{reponsesQ1[2]} \\
+	\textbf{C.}~~\luac{reponsesQ1[3]} & \textbf{D.}~~\luac{reponsesQ1[4]} \\
+\end{tblr}
+
+\bigskip
+
+\textbf{\red Question 2 :} Les solutions de l'équation $2\cos(x)+\sqrt{3}=0$ sont :
+
+\medskip
+
+\begin{tblr}{hlines,vlines,width=\linewidth,colspec={X[l]X[l]}}
+	\textbf{A.}~~\luac{reponsesQ2[1]} & \textbf{B.}~~\luac{reponsesQ2[2]} \\
+	\textbf{C.}~~\luac{reponsesQ2[3]} & \textbf{D.}~~\luac{reponsesQ2[4]} \\
+\end{tblr}
+
+\bigskip
+
+\textbf{\red Question 3 :} Dans un repère orthonormé, on considère les vecteurs $\vect{u} \begin{pmatrix} 5\\2 \end{pmatrix}$ et $\vect{v} \begin{pmatrix} -3\\x \end{pmatrix}$.
+
+Les vecteurs $\vect{u}$ et $\vect{v}$ sont orthogonaux si :
+
+\medskip
+
+\begin{tblr}{hlines,vlines,width=\linewidth,colspec={X[l]X[l]}}
+	\textbf{A.}~~\luac{reponsesQ3[1]} & \textbf{B.}~~\luac{reponsesQ3[2]} \\
+	\textbf{C.}~~\luac{reponsesQ3[3]} & \textbf{D.}~~\luac{reponsesQ3[4]} \\
+\end{tblr}
+
+\bigskip
+
+\textbf{\red Question 4 :} Dans un repère orthonormé, on considère les points $A(1\,;\,2)$, $B(4\,;\,-2)$ et $C(3\,;\,3)$.
+
+Une valeur approchée au dixième de l'angle $\widehat{BAC}$ est :
+
+\medskip
+
+\begin{tblr}{hlines,vlines,width=\linewidth,colspec={X[l]X[l]}}
+	\textbf{A.}~~\luac{reponsesQ4[1]} & \textbf{B.}~~\luac{reponsesQ4[2]} \\
+	\textbf{C.}~~\luac{reponsesQ4[3]} & \textbf{D.}~~\luac{reponsesQ4[4]} \\
+\end{tblr}
+
+\bigskip
+
+\textbf{\red Question 5 :} On considère un jeu pour lequel le gain algébrique, en euros, est donné par une variable aléatoire $X$ dont la loi de probabilités est donnée ci-dessous.
+
+\begin{center}
+	\begin{tblr}{hlines,vlines,width=10cm,colspec={l*{5}{X[c]}}}
+		Valeurs $x_i$ & $-4$ & $-1$ & 3 & 5 & $n$ \\
+		Probas $p_i$ & $0,4$ & $0,3$ & $0,15$ & $0,1$ & $0,05$ \\
+	\end{tblr}
+\end{center}
+
+La valeur de $n$ pour laquelle le jeu est équitable est :
+
+\medskip
+
+\begin{tblr}{hlines,vlines,width=\linewidth,colspec={X[l]X[l]}}
+	\textbf{A.}~~\luac{reponsesQ5[1]} & \textbf{B.}~~\luac{reponsesQ5[2]} \\
+	\textbf{C.}~~\luac{reponsesQ5[3]} & \textbf{D.}~~\luac{reponsesQ5[4]} \\
+\end{tblr}
+
+\pagebreak
+
+\exonum{5}
+
+\medskip
+
+Une angine peut être provoquée soit par une bactérie (angine bactérienne) soit par un virus (angine virale). On admet qu'un malade ne peut pas être à la fois porteur du virus et de la bactérie. L'angine est bactérienne dans 20\,\% des cas.
+
+Pour déterminer si une angine est bactérienne, on dispose d'un test. Le résultat du test peut être positif ou négatif. Le test est conçu pour être positif lorsque l'angine est bactérienne mais il présente des risques d'erreur :
+
+\begin{itemize}
+	\item si l'angine est bactérienne, le test est négatif dans 30\,\% des cas ;
+	\item si l'angine est virale, le test est positif dans 10\,\% des cas.
+\end{itemize}
+
+On choisit au hasard un malade atteint d'angine. On note:
+
+\begin{itemize}
+	\item $B$ l'évènement: \og l'angine est bactérienne \fg{} ;
+	\item $T$ l'évènement: \og le test effectué sur le malade est positif \fg. 
+\end{itemize}
+
+\textit{Si besoin, les résultats seront arrondis à $10^{-3}$ près.}
+
+\begin{enumerate}
+	\item Compléter l'arbre de probabilité suivant :
+	
+	\begin{center}
+		\begin{tikzpicture}[xscale=1,yscale=1]
+			\tikzstyle{fleche}=[->,>=latex,thick]
+			\tikzstyle{sommet}=[]
+			\tikzstyle{poids}=[pos=0.5,sloped,fill=white]
+			\def\DistanceInterNiveaux{3}\def\DistanceInterFeuilles{1.25}
+			\def\NiveauA{(0)*\DistanceInterNiveaux}\def\NiveauB{(1.25)*\DistanceInterNiveaux}
+			\def\NiveauC{(2.5)*\DistanceInterNiveaux}\def\InterFeuilles{(-1)*\DistanceInterFeuilles}
+			%
+			\node[sommet] (R) at ({\NiveauA},{(1.5)*\InterFeuilles}) {$\Omega$};
+			\node[sommet] (Ra) at ({\NiveauB},{(0.5)*\InterFeuilles}) {$B$};
+			\node[sommet] (Raa) at ({\NiveauC},{(0)*\InterFeuilles}) {$\vphantom{A}\ldots$};
+			\node[sommet] (Rab) at ({\NiveauC},{(1)*\InterFeuilles}) {$\vphantom{A}\ldots$};
+			\node[sommet] (Rb) at ({\NiveauB},{(2.5)*\InterFeuilles}) {$\vphantom{A}\ldots$};
+			\node[sommet] (Rba) at ({\NiveauC},{(2)*\InterFeuilles}) {$\vphantom{A}\ldots$};
+			\node[sommet] (Rbb) at ({\NiveauC},{(3)*\InterFeuilles}) {$\vphantom{A}\ldots$};
+			%
+			\draw[fleche] (R)--(Ra) node[poids] {$\ldots$};
+			\draw[fleche] (Ra)--(Raa) node[poids] {$\ldots$};
+			\draw[fleche] (Ra)--(Rab) node[poids] {$\ldots$};
+			\draw[fleche] (R)--(Rb) node[poids] {$\ldots$};
+			\draw[fleche] (Rb)--(Rba) node[poids] {$\ldots$};
+			\draw[fleche] (Rb)--(Rbb) node[poids] {$\ldots$};
+		\end{tikzpicture}
+	\end{center}
+	\item Quelle est la probabilité que l'angine soit bactérienne et que le test soit positif ?
+	\item Montrer que la probabilité que le test soit positif est $0,22$.
+	\item Un malade est choisi au hasard parmi ceux dont le test est positif. Quelle est la
+	probabilité pour que son angine soit bactérienne ?
+	\item Les évènements B et T sont-ils indépendants ? Justifier la réponse.
+	\item On choisit trois personnes malades au hasard et de manière indépendante.
+	
+	Déterminer la probabilité que les trois personnes aient un test positif.
+\end{enumerate}
+
+\smallskip
+
+\exonum{5}
+
+\medskip
+
+Un service de vidéos à la demande réfléchit au lancement d'une nouvelle série mise en ligne chaque semaine et qui aurait comme sujet le quotidien de jeunes gens favorisés.
+
+Le nombre de visionnages estimé la première semaine est de \num{120000}. Ce nombre augmenterait ensuite de 2\,\% chaque semaine.
+
+Les dirigeants souhaiteraient obtenir au moins \num{400000} visionnages par semaine.
+
+On modélise cette situation par une suite $\left(u_n\right)$ où $u_n$ représente le nombre de visionnages $n$ semaines après le début de la diffusion. On a donc $u_0 = \num{120000}$.
+
+\begin{enumerate}
+	\item Calculer le nombre $u_1$ de visionnages une semaine après le début de la diffusion. 
+	\item 
+	\begin{enumerate}
+		\item Déterminer, en justifiant, la nature de la suite $\suiten$.
+		\item Justifier que pour tout entier naturel $n$ : $u_n = \num{120000} \times  1,02^n$.
+	\end{enumerate}
+	\item Déterminer, en justifiant, le sens de variations de la suite $\suiten$.
+	\item En détaillant la démarche, déterminer à partir de combien de semaines le nombre de visionnages hebdomadaire sera-t-il supérieur à \num{150000}.
+	\item Voici un algorithme écrit en langage \calgpython{} :
+	
+	\begin{envpythonnoline}[0.4\linewidth]
+		def seuil() :
+			u = 120000
+			n = 0
+			while u < 400000 :
+				n = n+1
+				u = 1.02*u
+			return n
+	\end{envpythonnoline}
+	
+	Déterminer la valeur affichée par cet algorithme et interpréter ce résultat dans le contexte de l'exercice.
+	
+	\item On rappelle les formules suivantes :
+	
+	\hspace{0.5cm}%
+	\begin{tblr}{|[1.5pt,ForestGreen]l}
+		Somme de termes consécutifs d'une suite arithmétique : $\text{nombre de termes} \times \frac{\text{1\up{er} terme + dernier}}{2}$ \\
+		Somme de termes consécutifs d'une suite géométrique : $\text{1\up{er} terme} \times \frac{1 - \text{raison}^{\text{nombre de termes}}}{1 - \text{raison}}$
+	\end{tblr}
+	
+	\medskip
+	
+	Déterminer le nombre total de visionnages au bout de $52$ semaines (arrondir à l'unité).
+\end{enumerate}
+
+\smallskip
+
+\exonum{5}
+
+\medskip
+
+Un industriel souhaite fabriquer une boîte sans couvercle à partir d'une plaque de métal de $18$~cm de largeur et de $24$~cm de longueur. Pour cela, il enlève des carrés dont la longueur du côté mesure $x$ cm aux quatre coins de la pièce de métal et relève ensuite verticalement pour fermer les côtés.
+
+\begin{center}
+	\begin{tikzpicture}[thick,x=0.8cm,y=0.8cm,line join=bevel]
+		%PATRON
+		\draw[fill=lightgray,dashed] (1,2)--(1,4)--(2,4)--(2,5)--(6,5)--(6,4)--(7,4)--(7,2)--(6,2)--(6,1)--(2,1)--(2,2)--cycle;
+		\draw (1,1) rectangle (7,5) ;
+		\draw[<->,>=stealth'] (6,0.5) -- (7,0.5) node[midway,below] {$x$} ;
+		\draw[<->,>=stealth'] (7.4,1) -- (7.4,2) node[midway,right] {$x$} ;
+		\draw[<->,>=stealth'] (0.3,1) -- (0.3,5) node[midway,left] {$18$} ;
+		\draw[<->,>=stealth'] (1,5.6) -- (7,5.6) node[midway,above] {$24$} ;
+		%FLECHE ARRONDIE...
+		\draw[line width=0.15cm,<-,>=latex'] (8.5,0) ++ (70:3) arc(70:110:3) ;
+		%BOITE PLIEE
+		\draw[fill=lightgray] (10,1) rectangle (14,2) ;
+		\draw[fill=lightgray] (14,1) -- (16,2.8) -- (16,3.8) -- (14,2) --cycle ;
+		\draw (10,2) -- (12,3.8) -- (16,3.8) ;
+		\draw (12,3.8) -- (12,2.8) -- (14.85,2.8) ;
+		\draw (11,2) -- (12,2.8) ;
+	\end{tikzpicture}
+\end{center}
+
+Le volume de la boîte ainsi obtenue est une fonction définie sur l'intervalle $\intervFF{0}{9}$ notée $\mathscr{V}(x)$.
+
+\begin{enumerate}
+	\item Justifier que pour tout réel $x$ appartenant à $\intervFF{0}{9}$ : $\mathscr{V}(x) = 4x^3 - 84x^2 + 432x$. 
+	\item On note $\mathscr{V}'$ la fonction dérivée de $\mathscr{V}$ sur $\intervFF{0}{9}$.
+	
+	Donner l'expression de $\mathscr{V}'(x)$ en fonction de $x$.
+	\item 
+	\begin{enumerate}
+		\item Étudier le signe de $\mathscr{V}'(x)$ sur $\intervFF{0}{9}$.
+		\item Dresser alors le tableau de variations de $\mathscr{V}$.
+		
+		\textit{Les valeurs pourront être arrondies au centième.}
+	\end{enumerate}
+	\item Tracer soigneusement, dans le repère suivant (l'unité verticale est à préciser), la courbe représentative de la fonction $\mathscr{V}$ sur $\intervFF{0}{9}$ :
+	
+	\begin{center}
+		\begin{tikzpicture}[x=1.5cm,y=0.015cm,xmin=0,xmax=10,xgrille=1,xgrilles=0.2,ymin=0,ymax=700,ygrille=100,ygrilles=20]
+			\tgrilles \tgrillep \axestikz*
+			\axextikz{0,1,...,9} \axeytikz*{0,100,...,600}
+			%\clip (\xmin,\ymin) rectangle (\xmax,\ymax) ;
+			%\draw[very thick,red,domain=0:9,samples=500] plot (\x,{4*\x*\x*\x - 84*\x*\x + 432*\x}) ;
+		\end{tikzpicture}
+	\end{center}
+	\item Pour quelle(s) valeur(s) de $x$ la contenance de la boîte est-elle maximale ?
+	\item L'industriel peut-il construire ainsi une boîte dont la contenance est supérieure ou égale à $650$ cm$^3$ ? Justifier.
+\end{enumerate}
+
+\vspace{1cm}
+
+%variables
+\def\CA{Je sais travailler sur un QCM}
+\def\CB{Je sais utiliser un arbre de probas}
+\def\CC{Je sais travailler avec les suites arithm. et géom.}
+\def\CD{Je sais étudier une fonction simple}
+%etc
+
+\begin{center}
+	\begin{tblr}{%
+			hlines,vlines,width=13cm,%
+			colspec={Q[l,wd=8.5cm]X[c]X[c]X[c]Q[c,wd=1.5cm]},%
+			row{1}={font=\footnotesize\bfseries\sffalt,bg=lightgray!50},
+			row{2-Y}={font=\poltuto},
+			row{Z}={font=\blue\footnotesize\bfseries\sffalt}}
+		DS08 - Dérivation, suites, probabilités, etc & NA & PA & A & Note \\
+		{\CA} & & & & \SetCell[r=5]{c} \\
+		{\CB} & & & & \\
+		{\CC} & & & & \\
+		{\CD} & & & & \\
+		\SetCell[c=4]{l} \textbf{NA} : Non acquis  / \textbf{PA} : Partiellement acquis / \textbf{A} : Acquis & & & & \\
+	\end{tblr}
+\end{center}
+
+\end{document}

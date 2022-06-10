@@ -1,0 +1,96 @@
+% !TeX TXS-program:compile = txs:///lualatex
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[]{cp-base} %avec options possibles parmi breakable (tcbox), sujetl (exos),  (pour faire "comme avant"), etc...
+\graphicspath{{./graphics/}}
+%variables
+\donnees[%
+	classe=1\up{ère} 2M2,
+	matiere={[SPÉ.MATHS]},
+	typedoc=DM,
+	numdoc=02,
+	mois=Septembre,
+	annee=2021,
+	titre={Étude de bénéfices}
+	]
+	
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfborder=0 0 0,pdfstartview=FitH}
+%divers
+\lhead{\entete{\matiere}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - \mois{} \annee}}
+%\rhead{\entete{\classe{} - Chapitre }}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee{}}
+\rfoot{\pied{\numeropagetot}}
+\fancypagestyle{entetedm}{\fancyhead[L]{\entete{\matiere{} À rendre avant le\ldots}}}
+
+\begin{document}
+
+\pagestyle{fancy}
+
+\thispagestyle{entetedm}
+
+\part{DM02 - Étude de bénéfices}
+
+\medskip
+
+Une entreprise fabrique des petits meubles. Pour des raisons de stockage, la production mensuelle $x$ est comprise entre 0 et 800 unités.
+
+Le coût total de fabrication mensuel, exprimé en euros, est donné par la fonction $C$ définie sur $\intervFF{0}{800}$ par :\[ C(x)=0,05x^2+20x+1\,250. \]
+On a tracé ci-dessous la courbe de la fonction $C$ ainsi que la droite $\mathcallig{R}$ représentant la fonction recette, le tout dans un repère orthogonal.
+
+\begin{center}
+	\tunits{0.18}{0.18}
+	\tdefgrille{0}{85}{5}{5}{0}{50}{50}{5}
+	\begin{tikzpicture}[x=\xunit cm,y=\yunit cm]
+		%AXES & GRILLES
+		\tgrilles[orange!50,line width=0.4pt,densely dashed] 
+		\axestikz
+		\foreach \x in {0,5,...,80}
+			\FPeval{calx}{clip(\x*10)}
+			\draw[line width=1.25pt] (\x,4pt) -- (\x,-4pt) node[below] {\num{\calx}} ;
+		%\axextikz{0,50,...,800} ;
+		\foreach \y in {0,5,...,45}
+			\FPeval{caly}{clip(\y*1000)}
+			\draw[line width=1.25pt] (4pt,\y) -- (-4pt,\y) node[left] {\num{\caly}} ;
+		%COURBE
+		\draw[line width=1.25pt,red,domain=0:80] plot (\x,{0.005*\x*\x+0.20*\x+1.250}) ;
+		\draw[line width=1.25pt,blue,domain=0:80] plot (\x,{0.475*\x}) ;
+		\draw[darkgray,fill=darkgray] (65,30.875) circle(3pt) ;
+		\draw (65,30.875) node[below right] {$(650\,;\,30\,875)$} ;
+	\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}
+	\item À l’aide du graphique, déterminer le prix de vente exact de chaque meuble.
+	\item Calculer la recette, puis le bénéfice correspondant à 150 meubles fabriqués et vendus.
+	\item Graphiquement, sur quel intervalle l’entreprise réalise-t-elle des bénéfices ? Justifier.
+	\item 
+	\begin{enumerate}
+		\item Donner la recette mensuelle $R(x)$, exprimée en euros, correspondant à $x$ meubles vendus.
+		\item En déduire le bénéfice mensuel $B(x)$, exprimé en euros, correspondant à $x$ meubles fabriqués et vendus.
+	\end{enumerate}
+	\item
+	\begin{enumerate}
+		\item Déterminer, en détaillant, la forme canonique de la fonction $B$.
+		\item Déterminer, en justifiant, le nombre de meubles à fabriquer et à vendre pour que le bénéfice soit maximal. Préciser la valeur de ce bénéfice maximal.
+	\end{enumerate}
+	\item 
+	\begin{enumerate}
+		\item Résoudre l'équation $B(x)=0$.
+		\item Déterminer la forme factorisée de $B(x)$.
+		
+		\textbf{NB} : On pourrait ainsi retrouver, par calculs, le résultat de la question \ptno{3} !
+	\end{enumerate}
+	\item Déterminer, par la méthode de votre choix, les quantités de meubles à fabriquer et à vendre pour que le bénéfice soit de :
+	\begin{enumerate}
+		\item $-1\,250$\,€ ;
+		\item 1\,000\,€.
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

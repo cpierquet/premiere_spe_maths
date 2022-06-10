@@ -1,0 +1,237 @@
+% !TeX TXS-program:compile = txs:///arara
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode}
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('log', 'undefined references')
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[revgoku,breakable]{cp-base}
+\graphicspath{{./graphics/}}
+%variables
+\donnees[%
+	classe={1\up{ère} 2M2},matiere={[SPÉ.MATHS]},mois=Octobre,annee=2021,typedoc=CHAP,numdoc=2]
+	
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfborder=0 0 0,pdfstartview=FitH}
+%divers
+\lhead{\entete{\matiere}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - \mois{} \annee}}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee{}}
+\rfoot{\pied{\numeropagetot}}
+
+\begin{document}
+
+\pagestyle{fancy}
+
+\part{CH02 - Suites numériques - Exercices}
+
+\smallskip
+
+\begin{caide}
+{\setlength\arrayrulewidth{1.5pt} \arrayrulecolor{titrebleu!35}
+\begin{tabularx}{\linewidth}{Y|Y|Y|Y|Y|Y}
+	\niveaudif{0}~~\textsf{Basique} & \niveaudif{1}~~\textsf{Modérée} & \niveaudif{2}~~\textsf{Élevée} & \niveaudif{3}~~\textsf{Très élevée} & \niveaudif{4}~~\textsf{Extrême} & \niveaudif{5}~~\textsf{Insensée} \\
+\end{tabularx}}
+\end{caide}
+
+\exonum{0}
+
+\medskip
+
+On considère la suite $\suiten$ définie par $u_n = n^3+3n-1$ pour tout entier $n$.
+
+\begin{enumerate}[itemsep=0pt]
+	\item Calculer $u_0$ puis $u_1$.
+	\item Calculer la valeur de $u_{10}$.
+	\item Exprimer $u_n + 1$ et $u_{n+1}$ en fonction de $n$.
+\end{enumerate}
+
+\medskip
+
+\exonum{0}
+
+\medskip
+
+On considère la suite $\suiten$ définie par $u_n=\dfrac{n-3}{n+2}$ pour tout entier $n$.
+
+\begin{enumerate}[itemsep=0pt]
+	\item Calculer $u_0$ puis $u_1$.
+	\item La suite $\suiten$ est-elle définie par récurrence ou par une formule explicite ?
+	\item Déterminer la fonction $f$ associée à la suite $\suiten$.
+	\item Calculer la valeur de $u_{50}$.
+\end{enumerate}
+
+\medskip
+
+\exonum{1}
+
+\medskip
+
+On considère la suite $\suiten$ définie par $u_0=4$ et $u_{n+1}=2u_n-3$ pour tout entier $n$.
+
+\begin{enumerate}[itemsep=0pt]
+	\item Calculer $u_1$ et $u_2$.
+	\item La suite $\suiten$ est-elle définie par récurrence ou par une formule explicite ?
+	\item Déterminer la fonction $f$ associée à la suite $\suiten$.
+	\item Déterminer, en utilisant le module \ccalg{Suites} de la calculatrice, la valeur de $u_{15}$.
+\end{enumerate}
+
+\medskip
+
+\exonum{1}
+
+\medskip
+
+On considère la suite $\suiten$ définie par $u_0=1$ et $u_{n+1}=\dfrac{u_n+2}{u_n^2+1}$ pour tout entier $n$.
+
+\begin{enumerate}[itemsep=0pt]
+	\item Calculer les valeurs de $u_1$ et $u_2$.
+	\item La suite $\suiten$ est-elle définie par récurrence ou par une formule explicite ?
+	\item Déterminer la fonction $f$ associée à la suite $\suiten$.
+	\item Déterminer, en utilisant le module \ccalg{Suites} de la calculatrice, la valeur de $u_{20}$.
+\end{enumerate}
+
+\medskip
+
+\exonum{1}
+
+\medskip
+
+On considère la suite $\suiten$ définie par $u_0=10$ et $u_{n+1}=n-u_n$ pour tout entier $n$.
+
+\begin{enumerate}[itemsep=0pt]
+	\item Calculer les valeurs de $u_1$ et $u_2$.
+	\item Déterminer, en utilisant le module \ccalg{Suites} de la calculatrice, la valeur de $u_{18}$.
+\end{enumerate}
+
+\medskip
+
+\exonum{3}
+
+\medskip
+
+On considère la suite $\suiten[v]$ définie par $v_1=4$ et $v_{n+1}=\dfrac{(n+1)v_n}{n(1+v_n)}$ pour tout entier $n$.
+
+\begin{enumerate}[itemsep=0pt]
+	\item Calculer les valeurs de $v_2$, $v_3$ et $v_4$.
+	\item Déterminer, en utilisant le module \ccalg{Suites} de la calculatrice, la valeur de $v_{11}$.
+\end{enumerate}
+
+\newpage
+
+\exonum{2}
+
+\medskip
+
+On considère la suite $\suiten$ définie par $u_n=\dfrac{(-1)^n}{n+1}$ pour tout entier $n$.
+
+\begin{enumerate}[itemsep=0pt]
+	\item Calculer les valeurs de $v_0$, $v_1$, $v_2$, $v_3$ et $v_4$.
+	\item Démontrer que $v_{2n}>0$ pour tout entier $n$, et que $v_{2n+1}<0$ pour tout entier $n$.
+\end{enumerate}
+
+\medskip
+
+\exonum{1}
+
+\medskip
+
+On considère la suite $\suiten[w]$ définie par $w_n = \dfrac{2}{5^n}$ pour tout entier $n$.
+
+\begin{enumerate}[itemsep=0pt]
+	\item Calculer $w_0$, $w_1$, $w_2$ et $w_3$.
+	\item Montrer que le quotient $\dfrac{w_{n+1}}{w_n}$ est indépendant de $n$ pour tout entier $n$.
+\end{enumerate}
+
+\medskip
+
+\exonum{3}
+
+\medskip
+
+On considère la suite $\suiten$ définie par $u_n = 1 + \frac{1}{n}$ pour tout entier naturel $n$ non nul.
+
+\begin{enumerate}[itemsep=0pt]
+	\item Calculer les 3 premiers termes de la suite $\suiten$ ainsi que le 15\up{ème}.
+	\item Représenter, dans le repère suivant (l'unité verticale est à préciser), les 10 premiers termes de $\suiten$.
+	\begin{center}
+		\tunits{1}{1}
+		\tdefgrille{0}{10}{1}{1}{0}{2.5}{0.5}{0.5}
+		\begin{tikzpicture}[x=\xunit cm,y=\yunit cm]
+			\tgrilles[line width=0.4pt,lightgray] ;
+			\axestikz* ;
+			\axextikz{0,1,...,9} ;
+			\foreach \y in {0,0.5,1,1.5,2}
+				\draw[line width=1.25pt] (4pt,\y) -- (-4pt,\y) ;
+		\end{tikzpicture}
+	\end{center}
+%	\begin{center}
+%		\psset{xunit=1cm,yunit=1cm,tickwidth=1pt,algebraic=true,arrowscale=1.5}
+%		\defgrille{0}{10}{1}{1}{0}{2.5}{0.5}{0.5}
+%		\begin{pspicture}(0,-0.25)(10,2.5)
+%			\grilles{linewidth=0.4pt,linecolor=lightgray}
+%			\psaxes[labels=x,linewidth=1pt,Dy=0.5]{->}(0,0)(10,2.5)
+%			%\psplot{1}{10}{1+1/x}
+%		\end{pspicture}
+%	\end{center}
+	\item Conjecturer le sens de variation ainsi que la limite éventuelle de la suite $\suiten$.
+	\item 
+	\begin{enumerate}
+		\item Montrer que $u_{n+1}-u_n = \frac{-1}{n(n+1)}$ pour tout entier $n$ non nul.
+		\item En déduire le sens de variation de la suite $\suiten$.
+	\end{enumerate}
+	\item Montrer que $u_n >1$ pour tout entier $n$ non nul (on dit que $\suiten$ est \textbf{minorée} par 1).
+\end{enumerate}
+
+\medskip
+
+\exonum{3}
+
+\medskip
+
+On considère la suite $\suiten[v]$ définie par $v_0=2$ et $v_{n+1}=-0,25v_n^2+v_n$ pour tout entier $n$.
+
+\begin{enumerate}[itemsep=0pt]
+	\item Calculer $v_1$, $v_2$ et $v_3$.
+	\item 
+	\begin{enumerate}
+		\item Déterminer la fonction $f$ telle que $v_{n+1} = f(v_n)$.
+		\item À l'aide de la courbe $\mathscr{C}_f$ donnée ci-dessous, représenter graphiquement les premiers termes de $\suiten[v]$.
+		\begin{center}
+			\tunits{4}{3}
+			\tdefgrille{0}{2.5}{0.25}{0.25}{0}{1.25}{0.25}{0.25}
+			\begin{tikzpicture}[x=\xunit cm,y=\yunit cm]
+				\tgrilles[line width=0.4pt,lightgray] ;
+				\axestikz* ;
+				\axextikz{0,1,2} ;
+				\foreach \y in {0,0.5,1.0}
+					\draw[line width=1.25pt] (4pt,\y) -- (-4pt,\y) node[left] {\num{\y}} ;
+				\clip (\xmin,\ymin) rectangle (\xmax,\ymax) ;
+				\draw[line width=1.25pt,red](0,0) -- (1.25,1.25) ;
+				\draw[line width=1.25pt,blue,domain=0:2.5,samples=200] plot (\x,{-0.25*\x*\x+\x}) ;
+				\draw (1.25,1.25) node[below right] {\large \red $\Delta$ : $y=x$} ;
+				\draw (2,1) node[above right] {\large \blue $\mathscr{C}_f$} ;
+			\end{tikzpicture}
+		\end{center}
+%		\begin{center}
+%			\psset{xunit=4cm,yunit=3cm,tickwidth=1pt,algebraic=true,arrowscale=1.5}
+%			\defgrille{0}{2.5}{0.25}{0.25}{0}{1.25}{0.25}{0.25}
+%			\begin{pspicture}(-0.25,-0.25)(2.5,1.25)
+%				\grilles{linewidth=0.4pt,linecolor=lightgray}
+%				\psaxes[comma,linewidth=1pt,Dy=0.5]{->}(0,0)(2.5,1.25)
+%				\psline[linewidth=1.25pt,linecolor=red](0,0)(1.25,1.25)
+%				\psplot[linewidth=1.25pt,linecolor=blue]{0}{2.5}{-0.25*x^2+x}
+%				\uput[dr](1.25,1.25){\large \red $\Delta$ : $y=x$}
+%				\uput[ur](2,1){\large \blue $\mathscr{C}_f$}
+%			\end{pspicture}
+%		\end{center}
+		\item Conjecturer le sens de variation ainsi que la limite éventuelle de la suite $\suiten[v]$.
+	\end{enumerate}
+	\item Calculer $v_{n+1}-v_n$ pour tout entier naturel $n$ puis en déduire le sens de variation de la suite $\suiten[v]$.
+\end{enumerate}
+
+
+
+\end{document}

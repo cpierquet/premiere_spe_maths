@@ -1,0 +1,185 @@
+% !TeX TXS-program:compile = txs:///arara
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode}
+% arara: pythontex: {rerun: modified} if exists('pytxcode') && found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if exists('pytxcode') && found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('log', '(undefined references|Please rerun|Rerun to get)')
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[revgoku]{cp-base}
+\graphicspath{{./graphics/}}
+%variables
+\donnees[classe={1\up{ère} 3M3},matiere={[SPÉ.MATHS]},mois=Avril,annee=2022,typedoc=CHAP,numdoc=10]
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfborder=0 0 0,pdfstartview=FitH}
+%divers
+\lhead{\entete{\matiere}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - \mois{} \annee}}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee{}}
+\rfoot{\pied{\numeropagetot}}
+
+\begin{document}
+
+\pagestyle{fancy}
+
+\part{CH10 - Calcul vectoriel, produit scalaire - Exercices (Correction)}
+
+\smallskip
+
+\exonum{0}
+
+\begin{enumerate}
+	\item D'après la \og formule géométrique \fg{} du produit scalaire :
+	
+	
+	$\vect{AB}\cdot\vect{AC}=4 \times AC \times \cos\big(\widehat{BAC}\big) = 4 \times 3 \times \cos\big(60^{\circ}\big)=12 \times 0,5 = 6$.
+	\item D'après la \og formule projection \fg{} du produit scalaire :
+	
+	$\vect{AB}\cdot\vect{AC} = +AB \times AH = AB \times AB = 4 \times 4 = 16$.
+	\item On a, par propriétés \og analytiques \fg{} du produit scalaire :
+	\begin{itemize}
+		\item $\vect{u}\cdot\vect{v}=4 \times 3 + (-1) \times 5 = 12-5=7$ ;
+		\item $\vect{u}^2=4^2+(-1)^2=16+1=17$ ;
+		\item $\vect{v}^2=3^2+5^2=9+25=34$.
+	\end{itemize}
+\end{enumerate}
+
+\medskip
+
+\exonum{1}
+
+\begin{enumerate}
+	\item 
+	\begin{itemize}
+		\item en utilisant le déterminant : $xy'-yx'=1 \times 3 - 2 \times (-6)=3+12=15 \neq0$, donc $\vect{u}$ et $\vect{v}$ ne sont pas colinéaires ;
+		\item en utilisant le produit scalaire : $xx'+yy'=1\times(-6)+2\times3=-6+6=0$ donc $\vect{u}$ et $\vect{v}$ sont orthogonaux.
+	\end{itemize}
+	\item 
+	\begin{enumerate}
+		\item On a $\vect{AB}\coordeux{-2-1}{7-3}=\coordeux{-3}{4}$ et $\vect{AC}\coordeux{9-1}{9-3}=\coordeux{8}{6}$.
+		\item Par coordonnées, $\vect{AB}\cdot\vect{AC}=-3\times8+4\times6=-24+24=0$.
+		\item On peut en déduire que $\vect{AB}$ et $\vect{AC}$ sont orthogonaux, et donc que $ABC$ est rectangle en $A$.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\exonum{1}
+
+\begin{enumerate}
+	\item 
+	\begin{enumerate}
+		\item D'après le théorème de Pythagore dans le triangle rectangle $AEF$ en $E$ :
+		
+		\hspace{0.5cm}$AF^2=AE^2+EF^2=6^2+3^2=36+9=45 \Rightarrow AF=\sqrt{45}=3\sqrt{5}$.
+		
+		De plus, dans le triangle rectangle $AEF$ en $E$ :
+		
+		\hspace{0.5cm}$\cos\left(\widehat{EAF}\right)=\dfrac{AE}{AF}=\dfrac{6}{\sqrt{45}}=\dfrac{2\sqrt{5}}{5}$.
+		\item Ainsi, $\vect{AE}\cdot\vect{AI}=AE \times AI \times \cos\left(\widehat{EAF}\right)=6 \times \dfrac{3\sqrt{5}}{2} \times \dfrac{2\sqrt{5}}{5}=18$.
+	\end{enumerate}
+	\item Par \og projection orthogonale \fg, $\vect{AE}\cdot\vect{AI}=+AE\times AH=AE \times AB=6 \times 3=18$.
+	\item 
+	\begin{enumerate}
+		\item Dans le repère proposé, $\vect{AE}\coordeux{6}{0}$ et $\vect{AI}\coordeux{3}{1,5}$.
+		\item Ainsi $\vect{AE}\cdot\vect{AI}=6 \times 3 + 0 \times 1,5=18$.
+	\end{enumerate}  
+\end{enumerate}
+
+\medskip
+
+\exonum{1}
+
+\begin{enumerate}
+	\item $\vect{u}\coordeux{6}{x}$ et $\vect{v}\coordeux{-3}{2}$ sont orthogonaux ssi $6\times(-3)+x\times2=0 \ssi -18+2x=0 \ssi x=9$ ;
+	\item $\vect{u}\coordeux{-3}{x}$ et $\vect{v}\coordeux{x-1}{4}$ sont orthogonaux ssi $-3(x-1)+x\times4=0=0 \ssi -3x+3+4x=0 \ssi x=-3$ ;
+	\item $\vect{u}\coordeux{3}{8}$ et $\vect{v}\coordeux{x}{-2}$ sont orthogonaux ssi $3x-16=0 \ssi x=\nicefrac{16}{3}$ ;
+	\item $\vect{u}\coordeux{x}{2}$ et $\vect{v}\coordeux{x}{8}$ sont orthogonaux ssi $x\times x+2\times8=0 \ssi x^2+16=0$ qui est impossible.
+\end{enumerate}
+
+\medskip
+
+\exonum{3}
+
+\begin{enumerate}
+	\item 
+	\begin{enumerate}
+		\item On \og déplace \fg{} $\vect{ED}$ en le faisant partir de $A$, et en \og projetant \fg{} $D$, on tombe sur $B$.
+		\begin{center}
+			\begin{tikzpicture}[thick,line join=bevel]
+				\draw[red,fill=red!33] (0,4) -- ($(0,4)+(-26.6:0.75)$) arc(-26.6:0:0.75) -- cycle ;
+				\draw[ForestGreen,fill=ForestGreen!33] (0,4) -- (0,3.25) arc (-90:-26.6:0.75) -- cycle;
+				\draw[->,>=latex] (0,4) -- (4,4) node[midway,above] {\small $\vect{AB}$} ;
+				\draw[->,>=latex] (0,4) -- (4,2) node[midway,below] {\small $\vect{ED}$} ;
+				\draw[densely dotted] (0,4) -- (0,1.75) (4,2) -- (4,4);
+			\end{tikzpicture}
+		\end{center}
+		Ainsi $\vect{AB}\cdot\vect{ED}=+AB \times AB=4 \times 4 = 16$.
+		\item En utilisant la \og formule géométrique \fg{} :
+		
+		$\vect{AB}\cdot\vect{ED}=AB \times ED \times \cos \big( \vect{AB}\,,\,\vect{ED} \big) \Rightarrow 16 = 4 \times 2\sqrt{5} \times \cos \big( \vect{AB}\,,\,\vect{ED} \big) \Rightarrow \cos \big( \vect{AB}\,,\,\vect{ED} \big) = \dfrac{16}{8\sqrt{5}}$.
+		
+		La calculatrice nous donne ${\red\big(  \vect{AB}\,,\,\vect{ED} \big) \approx 26,6^{\circ}}$.
+		\item Ainsi une valeur approchée, au dixième de degré, de la mesure de l'angle $\textcolor{ForestGreen}{\widehat{AED}}$ est de $90-{\red 26,6}$ soit $\textcolor{ForestGreen}{63,4^{\circ}}$.
+	\end{enumerate}
+	\item 
+	\begin{enumerate}
+		\item En utilisant la \og formule géométrique \fg{} :
+		
+		$\vect{EA}\cdot\vect{EC}=EA \times EC \times \cos \big( \textcolor{ForestGreen}{\widehat{AEC}} \big) = 4 \times \sqrt{5} \times \cos \big( 63,4^{\circ} \big) =4$.
+		\item On utilise la formule avec $\vect{u}=\vect{EA}$ et $\vect{v}=\vect{EC}$ :  $\begin{dcases} \vect{u}\cdot\vect{v}= \vect{EA}\cdot\vect{EC} = 4 \\ ||\vect{u}||^2 = EA^2 = 16 \\ ||\vect{v}||^2 = EC^2 = 5 \\ ||\vect{u}-\vect{v}||^2 = ||\vect{EA}-\vect{EC} ||^2 = || \vect{EA}+\vect{CE} ||^2 = || \vect{CA} ||^2 = CA^2 \end{dcases}$.
+		
+		Et donc $4=\tfrac{1}{2} \left( 16+5-AC^2  \right) \Rightarrow 21-AC^2=8 \Rightarrow AC^2=13 \Rightarrow AC =\sqrt{13} \approx 3,6$~cm.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\exonum{2}
+
+\begin{pyconcode}
+def produitscalaire(xu,yu,xv,yv) :
+	res = xu*xv + yu*yv
+	return res
+	
+
+def orthogonaux(xu,yu,xv,yv):
+	ps = produitscalaire(xu,yu,xv,yv)
+	if ps == 0 :
+		return True
+	else :
+		return False
+	
+
+\end{pyconcode}
+
+\begin{enumerate}
+	\item La ligne \textsf{L2} peut contenir \cpy{res = xu*xv + yu*yv}.
+	\item La ligne \textsf{L7} peut contenir \cpy{if ps == 0 :}.
+	\begin{envpython}[10cm]
+		def produitscalaire(xu,yu,xv,yv) :
+			res = xu*xv + yu*yv
+			return res
+		
+		def orthogonaux(xu,yu,xv,yv):
+			ps = produitscalaire(xu,yu,xv,yv)
+			if ps == 0 :
+				return True
+			else :
+				return False
+	\end{envpython}
+	\item 
+	\begin{enumerate}
+		\item \cpy{produitscalaire(-1,5,4,3)} renvoie \cpy{11} car : $(-1) \times 4 + 5 \times 3 = -4+15=11$.
+		\item \cpy{orthogonaux(2,2.5,12.5,-10)} renvoie \cpy{True} car : $2 \times 12,5 + 2,5 \times (10) = 25 - 25=0.$
+	\end{enumerate}
+	\begin{envconsolepython}[10cm]
+		produitscalaire(-1,5,4,3)
+		orthogonaux(2,2.5,12.5,-10)
+	\end{envconsolepython}
+\end{enumerate}
+
+\end{document}

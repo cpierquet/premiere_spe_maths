@@ -1,0 +1,91 @@
+% !TeX TXS-program:compile = txs:///arara
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode}
+% arara: pythontex: {rerun: modified} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('log', '(undefined references|Please rerun|Rerun to get)')
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[revgoku]{cp-base}
+\graphicspath{{./graphics/}}
+%variables.
+\donnees[classe={1\up{ère} 2M2},matiere={[SPÉ.MATHS]},mois={Mardi 1\up{er} Mars},annee=2022,typedoc=TEST~,numdoc=6,duree={15 minutes}]
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfborder=0 0 0,pdfstartview=FitH}
+%divers
+\lhead{\entete{Durée : \duree}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - \mois{} \annee}}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee{}}
+\fancypagestyle{sujetA}{\fancyhead[R]{\entete{\classe{}A - \mois{} \annee}}}
+\fancypagestyle{sujetB}{\fancyhead[R]{\entete{\classe{}B - \mois{} \annee}}}
+
+\begin{document}
+
+\pagestyle{fancy}
+
+\part{TEST06 - Dérivation}%SUJETA
+
+\setcounter{numexos}{0}
+
+\medskip
+
+\nomprenomtcbox
+
+\medskip
+
+\exonum{}
+
+\begin{enumerate}
+	\item On considère la fonction $f$ définie sur $\R^+$ par $f(x)=\dfrac{\sqrt{x}}{x^2+1}$.
+	
+	À l'aide de la calculatrice, donner une valeur de $f'(1)$.
+	\item On considère une fonction $g$ définie sur $\intervFF{-5}{4}$ dont la courbe représentative $\mathscr{C}_g$ est donnée ci-dessous.
+	
+	Les tangentes aux points d'abscisses $-2$ et $3$ sont tracées.
+	\begin{center}
+		\begin{tikzpicture}[xmin=-5,xmax=4,ymin=-3,ymax=3,x=0.75cm,y=0.75cm]
+			\tgrillep \axestikz* \axextikz*{-5,-4,...,3} \axeytikz*{-3,-2,...,2}
+			\draw (1,-4pt) node[below,font=\small\sffamily] {1} ;
+			\draw (-4pt,1) node[left,font=\small\sffamily] {1} ;
+			\draw (-2pt,-2pt) node[below left,font=\small\sffamily] {0} ;
+			\def\liste{-5/-1/2§-2/2.25/0§1/-2.5/0§3/0/2§4/3/10}
+			\splinetikz[affpoints=false,liste=\liste,coeffs=3§3§3/2§3]
+			\filldraw[blue] (-2,2.25) circle[radius=1.75pt] ;
+			\draw[line width=1.5pt,blue] (-5,2.25)--(4,2.25) ;
+			\filldraw[ForestGreen] (3,0) circle[radius=1.75pt] ;
+			\draw[line width=1.5pt,ForestGreen] (1.5,-3)--(4,2) ;
+		\end{tikzpicture}
+	\end{center}
+	Par lecture graphique, déterminer la valeur de :
+	\begin{enumerate}
+		\item $g'(-2)$ ;
+		\item $g'(3)$.
+	\end{enumerate}
+\end{enumerate}
+
+\papierseyes*{11}{2}~~\papierseyes*{11}{2}
+
+\bigskip
+
+\exonum{}
+
+\begin{enumerate}
+	\item On considère la fonction $f$ définie sur $\R$ par $f(x)=x^4$. On note $\mathscr{C}_f$ sa courbe représentative.
+	\begin{enumerate}
+		\item Déterminer la dérivée $f'$ de la fonction $f$.
+		\item Calculer $f(1)$ et $f'(1)$.
+		\item Déterminer une équation de $T_1$, tangente à $\mathscr{C}_f$ au point d'abscisse 1.
+	\end{enumerate}
+	\item Déterminer la dérivée des fonctions suivantes :
+	\begin{enumerate}
+		\item $f(x)=x+\dfrac{1}{x}$ ;
+		\item $g(x)=4x^3-12x^2$.
+	\end{enumerate}
+\end{enumerate}
+
+\papierseyes*{11}{5}~~\papierseyes*{11}{5}
+
+\end{document}

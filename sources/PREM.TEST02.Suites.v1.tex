@@ -1,0 +1,68 @@
+% !TeX TXS-program:compile = txs:///lualatex
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[revgoku]{cp-base}
+\graphicspath{{./graphics/}}
+%variables.
+\donnees[classe={1\up{ère} 2M2},matiere={[SPÉ.MATHS]},mois={Mardi 12 Octobre},annee=2021,typedoc=TEST~,numdoc=2,duree={15 minutes}]
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfstartview=FitH}
+%divers
+\lhead{\entete{Durée : \duree}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - \mois{} \annee}}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee{}}
+%\rfoot{\pied{\numeropagetot}}
+\fancypagestyle{sujetA}{\fancyhead[R]{\entete{\classe{}A - \mois{} \annee}}}
+\fancypagestyle{sujetB}{\fancyhead[R]{\entete{\classe{}B - \mois{} \annee}}}
+
+\begin{document}
+
+\pagestyle{fancy}
+
+\part{TEST02 - Suites, v1}
+
+\medskip
+
+\nomprenomtcbox
+
+\begin{enumerate}
+	\item On considère la suite $\suiten$ définie par $u_n = \dfrac{2}{n}+1$ pour tout entier naturel $n$ non nul.
+	\begin{enumerate}
+		\item La suite $\suiten$ est-elle définie de manière explicite ou par récurrence ? Justifier.
+		
+		\papierseyes{20}{2}
+		
+		\item Calculer les valeurs de $u_1$, $u_2$ et $u_3$.
+		
+		\papierseyes{20}{3}
+		
+		\item Déterminer une expression de la fonction $f$ telle que $u_n=f(n)$.
+		
+		\papierseyes{20}{2}
+		
+		\item Déterminer le 10\ieme{} terme de la suite $\suiten$.
+		
+		\papierseyes{20}{2}
+	\end{enumerate}
+	\item On considère la suite $\suiten[v]$ définie par $\begin{dcases} v_0 = 4 \\ v_{n+1}=3v_n-5 \end{dcases}$ pour tout entier naturel $n$.
+	\begin{enumerate}
+		\item La suite $\suiten[v]$ est-elle définie de manière explicite ou par récurrence ? Justifier.
+		
+		\papierseyes{20}{2}
+		
+		\item Calculer les valeurs de $v_1$, $v_2$ et $v_3$.
+		
+		\papierseyes{20}{4}
+		
+		\item En utilisant la calculatrice, déterminer la valeur de $v_{7}$.
+		
+		\papierseyes{20}{2}
+		
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

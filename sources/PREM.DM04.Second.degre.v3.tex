@@ -1,0 +1,125 @@
+% !TeX TXS-program:compile = txs:///pythonlua
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[pythontex,revgoku]{cp-base}
+\graphicspath{{./graphics/}}
+%variables
+\donnees[%
+	classe=1\up{ère} 2M2,
+	matiere={[SPÉ.MATHS]},
+	mois=Décembre,
+	annee=2021,
+	typedoc=DM,
+	numdoc=04,
+	titre={Second degré en situation(s)}
+	]
+
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfborder=0 0 0,pdfstartview=FitH}
+%divers
+\lhead{\entete{\matiere}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - \mois{} \annee}}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee{}}
+\rfoot{\pied{\numeropagetot}}
+\fancypagestyle{entetedm}{\fancyhead[L]{\entete{\matiere{} À rendre avant le\ldots}}}
+
+\begin{document}
+
+\pagestyle{fancy}
+
+\thispagestyle{entetedm}
+
+\part{DM04 - Second degré en situation(s)}
+
+\smallskip
+
+\exotitre{Exercice 1 - En SES}
+
+\medskip
+
+Une entreprise fabrique des composants électroniques. Sa production mensuelle est inférieure à 12\,000 articles.
+
+Le coût total mensuel, en milliers d’euros, pour produire $x$ milliers d’articles est modélisé par la fonction C définie sur $\intervFF{0}{12}$ par $C(x) = 0,6x^2 - 0,62x + 18,24$. Chaque article fabriqué est vendu au prix unitaire de 7\,€.
+
+\begin{enumerate}
+	\item L’entreprise a produit et vendu 4\,000 articles en mai 2018 et 6\,500 articles en juin 2018.
+	
+	Le bénéfice a-t-il été plus important au mois de juin ?
+	\item On note $R(x)$ le montant, en milliers d’euros, de la recette mensuelle pour $x$ milliers d’articles vendus.
+	
+	Exprimer $R(x)$ en fonction de $x$.
+	\item Tracer soigneusement, dans le repère donné en annexe (les unités sont à préciser), les courbes représentatives $\mathscr{C}$ et $\mathscr{R}$ des fonctions C et R. 
+	\item Avec la précision permise par le graphique, déterminer :
+	\begin{enumerate}
+		\item l’intervalle dans lequel doit se situer $x$ pour que le bénéfice mensuel réalisé soit positif ;
+		\item la valeur de $x$ pour laquelle le bénéfice mensuel est maximal.
+	\end{enumerate}
+	\item On note $B(x)$ le bénéfice mensuel, en milliers d’euros, réalisé lorsque l’entreprise produit et vend $x$ milliers d’articles.
+	\begin{enumerate}
+		\item Vérifier que, pour tout $x \in \intervFF{0}{12}$, on a $B(x) = -0,6x^2 + 7,62x - 18,24$.
+		\item Étudier le signe de $B(x)$ et les variations de la fonction B sur $\intervFF{0}{12}$.
+	\end{enumerate}
+	\item En déduire le nombre d’articles que l’entreprise doit produire pour réaliser un bénéfice mensuel :
+	\begin{enumerate}
+		\item positif ; 
+		\item maximal.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\exotitre{Exercice 2 - En programmation}
+
+\medskip
+
+On considère la fonction suivante en \calgpython{} qui fait intervenir une fonction $f$ polynôme du second degré :
+
+\begin{tcpythoncode}[10cm]
+	\begin{pyverbatim}[][fontsize=\footnotesize,numbers=left,numbersep=10pt]
+		def point_f(x,y) :
+			if y == 3*x**2-x-2 :
+				return True
+			else :
+				return False
+	\end{pyverbatim}
+\end{tcpythoncode}
+
+\begin{enumerate}
+	\item Donner une expression de $f(x)$.
+	\item On appelle la fonction \cpy{point\_f} avec les paramètres \cpy{x=-1/3} et \cpy{y=-29/3}. Que renvoie-t-elle ?
+	\item On appelle la fonction \cpy{point\_f} avec les paramètres \cpy{x=-1} et \cpy{y=2}. Que renvoie-t-elle ?
+	\item Préciser le rôle de cette fonction en \calgpython.
+	\item Déterminer la forme factorisée de $f$.
+	\item 
+	\begin{enumerate}
+		\item L’utilisateur a choisi \cpy{0} pour \cpy{y} et la fonction en \calgpython{} a renvoyé le booléen \cpy{True}. Quelle(s) valeur(s) de \cpy{x} l’utilisateur a-t-il pu choisir ? Justifier.
+		\item L’utilisateur a choisi \cpy{-2} pour \cpy{y} et la fonction en \calgpython{} a renvoyé le booléen \cpy{True}. Quelle(s) valeur(s) de \cpy{x} l’utilisateur a-t-il pu choisir ? Justifier.
+	\end{enumerate}
+\end{enumerate}
+
+\newpage
+
+\exotitre{Exercice 1 - Annexe}
+
+\medskip
+
+\begin{center}
+	\tunits{1.5}{0.2}
+	\tdefgrille{0}{12}{1}{0.5}{0}{100}{5}{2.5}
+	\begin{tikzpicture}[x=\xunit cm,y=\yunit cm]
+		\tgrilles[line width=0.3pt,lightgray] ;
+		\tgrillep[line width=0.6pt,gray!50] ;
+		\axestikz* ;
+		\foreach \x in {0,1,...,11} \draw[line width=1.25pt] (\x,4pt) -- (\x,-4pt) ;
+		\foreach \y in {0,5,...,90} \draw[line width=1.25pt] (4pt,\y) -- (-4pt,\y) ;
+		%\draw[line width=1.5pt,red,domain=0:12,samples=250] plot (\x,{0.6*\x*\x-0.62*\x+18.24}) ;
+		%\draw[line width=1.5pt,blue,domain=0:12,samples=250] plot (\x,{7*\x}) ;
+	\end{tikzpicture}
+\end{center}
+
+
+\end{document}

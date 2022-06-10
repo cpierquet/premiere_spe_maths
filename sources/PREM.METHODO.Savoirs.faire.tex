@@ -1,0 +1,368 @@
+% !TeX TXS-program:compile = txs:///lualatex
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[]{cp-base}
+\graphicspath{{./graphics/}}
+%variables
+\donnees[classe=1\up*{ère} 2M2,matiere={[SPÉ.MATHS]},titre=Méthodes et techniques à connaître,annee=2021/2022,typedoc=CHAPITRE~,numdoc=15]
+
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfborder=0 0 0,pdfstartview=FitH}
+%divers
+\lhead{\entete{\matiere}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - \annee}}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee{}}
+\rfoot{\pied{\numeropagetot}}
+
+\begin{document}
+
+%\renewtcolorbox{calgo}[1][]{%
+%	cdefaut,%
+%	colframe=OrangeRed,coltitle=black,colbacktitle=OrangeRed!35,colback=White,
+%	title=\textcolor{OrangeRed!50!Black}{\faFileCode}\:\:\textbf{Algorithme#1}
+%}
+\newcommand\titrexo[1]{\textbf{\textcolor{titrebleu}{\Large\sffamily #1}}}
+
+\pagestyle{fancy}
+
+\part{CH15 - Méthodes et techniques à connaître}
+
+\medskip
+
+\makeatletter
+	\def\hrulefill{\leavevmode\leaders\hrule height 1.1pt\hfill\kern\z@}%épaisseur
+\makeatother
+
+\titrexo{Chapitre 01 : Polynômes du second degré}\color{titrebleu}\,\hrulefill\,\titrexo{($\rightsquigarrow$ MC)}
+
+\begin{casavoir}
+\fontfamily{lmss}\selectfont\small
+\textbf{Je sais :}
+
+\tabula{}$\bullet~~$reconnaître les différentes formes (développée, canonique, factorisée)\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$passer d'une forme à une autre\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$déterminer le tableau de variations d'un trinôme\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$calculer le discriminant et les éventuelles racines d'un trinôme\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$résoudre une équation du 2\up{d} degré\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$déterminer l'équation d'une parabole connaissant certaines de ses caractéristiques\dotfill{}$\Large\Box$
+\end{casavoir}
+
+\begin{ccalco}
+\fontfamily{lmss}\selectfont\small
+Je peux, avec ma calculatrice :
+
+\tabula{}$\bullet~~$déterminer les solutions d'une équation du 2\up{d} degré avec le menu équation\dotfill{}$\Large\Box$
+\end{ccalco}
+
+\titrexo{Chapitre 02 : Généralités sur les suites numériques}\color{titrebleu}\,\hrulefill\,\titrexo{($\rightsquigarrow$ MC)}
+
+\begin{casavoir}
+\fontfamily{lmss}\selectfont\small
+\textbf{Je sais :}
+
+\tabula{}$\bullet~~$travailler avec une formule explicite, une formule de récurrence\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$représenter graphiquement les termes d'une suite (nuage, toile)\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$étudier le sens de variation (ou la monotonie) d'une suite\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$conjecturer la limite éventuelle d'une suite\dotfill{}$\Large\Box$
+\end{casavoir}
+
+\begin{ccalco}
+\fontfamily{lmss}\selectfont\small
+Je peux, avec ma calculatrice :
+
+\tabula{}$\bullet~~$afficher les premiers termes d'une suite, grâce au menu suite\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$conjecturer variations, limite\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$tabuler pour déterminer un seuil\dotfill{}$\Large\Box$
+\end{ccalco}
+
+\begin{coutil}
+\fontfamily{lmss}\selectfont\small
+Je peux, avec un tableur :
+
+\tabula{}$\bullet~~$déterminer les formules nécessaires à l'étude de suites\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$conjecturer variations, limite\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$tabuler pour déterminer un seuil\dotfill{}$\Large\Box$
+\end{coutil}
+
+\begin{calgo}
+\fontfamily{lmss}\selectfont\small
+Je peux, avec un \calg{algorithme} :
+
+\tabula{}$\bullet~~$déterminer le terme d'une suite récurrente\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$déterminer un seuil\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$calculer une somme de termes\dotfill{}$\Large\Box$
+\end{calgo}
+
+\pagebreak
+
+\titrexo{Chapitre 03 : Droites et fonctions affines}\color{titrebleu}\,\hrulefill\,\titrexo{($\rightsquigarrow$ MC)}
+
+\begin{casavoir}
+\fontfamily{lmss}\selectfont\small
+\textbf{Je sais :}
+
+\tabula{}$\bullet~~$tracer une droite connaissant son équation réduite\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$travailler graphiquement sur la pente et l'ordonnée à l'origine\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$déterminer, algébriquement, l'équation d'une droite passant par deux points\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$déterminer le (tableau de) signe et la variation d'une fonction affine\dotfill{}$\Large\Box$
+\end{casavoir}
+
+\titrexo{Chapitre 04 : Second degré, études de signes}\color{titrebleu}\,\hrulefill\,\titrexo{($\rightsquigarrow$ MC)}
+
+\begin{casavoir}
+\fontfamily{lmss}\selectfont\small
+\textbf{Je sais :}
+
+\tabula{}$\bullet~~$déterminer le (tableau de) signe d'un trinôme\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$étudier un signe ou résoudre une inéquation avec un tableau de signes (ZPQ)\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$étudier la position relative de deux courbes\dotfill{}$\Large\Box$
+\end{casavoir}
+
+\begin{ccalco}
+\fontfamily{lmss}\selectfont\small
+Je peux, avec ma calculatrice :
+
+\tabula{}$\bullet~~$vérifier graphiquement les solutions d'une inéquation\dotfill{}$\Large\Box$
+\end{ccalco}
+
+\titrexo{Chapitre 05 : Probabilités conditionnelles, indépendance}\color{titrebleu}\,\hrulefill\,\titrexo{($\rightsquigarrow$ MC)}
+
+\begin{casavoir}
+\fontfamily{lmss}\selectfont\small
+\textbf{Je sais :}
+
+\tabula{}$\bullet~~$utiliser la formule de la réunion\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$travailler sur l'indépendance de deux évènements\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$modéliser une situation à l'aide d'un tableau, d'un arbre, d'un diagramme, etc\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$utiliser un tableau pour calculer des probas (intersection, réunion, conditionnelles)\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$utiliser un arbre pour calculer des probas (composées, totales, conditionnelles)\dotfill{}$\Large\Box$
+\end{casavoir}
+
+\titrexo{Chapitre 06 : Trigonométrie}\color{titrebleu}\,\hrulefill
+
+\begin{casavoir}
+\fontfamily{lmss}\selectfont\small
+\textbf{Je sais :}
+
+\tabula{}$\bullet~~$passer des radians aux degrés\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$manipuler le cercle trigonométrique, y placer un angle en radian\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$lire un angle associé à un point du cercle trigonométrique\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$manipuler les cosinus et sinus des angles particuliers\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$résoudre des équations trigonométriques simples\dotfill{}$\Large\Box$
+\end{casavoir}
+
+\begin{ccalco}
+\fontfamily{lmss}\selectfont\small
+Je peux, avec ma calculatrice :
+
+\tabula{}$\bullet~~$convertir des degrés aux radians, et inversement\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$déterminer le cosinus, le sinus et la tangente d'un réel\dotfill{}$\Large\Box$
+\end{ccalco}
+
+\begin{coutil}
+\fontfamily{lmss}\selectfont\small
+Je peux, avec mon cercle trigonométrique :
+
+\tabula{}$\bullet~~$lire les lignes trigonométriques d'un angle\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$résoudre une équation trigonométrique\dotfill{}$\Large\Box$
+\end{coutil}
+
+\titrexo{Chapitre 07 : Nombre dérivé, tangente}\color{titrebleu}\,\hrulefill\,\titrexo{($\rightsquigarrow$ MC)}
+
+\begin{casavoir}
+\fontfamily{lmss}\selectfont\small
+\textbf{Je sais :}
+
+\tabula{}$\bullet~~$calculer un nombre dérivé par la limite du taux d'accroissement\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$interpréter un nombre dérivé comme pente de tangente\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$lire graphiquement un nombre dérivé\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$déterminer l'équation d'une tangente\dotfill{}$\Large\Box$
+\end{casavoir}
+
+\begin{ccalco}
+\fontfamily{lmss}\selectfont\small
+Je peux, avec ma calculatrice :
+
+\tabula{}$\bullet~~$calculer un nombre dérivé\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$tracer la tangente à une courbe correctement affichée\dotfill{}$\Large\Box$
+\end{ccalco}
+
+\titrexo{Chapitre 08 : Fonctions dérivées}\color{titrebleu}\,\hrulefill\,\titrexo{($\rightsquigarrow$ MC)}
+
+\begin{casavoir}
+\fontfamily{lmss}\selectfont\small
+\textbf{Je sais :}
+
+\tabula{}$\bullet~~$reconnaître la forme générale d'une fonction afin de la dériver\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$utiliser les formules de dérivation pour dériver une fonction\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$utiliser la fonction dérivée afin de déterminer l'équation d'une tangente\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$transformer la dérivée afin d'étudier son signe\dotfill{}$\Large\Box$
+\end{casavoir}
+
+\begin{coutil}
+\fontfamily{lmss}\selectfont\small
+Je peux, avec un logiciel de calcul formel :
+
+\tabula{}$\bullet~~$retrouver la dérivée d'une fonction\dotfill{}$\Large\Box$
+\end{coutil}
+
+\titrexo{Chapitre 09 : Suites arithmétiques, géométriques}\color{titrebleu}\,\hrulefill\,\titrexo{($\rightsquigarrow$ MC)}
+
+\begin{casavoir}
+\fontfamily{lmss}\selectfont\small
+\textbf{Je sais :}
+
+\tabula{}$\bullet~~$reconnaître une suite arithmétique, uns suite géométrique\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$utiliser les formules de récurrence et les formules explicites des suites arithmétiques et géométrique\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$calculer la somme des termes d'une suite arithmétique, d'une suite géométrique\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$démontrer qu'une suite est arithmétique, géométrique\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$étudier le sens de variation d'une suite arithmétique, d'une suite géométrique\dotfill{}$\Large\Box$
+\end{casavoir}
+
+\titrexo{Chapitre 10 : Calcul vectoriel, produit scalaire}\color{titrebleu}\,\hrulefill
+
+\begin{casavoir}
+\fontfamily{lmss}\selectfont\small
+\textbf{Je sais :}
+
+\tabula{}$\bullet~~$calculer un produit scalaire à l'aide de l'une des trois formes\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$étudier l'orthogonalité de deux vecteurs\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$utiliser un produit scalaire pour déterminer un angle\dotfill{}$\Large\Box$
+\end{casavoir}
+
+\begin{ccalco}
+\fontfamily{lmss}\selectfont\small
+Je peux, avec ma calculatrice :
+
+\tabula{}$\bullet~~$déterminer un angle connaissant son cosinus\dotfill{}$\Large\Box$
+\end{ccalco}
+
+\pagebreak
+
+\titrexo{Chapitre 11 : Applications de la dérivation}\color{titrebleu}\,\hrulefill\,\titrexo{($\rightsquigarrow$ MC)}
+
+\begin{casavoir}
+\fontfamily{lmss}\selectfont\small
+\textbf{Je sais :}
+
+\tabula{}$\bullet~~$étudier les variations d'une fonction et dresser son tableau de variations\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$déterminer maximum/minimum\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$faire le lien entre extremum et dérivée\dotfill{}$\Large\Box$
+\end{casavoir}
+
+\begin{ccalco}
+\fontfamily{lmss}\selectfont\small
+Je peux, avec ma calculatrice :
+
+\tabula{}$\bullet~~$tracer la courbe d'une fonction dans une fenêtre adaptée\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$utiliser les outils graphiques de la calculatrice (max, min, racine, etc)\dotfill{}$\Large\Box$
+\end{ccalco}
+
+\titrexo{Chapitre 12 : Variables aléatoires}\color{titrebleu}\,\hrulefill\,\titrexo{($\rightsquigarrow$ MC)}
+
+\begin{casavoir}
+\fontfamily{lmss}\selectfont\small
+\textbf{Je sais :}
+
+\tabula{}$\bullet~~$déterminer les valeurs prises par une variable aléatoire\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$déterminer la loi de probabilité d'une variable aléatoire\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$calculer l'espérance, la variance et l'écart-type d'une variable aléatoire\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$interpréter l'espérance d'une variable aléatoire\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$déterminer si un jeu est équitable, favorable au joueur, etc\dotfill{}$\Large\Box$
+\end{casavoir}
+
+\titrexo{Chapitre 13 : Fonction exponentielle}\color{titrebleu}\,\hrulefill\,\titrexo{($\rightsquigarrow$ MC)}
+
+\begin{casavoir}
+\fontfamily{lmss}\selectfont\small
+\textbf{Je sais :}
+
+\tabula{}$\bullet~~$exploiter le fait qu'une exponentielle est strictement positive\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$manipuler les propriétés algébrique de l'exponentielle (relation fonctionnelle, etc)\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$résoudre des (in)équations avec de l'exponentielle\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$étudier le signe d'une expression faisant intervenir de l'exponentielle\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$représenter l'allure de la courbe des fonctions $\mathsf{x \mapsto e^{kx}}$\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$dériver des fonctions faisant intervenir de l'exponentielle\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$interpréter une évolution exponentielle (lien avec les suites géométriques)\dotfill{}$\Large\Box$
+
+\end{casavoir}
+
+\titrexo{Chapitre 14 : Équations cartésiennes, droites et cercles}\color{titrebleu}\,\hrulefill
+
+\begin{casavoir}
+\fontfamily{lmss}\selectfont\small
+\textbf{Je sais :}
+
+\tabula{}$\bullet~~$utiliser les formules d'Al-Kashi\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$manipuler une équation cartésienne de droite (vecteur directeur, vecteur normal, etc)\dotfill{}$\Large\Box$
+
+\tabula{}$\bullet~~$manipuler une équation cartésienne de cercle (centre/rayon, utilisation de la forme canonique, etc)\dotfill{}$\Large\Box$
+\end{casavoir}
+
+\vfill{}
+
+\begin{center}
+	\includegraphics[scale=1]{asuivre}
+\end{center}
+
+\end{document}

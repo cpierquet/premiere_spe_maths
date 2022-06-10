@@ -1,0 +1,212 @@
+% !TeX TXS-program:compile = txs:///arara
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode}
+% arara: pythontex: {rerun: modified} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('log', '(undefined references|Please rerun|Rerun to get)')
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[revgoku]{cp-base}
+\graphicspath{{./graphics/}}
+%variables
+\donnees[classe={1\up*{ère} 2M2},matiere={[SPÉ.MATHS]},mois=Mai,annee=2022,typedoc=CHAP,numdoc=13]
+
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfborder=0 0 0,pdfstartview=FitH}
+%fancy
+\lhead{\entete{\matiere}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - \mois{} \annee}}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee{}}
+\rfoot{\pied{\numeropagetot}}
+
+\begin{document}
+
+\pagestyle{fancy}
+
+\part{CH13 - Fonction exponentielle - Exercices}
+
+\medskip
+
+\begin{caide}
+	{\setlength\arrayrulewidth{1.5pt} \arrayrulecolor{titrebleu!35}
+		\begin{tabularx}{\linewidth}{Y|Y|Y|Y|Y|Y}
+			\niveaudif{0}~~\textsf{Basique} & \niveaudif{1}~~\textsf{Modérée} & \niveaudif{2}~~\textsf{Élevée} & \niveaudif{3}~~\textsf{Très élevée} & \niveaudif{4}~~\textsf{Extrême} & \niveaudif{5}~~\textsf{Insensée} \\
+	\end{tabularx}\arrayrulecolor{black}}
+\end{caide}
+
+\exonum{0}
+
+\medskip
+
+Simplifier les expressions suivantes :
+\begin{multicols}{4}
+	\newcommand\espv{\dfrac{3\e^{5x}}{\left(\e^{x+1}\right)^3}}
+	\begin{enumerate}
+		\item $\dfrac{\left(\e^3\right)^4 \times \e^3}{\e^4}\vphantom{\espv}$ ;
+		\item $\e^{x+4} \times \e^{4x}\vphantom{\espv}$ ;
+		\item $\dfrac{1}{\e^{2-3x}}\vphantom{\espv}$ ;
+		\item $\e \times \dfrac{3\e^{5x}}{\left(\e^{x+1}\right)^3}$.
+	\end{enumerate}
+\end{multicols}
+
+\medskip
+
+\exonum{2}
+
+\smallskip
+
+\begin{enumerate}
+	\item Développer, et simplifier, les expressions suivantes :
+	\begin{multicols}{2}
+		\newcommand\espv{\left( \e^x + \e^{-x} \right)^2}
+		\begin{enumerate}
+			\item $\e^x \left( \e^x + x \right)\vphantom{\espv}$ ;
+			\item $\left( 1+\e^x \right)\left(1-\e^x\right)\vphantom{\espv}$ ;
+			\item $\left( \e^x + \e^{-x} \right)^2$ ;
+			\item $\left( \e^{-2x}-\e^x \right)\left( \e^{-2x}+\e^x \right)\vphantom{\espv}$.
+		\end{enumerate}
+	\end{multicols}
+	\item Démontrer les égalités suivantes :
+	\begin{multicols}{2}
+		\begin{enumerate}
+			\item $\dfrac{\e^x-1}{\e^x}=1-\e^{-x}$ ;
+			\item $\dfrac{1}{\e^x+1}=\dfrac{\e^x-1}{\e^{2x}-1}$.
+		\end{enumerate}
+	\end{multicols}
+	\item Factoriser l'expression : $\e^{4x}+\e^x$ ;
+	\item Mettre l'expression suivante au même dénominateur : $3\e^x + \dfrac{2}{\e^x+3}$. 
+\end{enumerate}
+
+\medskip
+
+\exonum{2}
+
+\smallskip
+
+\begin{enumerate}
+	\item Résoudre les équations suivantes :
+	\begin{multicols}{3}
+		\newcommand\espv{\left(x^2+2x+1\right)\left( 3\e^{x+2}-3 \right)}
+		\begin{enumerate}
+			\item $\e^{x}=\e^{-2}\vphantom{\espv}$ ;
+			\item $\e^{2x+1}=1\vphantom{\espv}$ ;
+			\item $\e^{-x}-1=0\vphantom{\espv}$ ;
+			\item $10\e^{-x^2+2}+50=0\vphantom{\espv}$ ;
+			\item $(x-5)\e^{3x}=0\vphantom{\espv}$ ;
+			\item $\left(x^2+2x+1\right)\left( 3\e^{x+2}-3 \right)=0$.
+		\end{enumerate}
+	\end{multicols}
+	\item Résoudre les inéquations suivantes :
+	\begin{multicols}{3}
+		\newcommand\espv{\e^{x+4} \pg \dfrac{1}{\e^{3x}}}
+		\begin{enumerate}
+			\item $\e^{x} \pg \e^{-2}\vphantom{\espv}$ ;
+			\item $\e^{3x} < \e\vphantom{\espv}$ ;
+			\item $\e^{-2x-1} \pp 1\vphantom{\espv}$ ;
+			\item $\e^{-2x+1} -\e^{x-7} > 0\vphantom{\espv}$ ;
+			\item $\e^{x+4} \pg \dfrac{1}{\e^{3x}}$ ;
+			\item $(x-1)\e^x  > 0\vphantom{\espv}$.
+		\end{enumerate}
+	\end{multicols}
+	\item Dresser le tableau de signes des expressions suivantes :
+	\begin{multicols}{2}
+		\newcommand\espv{\dfrac{\e^x-1}{(x+3)^2}}
+		\begin{enumerate}
+			\item $(3x-1)\e^x\vphantom{\espv}$ ;
+			\item $\dfrac{6x-12}{\e^{3x+1}}\vphantom{\espv}$ ;
+			\item $(-24x^2+20x-4)\e^{x-2}\vphantom{\espv}$ ;
+			\item $\dfrac{\e^x-1}{(x+3)^2}$.
+		\end{enumerate}
+	\end{multicols}
+\end{enumerate}
+
+\pagebreak
+
+\exonum{2}
+
+\medskip
+
+Déterminer la dérivée des fonctions suivantes (sans se soucier de l'ensemble de définition et de dérivabilité) :
+%
+\begin{multicols}{3}
+	\newcommand\espv{\dfrac{\e^x-1}{\e^x+1}}
+	\begin{enumerate}
+		\item $f(x)=\e^x-x^2\vphantom{\espv}$ ;
+		\item $g(x)=10\e^x+\dfrac1x\vphantom{\espv}$ ;
+		\item $h(x)=\e^{3x}+\e^{-5x+4}\vphantom{\espv}$ ;
+		\item $i(x)=(x+3)\e^x\vphantom{\espv}$ ;
+		\item $j(x)=10\e^{-x}+7\e^{2x}\vphantom{\espv}$ ;
+		\item $k(x)=\dfrac{x}{\e^x}\vphantom{\espv}$ ;
+		\item $l(x)=\dfrac{\e^x-1}{\e^x+1}$ ;
+		\item $m(x)=(25x+40)\e^{-0,2x}\vphantom{\espv}$ ;
+		\item $o(x)=\big(x^2-3x+1\big)\e^x\vphantom{\espv}$.
+	\end{enumerate}
+\end{multicols}
+
+\medskip
+
+\exonum{2}
+
+\smallskip
+
+\begin{enumerate}
+	\item On considère la fonction $f$ définie sur $\R$ par $f(x)=\e^x+1$.
+	\begin{enumerate}
+		\item Déterminer la dérivée $f'$ de la fonction $f$.
+		\item \'{E}tudier le signe de $f'(x)$ puis en déduire les variations de $f$ sur $\R$.
+	\end{enumerate}
+	\item Soit $g$ la fonction définie sur $\R$ par $g(x)=10\e^{-2x+6}$.
+	\begin{enumerate}
+		\item Déterminer la dérivée $g'$ de la fonction $g$.
+		\item \'{E}tudier le signe de $g'(x)$ puis en déduire les variations de $g$ sur $\R$.
+	\end{enumerate}
+	\item Soit $h$ la fonction définie sur $\R$ par $h(x)=(2x+3)\e^x$.
+	\begin{enumerate}
+		\item Démontrer que, pour tout réel $x$, on a $h'(x)=(2x+5)\e^x$.
+		\item \'{E}tudier le signe de $h'(x)$.
+		\item En déduire les variations de $h$ sur $\R$.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\exonum{3}
+
+\medskip
+
+On considère la fonction $f$ définie sur $\R$ par $f(x)=(5x+7)\e^{-0,2x}$. On note $\mathscr{C}_f$ sa courbe représentative dans un repère orthogonal.
+%
+\begin{enumerate}
+	\item Démontrer que, pour tout réel $x$, on a $f'(x)=(-x+3,6)\e^{-0,2x}$.
+	\item 
+	\begin{enumerate}
+		\item \'{E}tudier le signe de $f'(x)$.
+		\item En déduire les variations de $f$ sur $\R$.
+	\end{enumerate}
+	\item Déterminer une équation de $\mathscr{T}_0$, tangente à $\mathscr{C}_f$ au point d'abscisse $0$.
+\end{enumerate}
+
+\medskip
+
+\exonum{3}
+
+\medskip
+
+Une entreprise pharmaceutique fabrique un soin antipelliculaire. Elle peut produire entre $200$ et \num{2000}~litres de produit par semaine. Le résultat, en dizaines de milliers d'euros, réalisé pour la production et la vente de $x$ centaines de litres est donné par la fonction $R$ définie par : \[R(x) = (5x - 30)\text{e}^{-0,25x},\:  \text{pour tout réel }\: x \in  [2~;~20].\]
+
+\begin{enumerate}
+	\item Calculer le résultat réalisé par la fabrication et la vente de $7$ centaines de litres de produit. On l'arrondira à l'euro près.
+	\item Vérifier que pour la fabrication et la vente de $400$ litres de produit, l'entreprise réalise un résultat négatif (appelé déficit).
+	\item Résoudre l'inéquation $R(x) \geqslant 0$, d'inconnue $x$. Interpréter dans le contexte de l'exercice.
+	\item On note $R'$ la dérivée de la fonction $R$. Un logiciel de calcul formel donne: $R'(x) = (- 1,25x + 12,5)\text{e}^{-0,25x}$.
+	\begin{enumerate}
+		\item Justifier le résultat donné par le logiciel.
+		\item \'{E}tudier le signe de $R'(x)$ puis en déduire les variations de $R$ sur $\R$.
+		\item En déduire la quantité de produit que l'entreprise doit produire et vendre pour réaliser le résultat maximal.
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

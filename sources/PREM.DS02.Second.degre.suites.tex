@@ -1,0 +1,190 @@
+% !TeX TXS-program:compile = txs:///lualatex
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[sujet]{cp-base} %avec options possibles parmi breakable (tcbox), sujetl (exos),  (pour faire "comme avant"), etc...
+\graphicspath{{./graphics/}}
+%variables
+\donnees[
+	classe={1\up{ère} 2M2},matiere={[SPÉ.MATHS]},mois={Jeudi 21 Octobre},annee=2021,duree=1 heure,typedoc=DS,numdoc=2
+]
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfborder=0 0 0,pdfstartview=FitH}
+%divers
+\lhead{\entete{\matiere}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - \mois{} \annee}}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee{}}
+\rfoot{\pied{\numeropagetot}}
+\fancypagestyle{enteteds}{\fancyhead[L]{\entete{Durée : \duree}}}
+
+\begin{document}
+
+\pagestyle{fancy}
+
+\thispagestyle{enteteds}
+
+\setcounter{numexos}{0}
+
+\part{DS02 - Second degré, suites}
+
+\smallskip
+
+\nomprenomtcbox
+
+\medskip
+
+\exonum{5}
+
+\begin{enumerate}
+	\item Déterminer la forme canonique de la fonction $f(x)=-2x^2+8x-7$ puis en déduire son tableau de variations.
+	\item Déterminer les éventuelles racines du trinômes $8x^2-10x+2$ puis son éventuelle factorisation.
+	\item Résoudre les équations suivantes :
+	\begin{enumerate}
+		\item $-2x^2-2x-2=0$ ;
+		\item $(x-3)(-x^2-3x+10)=0$ ;
+		\item $x^2+6x+7=-2$.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\exonum{6}
+
+\begin{enumerate}
+	\item On considère la suite $\suiten$ définie par $u_n = \dfrac{4}{n}+2$ pour tout entier naturel $n$ non nul.
+	\begin{enumerate}
+		\item Calculer les valeurs de $u_1$, $u_2$ et $u_3$.
+		\item Déterminer une expression de la fonction $f$ telle que $u_n=f(n)$.
+		\item Déterminer le 10\ieme{} terme de la suite $\suiten$.
+	\end{enumerate}
+	\item On considère la suite $\suiten[v]$ définie par $\begin{dcases} v_0 = 4 \\ v_{n+1}=\dfrac{v_n} {2+v_n} \end{dcases}$ pour tout entier naturel $n$.
+	\begin{enumerate}
+		\item Calculer les valeurs de $v_1$ et $v_2$.
+		\item Déterminer une expression de la fonction $g$ telle que $v_{n+1}=g(v_n)$.
+		\item En utilisant la calculatrice, déterminer la valeur de $v_{10}$.
+	\end{enumerate}
+	\item On considère la suite $\suiten[w]$ définie par $\begin{dcases} w_0 = 10 \\ w_{n+1}=n^2 + 2 + w_n \end{dcases}$ pour tout entier naturel $n$.
+	\begin{enumerate}
+		\item Calculer les valeurs de $w_1$ et $w_2$.
+		\item En utilisant la calculatrice, déterminer la valeur de $w_{15}$.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\exonum{3}
+
+\begin{enumerate}
+	\item 
+	\begin{enumerate}
+		\item À l'aide de la calculatrice, représenter (sur le graphique suivant) les 10 premiers termes de la suite $\suiten$ définie par $u_n=1+\dfrac{2}{n}$ pour tout entier $n$ non nul.
+		\begin{center}
+			\tunits{1}{1}
+			\tdefgrille{0}{11}{1}{0.25}{0}{4}{1}{0.25}
+			\begin{tikzpicture}[x=\xunit cm,y=\yunit cm]
+				\tgrilles ;
+				\tgrillep ;
+				\draw[->,line width=1.25pt] (\xmin,0) -- (\xmax,0);
+				\draw[->,line width=1.25pt] (0,\ymin) -- (0,\ymax);
+				\foreach \x in {0,1,...,10}
+				\draw[line width=1.25pt] (\x,4pt) -- (\x,-4pt) node[below] {\num{\x}};
+				\foreach \y in {0,1,2,3}
+				\draw[line width=1.25pt] (4pt,\y) -- (-4pt,\y) node[left] {\num{\y}};
+			\end{tikzpicture}
+		\end{center}
+		\item Conjecturer le sens de variation de $\suiten$.
+	\end{enumerate}
+	\pagebreak
+	\item 
+	\begin{enumerate}
+		\item En utilisant la calculatrice et la technique de la \og toile \fg{}, représenter (sur le graphique suivant) les premiers termes de la suite $\suiten[v]$ définie par $\begin{dcases} v_0=100 \\ v_{n+1}=0,5v_n+20 \end{dcases}$ pour tout entier naturel $n$.
+		
+		\textit{Les éléments nécessaires au tracé ont déjà été représentés.}
+		\begin{center}
+			\tunits{0.1}{0.05}
+			\tdefgrille{0}{110}{10}{5}{0}{100}{20}{10}
+			\begin{tikzpicture}[x=\xunit cm,y=\yunit cm]
+				%axes et grille
+				\tgrilles ;
+				\tgrillep ;
+				\draw[->,line width=1.25pt] (\xmin,0) -- (\xmax,0);
+				\draw[->,line width=1.25pt] (0,\ymin) -- (0,\ymax);
+				\foreach \x in {0,10,...,100}
+				\draw[line width=1.25pt] (\x,4pt) -- (\x,-4pt) node[below] {\num{\x}};
+				\foreach \y in {0,10,...,90}
+				\draw[line width=1.25pt] (4pt,\y) -- (-4pt,\y) node[left] {\num{\y}};
+				%fonctions
+				\draw[line width=1.25pt,blue,domain=0:100,samples=200] plot(\x,{\x});
+				\draw[line width=1.25pt,red,domain=0:110,samples=200] plot(\x,{0.5*\x+20});
+				%légendes
+				\draw[thick] plot[mark=*,mark size=2pt] coordinates {(40,40)};
+				\draw (90,90) node[above left] {\large \blue $\Delta$ : $y=x$};
+				\draw (100,90) node[below right] {\large \red $\mathscr{C}_f$};
+			\end{tikzpicture}
+		\end{center}
+		\item Conjecturer le sens de variation de la suite $\suiten[v]$.
+		\item Conjecturer la limite éventuelle de la suite $\suiten[v]$.
+	\end{enumerate}
+	\item Sur la feuille de \csheet{tableur} suivant, déterminer les \csheet{valeurs} ou \csheet{formules} à saisir dans les cases {\helvbx B3}, {\helvbx C2} et {\helvbx C3} afin de calculer les termes des suites $\suiten$ et $\suiten[v]$ définies aux questions \ptno{1} et \ptno{2}.
+	
+	\begin{center}
+		\begin{tikzpicture}
+			\tableur*[4]{A/4cm,B/4cm,C/4cm}
+			%cellule grisée
+			\celcolor{B}{2}
+			%L1
+			\celtxt[c]{A}{1}{n}
+			\celtxt[c]{B}{1}{u\_n}
+			\celtxt[c]{C}{1}{v\_n}
+			%L2
+			\celtxt[c]{A}{2}{0}
+			%L3
+			\celtxt[c]{A}{3}{1}
+			%L4
+			\celtxt[c]{A}{4}{2}
+		\end{tikzpicture}
+	\end{center}
+\end{enumerate}
+
+\bigskip
+
+\exonum{3}
+
+\medskip
+
+On considère un placement bancaire sur un compte rémunéré au taux annuel de 3\,\% (autrement dit toutes les fins d'année, le montant disponible est multiplié par 1,03).
+
+\smallskip
+
+On place, le 1\up{er} janvier 2019, la somme de 1\,000\,€.
+
+On note $\suiten[C]$ la somme (ou capital) disponible sur le compte le 1\up{er} janvier de l'année $(2019+n)$.\\ On a donc $C_0=1\,000$.
+
+\begin{enumerate}
+	\item Calculer $C_1$ et $C_2$. Interpréter ces résultats dans le contexte de l'exercice.
+	\item En utilisant la calculatrice, et en détaillant la démarche :
+	\begin{enumerate}
+		\item déterminer le capital disponible le 1\up{er} janvier 2033 ;
+		\item déterminer en quelle année le capital aura doublé.
+	\end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\exonum{3}
+
+\begin{enumerate}
+	\item On considère la suite $\suiten$ définie par $u_n=2n^2+3n-5$ pour tout entier $n$.
+	\begin{enumerate}
+		\item Vérifier que $u_{n+1}=2n^2+7n$.
+		\item Calculer (et simplifier) $u_{n+1}-u_n$ et en déduire le sens de variation de la suite $\suiten$.
+	\end{enumerate}
+	\item On considère la suite $\suiten[v]$ définie par $\begin{dcases} v_0=10 \\ v_{n+1}=v_n-v_n^2 \end{dcases}$ pour tout entier naturel $n$.
+	
+	Simplifier $v_{n+1}-v_n$ et en déduire le sens de variation de $\suiten[v]$.
+\end{enumerate}
+
+\end{document}

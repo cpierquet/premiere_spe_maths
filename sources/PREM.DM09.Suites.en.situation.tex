@@ -1,0 +1,132 @@
+% !TeX TXS-program:compile = txs:///arara
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode}
+% arara: pythontex: {rerun: modified} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('log', '(undefined references|Please rerun|Rerun to get)')
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[]{cp-base}
+\graphicspath{{./graphics/}}
+%variables
+\donnees[classe=1\up{ère} 2M2,matiere={[SPÉ.MATHS]},typedoc=DM,numdoc=9,mois=Mars,annee=2022]
+
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfborder=0 0 0,pdfstartview=FitH}
+%divers
+%\espcellule
+\lhead{\entete{\matiere}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - \mois{} \annee}}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee{}}
+\rfoot{\pied{\numeropagetot}}
+\fancypagestyle{entetedm}{\fancyhead[L]{\entete{\matiere{} À rendre avant le\ldots}}}
+
+\begin{document}
+
+\pagestyle{fancy}
+
+\thispagestyle{entetedm}
+
+\part{DM09 - Suites en situation}
+
+\medskip
+
+\begin{blocexo}Exercice 1 \dotfill{}(Une histoire de carrelage)\end{blocexo}
+
+\smallskip
+
+\begin{minipage}{0.75\linewidth}
+	Un artisan commence la pose d'un carrelage dans une grande pièce.
+	
+	Le carrelage choisi a une forme hexagonale.
+	
+	L'artisan pose un premier carreau au centre de la pièce puis procède en étapes successives de la façon suivante :
+	
+	\begin{itemize}[label=\textbullet]
+		\item à l'étape 1, il entoure le carreau central, à l'aide de $6$ carreaux et obtient une première forme.
+		\item à l'étape 2 et aux étapes suivantes, il continue ainsi la pose en entourant de carreaux la forme précédemment construite.
+	\end{itemize}
+\end{minipage}
+\medskip
+\begin{minipage}{0.24\linewidth}
+	\begin{center}
+		\def\hexag{\draw[fill=lightgray] (30:1)--(90:1)--(150:1)--(210:1)--(270:1)--(330:1)--cycle;}
+		\begin{tikzpicture}[x=0.5cm,y=0.5cm,thick]
+			\draw[pattern=north west lines] (30:1)--(90:1)--(150:1)--(210:1)--(270:1)--(330:1)--cycle;
+			\foreach \n in {0,60,...,300} {\begin{scope}[shift={(\n:1.732)}]\draw (30:1)--(90:1)--(150:1)--(210:1)--(270:1)--(330:1)--cycle;\end{scope}}
+			\foreach \n in {0,60,...,300} {\begin{scope}[shift={(\n:3.47)}]\hexag\end{scope}}
+			\foreach \n in {30,90,...,330} {\begin{scope}[shift={(\n:3)}]\hexag\end{scope}}
+		\end{tikzpicture}
+	\end{center}
+\end{minipage}
+
+On note $u_n$ le nombre de carreaux ajoutés par l'artisan pour faire la $n$-ième étape $(n \geqslant 1)$. 
+
+Ainsi $u_1 = 6$ et $u_2 = 12$.
+
+\begin{enumerate}
+	\item Quelle est la valeur de $u_3$ ?
+	\item
+	\begin{enumerate}
+		\item Déterminer, en justifiant, la nature de la suite $\suiten$. Préciser ses éléments caractéristiques.
+		\item  Exprimer $u_n$ en fonction de $n$.
+	\end{enumerate}
+	\item 
+	\begin{enumerate}
+		\item Combien l'artisan a-t-il ajouté de carreaux pour faire l'étape 5 ? 
+		\item Combien a-t-il alors posé de carreaux au total lorsqu'il termine l'étape 5 (en comptant le carreau central initial) ?
+	\end{enumerate}
+	\item On pose $S_n = u_1 + u_2 + \ldots + u_n$. Montrer que $S_n = 3n^2 + 3n$.
+	\item Si on compte le premier carreau central, le nombre total de carreaux posés par l'artisan depuis le début, lorsqu'il termine la $n$-ième étape, est donc $3n^2 + 3n + 1$. 
+	
+	À la fin de sa semaine, l'artisan termine la pose du carrelage en collant son \num{2977}\up{e} carreau. Combien a-t-il fait d'étapes ?
+\end{enumerate}
+
+\medskip
+
+\begin{blocexo}Exercice 2 \dotfill{}(Une histoire de livret)\end{blocexo}
+
+\smallskip
+
+À la naissance de Lisa, sa grand-mère a placé la somme de \num{5000}~euros sur un compte et cet argent est resté bloqué pendant $18$ ans.
+
+Lisa retrouve dans les papiers de sa grand-mère l'offre de la banque :
+
+\begin{center}
+	\begin{tblr}{vlines,width=0.85\linewidth,colspec={X[l]},cells={font=\sffamily}}
+		\hline
+		~~~~\textbf{Offre} \hfill~$\vcenter{\hbox{\faMoneyBill}}$~~~~\\ \hline
+		~~~~Intérêts composés au taux annuel constant de 3\,\%.\\
+		~~~~À la fin de chaque année le capital produit 3\,\% d'intérêts qui sont intégrés au capital.\\ \hline
+	\end{tblr}
+\end{center}
+%\begin{center}
+%	\textsf{\begin{tabularx}{0.85\linewidth}{|O{X}|}\hline
+%		~~~~\textbf{Offre} \hfill~\faMoneyBill~~~~\\ \hline
+%		~~~~Intérêts composés au taux annuel constant de 3\,\%.\\
+%		~~~~À la fin de chaque année le capital produit 3\,\% d'intérêts qui sont intégrés au capital.\\ \hline
+%	\end{tabularx}}
+%\end{center}
+
+On considère que l'évolution du capital acquis, en euro, peut être modélisée par une suite 
+$\left(u_n\right)$ dans laquelle, pour tout entier naturel $n$, $u_n$ est le capital acquis, en euro, $n$ années après la naissance de Lisa.
+
+On a ainsi $u_0 = \num{5000}$.
+
+\begin{enumerate}
+	\item Montrer que $u_1 = \num{5150}$ et $u_2 = \num{5304,5}$. 
+	\item 
+	\begin{enumerate}
+		\item Pour tout entier naturel $n$, exprimer $u_{n+1}$ en fonction de $u_n$. 
+		
+		En déduire la nature de la suite $\left(u_n\right)$  en précisant sa raison et son premier terme.
+		\item Pour tout entier naturel $n$, exprimer $u_n$ en fonction de $n$.
+	\end{enumerate}
+	\item Calculer le capital acquis par Lisa à l'âge de $18$ ans. Arrondir au centime.
+	\item Si Lisa n'utilise pas le capital dès ses $18$ ans, quel âge aura-t-elle quand celui-ci dépassera \num{10000} euros ?
+\end{enumerate}
+
+\end{document}

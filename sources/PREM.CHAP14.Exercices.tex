@@ -1,0 +1,233 @@
+% !TeX TXS-program:compile = txs:///arara
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode}
+% arara: pythontex: {rerun: modified} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('log', '(undefined references|Please rerun|Rerun to get)')
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[revgoku]{cp-base}
+\graphicspath{{./graphics/}}
+%variables
+\donnees[classe={1\up*{ère} 2M2},matiere={[SPÉ.MATHS]},mois=Juin,annee=2022,typedoc=CHAP,numdoc=14]
+
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfborder=0 0 0,pdfstartview=FitH}
+%fancy
+\lhead{\entete{\matiere}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - \mois{} \annee}}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee{}}
+\rfoot{\pied{\numeropagetot}}
+
+\begin{document}
+
+\pagestyle{fancy}
+
+\part{CH14 - Compléments sur le produit scalaire - Exercices}
+
+\medskip
+
+\begin{caide}
+	{\setlength\arrayrulewidth{1.5pt} \arrayrulecolor{titrebleu!35}
+		\begin{tabularx}{\linewidth}{Y|Y|Y|Y|Y|Y}
+			\niveaudif{0}~~\textsf{Basique} & \niveaudif{1}~~\textsf{Modérée} & \niveaudif{2}~~\textsf{Élevée} & \niveaudif{3}~~\textsf{Très élevée} & \niveaudif{4}~~\textsf{Extrême} & \niveaudif{5}~~\textsf{Insensée} \\
+	\end{tabularx}\arrayrulecolor{black}}
+\end{caide}
+
+\exonum{1}
+
+\begin{enumerate}
+	\item Dans le plan muni d’un repère $\Rij$, on considère les quatre droites ci-dessous définies par leur équation cartésienne :
+	
+	\hfill~$(d_1)$ : $2x − 3y + 3 = 0\phantom{0}$ \quad ; \quad $(d_2)$ : $-2x - y + 1 = 0$\hfill~
+	
+	\hfill~$(d_3)$ : $4x + 8y - 10 = 0$ \quad ; \quad $(d_4)$ : $-3x + y + 4 = 0$\hfill~
+	\begin{enumerate}
+		\item Pour chacune des droites, donner un point et un vecteur directeur de cette droite.
+		\item Tracer chacune de ces droites dans le repère ci-dessous :
+		
+		\begin{center}
+			\begin{tikzpicture}[x=0.8cm,y=0.8cm,xmin=-4,xmax=4,xgrille=1,xgrilles=0.25,ymin=-3,ymax=3,ygrille=1,ygrilles=0.25]
+				\tgrilles \tgrillep \axestikz*
+				\axextikz[size=\small]{-4,-3,-2,-1,1,2,3}
+				\axeytikz[size=\small]{-3,-2,-1,1,2}
+				\draw (0,0) node[below left=2pt] {$0$} ;
+				%\clip (\xmin,\ymin) rectangle (\xmax,\ymax) ;
+			\end{tikzpicture}
+		\end{center}
+	\end{enumerate}
+	\item On considère le plan muni d’un repère $\Rij$.
+	
+	Pour chaque question, déterminer une équation cartésienne de la droite $(d)$ passant par le point $A$ et ayant pour vecteur directeur $\vect{u}$ :
+	\begin{multicols}{2}
+		\begin{enumerate}
+			\item $A(2\,;\,1)$ et $\vect{u} \begin{pmatrix}2\\3\end{pmatrix}$ ;
+			\item $A(3\,;\,-2)$ et $\vect{u} \begin{pmatrix}\tfrac12\\-1\end{pmatrix}$ ;
+			\item $A(0\,;\,3)$ et $\vect{u} \begin{pmatrix}-2\\1\end{pmatrix}$ ;
+			\item $A\left(-2\,;\,\tfrac12\right)$ et $\vect{u} \begin{pmatrix}3\\-\tfrac53\end{pmatrix}$.
+		\end{enumerate}
+	\end{multicols}
+	\item On considère le plan munit d’un repère $\Rij$ orthonormé.
+	
+	Dans chaque cas, déterminer une équation cartésienne passant par le point $A$ et admettant le vecteur $\vect{n}$ pour vecteur normal :
+	\begin{multicols}{2}
+		\begin{enumerate}
+			\item $\vect{n} \begin{pmatrix}2\\3\end{pmatrix}$ et $A(1\,;\,0)$ ;
+			\item $\vect{n} \begin{pmatrix}-1\\1\end{pmatrix}$ et $A(-2\,;\,1)$.
+		\end{enumerate}
+	\end{multicols}
+	\item On munit le plan d’un repère $\Rij$ orthonormé.
+	\begin{enumerate}
+		\item On considère la droite $(d)$ admettant le vecteur $\vect{n} \begin{pmatrix}-2\\1\end{pmatrix}$ pour vecteur normal et passant par  $A(4\,;\,1)$.
+		
+		Déterminer une équation cartésienne de la droite $(d)$.
+		\item On considère la droite $(D)$ admettant l’équation cartésienne : $x - 4y + 3 = 0$.
+		
+		Donner un vecteur $\vect{n'}$ normal de $(D)$, un vecteur $\vect{u}$ directeur de $(D)$ et un point $B$ appartenant à $(D)$.
+	\end{enumerate}
+\end{enumerate}
+
+\pagebreak
+
+\exonum{1}
+
+\medskip
+
+Dans le plan muni d’un repère $\Rij$, on considère les points $A(-2\,;\,-3$) et $B(4\,;\,1)$. On note $(d)$ la médiatrice du segment $[AB]$.
+
+\begin{enumerate}
+	\item Déterminer les coordonnées du point $K$ milieu du segment $[AB]$.
+	\item Donner les coordonnées d’un vecteur $\vect{n}$ normal à la droite $(d)$.
+	\item Déterminer une équation cartésienne de la droite $(d)$.
+\end{enumerate}
+
+\medskip
+
+\exonum{1}
+
+\medskip
+
+Dans le plan muni d’un repère $\Rij$, on considère la droite $(d)$ d'équation cartésienne : $-3x + y + 7 = 0$.
+
+\begin{enumerate}
+	\item Donner un vecteur $\vect{u}$ directeur de la droite $(d)$.
+	\item Déterminer une équation cartésienne de la droite $(\Delta)$ parallèle à la droite $(d)$ et passant par le point de coordonnées $A(-2\,;\,2)$.
+	\item Soit $(D)$ la droite perpendiculaire à la droite $(d)$ et passant par le point $B(3\,;\,-1)$.
+	\begin{enumerate}
+		\item Donner les coordonnées d’un vecteur $\vect{v}$ normal à la droite $(D)$.
+		\item Déterminer une équation cartésienne de la droite $(D)$.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\exonum{2}
+
+\medskip
+
+Dans le plan, on considère les deux carrés $ABCD$ et $BEFG$ représentés ci-dessous :
+
+\begin{center}
+	\begin{tikzpicture}[]
+		\tkzDefPoints{0/0/A,6/0/B,6/6/C,0/6/D,9/0/E,9/-3/F,6/-3/G}
+		\draw[thick] (A) rectangle (C) ;
+		\draw[thick] (B) rectangle (F) ;
+		\draw[thick,->] (A)--++(1,0) node[midway,below] {$\vect{\imath}$} ;
+		\draw[thick,->] (A)--++(0,1) node[midway,left] {$\vect{\jmath}$} ;
+		\foreach \Point/\Pos in {A/below left,B/below left,C/above right,D/above,E/above right,F/below right,G/below left}
+			{\tkzLabelPoint[\Pos](\Point){\Point}}
+		\tkzDrawLines[thick,dashed,add=.1 and .1](D,E)
+		\tkzDrawLines[thick,dashed,add=.1 and .1](C,F)
+		\tkzDrawLines[thick,dashed,add=.1 and .1](C,E)
+		\tkzInterLL(C,F)(D,E)\tkzGetPoint{I}
+		\tkzLabelPoint[below](I){I}
+		\tkzDrawLines[thick,dashed,add=.1 and .5](B,I)
+	\end{tikzpicture}
+\end{center}
+
+On munit le plan du repère orthonormé $\left(A\,;\,\vect{i},\vect{j}\right)$ où $AB=6$ et $BE=3$.
+
+\begin{enumerate}
+	\item 
+	\begin{enumerate}
+		\item Déterminer les coordonnées des vecteurs $\vect{DE}$ et $\vect{CF}$.
+		\item En déduire les équations cartésiennes des droites $(DE)$ et $(CF)$ dans le plan $\left(A\,;\,\vect{i},\vect{j}\right)$.
+	\end{enumerate}
+	\item Déterminer les coordonnées du point $I$.
+	\item Justifier que les droites $(BI)$ et $(CE)$ sont perpendiculaires.
+\end{enumerate}
+
+\pagebreak
+
+\exonum{2}
+
+\begin{enumerate}
+	\item Le plan est muni d’un repère orthonormé $\Rij$ dont l’unité est le centimètre.
+	
+	On considère le cercle $\mathscr{C}$ de centre $I$ et de rayon $r$. Pour chaque question, déterminer une équation du cercle :
+	\begin{enumerate}
+		\item $I(1\,;\,2)$ et $r=3$~cm ;
+		\item $I(-3\,;\,1)$ et $r=5$~cm.
+	\end{enumerate}
+	\item On considère le plan muni d’un repère $\Rij$ orthonormé et le cercle $\mathscr{C}$ de centre $A(2\,;\,1)$ et de rayon 4.
+	
+	Déterminer une équation cartésienne du cercle $\mathscr{C}$.
+	\item Dans le plan muni d’un repère $\Rij$ orthonormé, on considère le cercle $\mathscr{C}$ de centre $K(3\,;\,-1)$ et de rayon $R=5$.
+	\begin{enumerate}
+		\item Déterminer une équation cartésienne du cercle $\mathscr{C}$.
+		\item Parmi les points ci-dessous, lesquels appartiennent au cercle $\mathscr{C}$ :
+		
+		\hfill~$M(-1\,;\,2)$ \quad;\quad $N\left(\dfrac85\,;\,-\dfrac{29}{5}\right)$ \quad;\quad $P\left(\dfrac95\,;\,\dfrac25\right)$\hfill~
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\exonum{3}
+
+\medskip
+
+Dans le plan muni d’un repère $\Rij$ orthonormé, on considère le point $A(3\,;\,1)$ et la droite $(d)$ représentée ci-dessous d’équation cartésienne : $2x + 5y - 2 = 0$.
+
+\begin{center}
+	\begin{tikzpicture}[x=1cm,y=1cm,xmin=-4,xmax=4,xgrille=1,xgrilles=0.25,ymin=-2,ymax=3,ygrille=1,ygrilles=0.25]
+		\tgrilles \tgrillep \axestikz*
+		\axextikz[size=\small]{-4,-3,-2,-1,1,2,3}
+		\axeytikz[size=\small]{-1,1,2}
+		\draw (0,0) node[below left=2pt] {$0$} ;
+		\draw[thick,->] (0,0)--++(1,0) node[midway,below,font=\small] {$\vect{\imath}$} ;
+		\draw[thick,->] (0,0)--++(0,1) node[midway,left,font=\small] {$\vect{\jmath}$} ;
+		%\clip (\xmin,\ymin) rectangle (\xmax,\ymax) ;
+		\draw[very thick,red,domain=\xmin:\xmax,samples=2] plot (\x,{-2/5*\x+2/5}) ;
+		\draw[red] (-3,2) node {$(d)$} ;
+		\filldraw (3,1) circle[radius=2pt] node[above right] {$A$} ;
+	\end{tikzpicture}
+\end{center}
+
+On note $H$ le projeté orthogonal du point $A$ sur la droite $(d)$.
+
+\begin{enumerate}
+	\item Construire le point $H$ dans le repère.
+	\item Justifier que la droite $(\Delta)$ passant par le point $A$ et perpendiculaire à la droite $(d)$ a pour équation :
+	
+	\hfill~$(\Delta)$ : $-5x + 2y + 13 = 0$\hfill~
+	\item Déterminer les coordonnées du point $H$.
+\end{enumerate}
+
+\medskip
+
+\exonum{3}
+
+\medskip
+
+Dans le plan muni d’un repère $\Rij$, on considère les trois points : $A(-3\,;\,2)$ ; $B(3\,;\,5)$ ; $C(2\,;\,2)$.
+
+\begin{enumerate}
+	\item Déterminer les coordonnées du pied $H$ de la hauteur du triangle ABC issue du sommet $C$.
+	\item Déterminer l’aire du triangle $ABC$.
+\end{enumerate}
+
+\end{document}

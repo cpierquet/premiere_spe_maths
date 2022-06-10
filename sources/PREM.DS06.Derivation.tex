@@ -1,0 +1,207 @@
+% !TeX TXS-program:compile = txs:///lualatex
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[sujet]{cp-base}
+\graphicspath{{./graphics/}}
+%variables
+\donnees[
+	classe={1\up{ère} 2M2},matiere={[SPÉ.MATHS]},mois={Mardi 15 Mars},annee=2022,duree=1h,typedoc=DS,numdoc=6
+]
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfborder=0 0 0,pdfstartview=FitH}
+%divers
+\lhead{\entete{\matiere}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - \mois{} \annee}}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee{}}
+\rfoot{\pied{\numeropagetot}}
+\fancypagestyle{enteteds}{\fancyhead[L]{\entete{Durée : \duree}}}
+
+\begin{document}
+
+\pagestyle{fancy}
+
+\thispagestyle{enteteds}
+
+\setcounter{numexos}{0}
+
+\part{DS06 - Dérivation}
+
+\smallskip
+
+\nomprenomtcbox
+
+\begin{marker}$\leftrightsquigarrow$ Le sujet est à rendre avec la copie. $\leftrightsquigarrow$\end{marker}
+
+%variables
+\def\CA{Connaissance du cours et des formules}
+\def\CB{Calculs de dérivées \og simples \fg}
+\def\CC{Maîtrise des opérations sur les dérivées}
+\def\CD{Maîtrise des lectures graphiques}
+%etc
+
+\begin{center}
+	\begin{tblr}{%
+			hlines,vlines,width=13cm,%
+			colspec={Q[l,wd=8.5cm]X[c]X[c]X[c]Q[c,wd=1.5cm]},%
+			row{1}={font=\footnotesize\bfseries\sffalt,bg=lightgray!50},
+			row{2-Y}={font=\poltuto},
+			row{Z}={font=\blue\footnotesize\bfseries\sffalt}}
+		DS06 - Dérivation & NA & PA & A & Note \\
+		{\CA} & & & & \SetCell[r=5]{c} \\
+		{\CB} & & & & \\
+		{\CC} & & & & \\
+		{\CD} & & & & \\
+		\SetCell[c=4]{l} \textbf{NA} : Non acquis  / \textbf{PA} : Partiellement acquis / \textbf{A} : Acquis & & & & \\
+	\end{tblr}
+\end{center}
+
+%\renewcommand\arraystretch{1.1}
+%
+%\foreach \nom in \listeprem
+%{\large \sf
+%	\begin{tabularx}{\linewidth}{|m{12cm}|Y|Y|Y|M{1.25cm}|}
+%		\hline
+%		\multicolumn{5}{c}{} \\ \hline
+%		\cellcolor{lightgray!50}\textbf{\red \epreuve{} - \nom{} (\classe)} & \cellcolor{lightgray!50}\textbf{NA} & \cellcolor{lightgray!50}\textbf{PA} & \cellcolor{lightgray!50}\textbf{A}  & \cellcolor{lightgray!50}\textbf{Note} \\ \hline
+%		{\CA} & & & & \\ \cline{1-4}
+%		{\CB} & & & & \\ \cline{1-4}
+%		{\CC} & & & &  \\ \cline{1-4}
+%		{\CD} & & & & \\ \cline{1-4}
+%		%	{\CE} & & & & \\ \cline{1-4}
+%		%etc
+%		\multicolumn{4}{|l|}{\blue \textbf{NA} : Non acquis  / \textbf{PA} : Partiellement acquis / \textbf{A} : Acquis} & \\ \hline
+%		\multicolumn{5}{c}{} \\ \hline
+%	\end{tabularx}
+%} 
+
+\exocours{4}
+
+\begin{enumerate}
+	\item On considère une fonction $f$ définie sur un intervalle $I$ contenant un réel $a$. On note $\mathscr{C}_f$ sa courbe dans un repère orthonormé. On suppose que $f$ est dérivable en $a$.
+	\begin{enumerate}
+		\item Graphiquement, comment s'interprète le nombre dérivé $f'(a)$ ?
+		\item Rappeler l'équation de $\mathscr{T}_a$, tangente à $\mathscr{C}_f$ au point d'abscisse $a$.
+	\end{enumerate}
+	\item Indiquer deux conséquences graphiques que peut impliquer la non dérivabilité d'une fonction $f$ en $a$ ?
+	\item Donner, sans justification, la dérivée des fonctions (de référence) suivantes :
+	
+	\vspace{-1.25\parskip}
+	
+	\parbox{\linewidth}{%
+		\begin{multicols}{4}
+			\begin{enumerate}
+				\item $x \mapsto 5x+6$ ;
+				\item $x \mapsto x^3$ ;
+				\item $x \mapsto \tfrac{1}{x}$ ;
+				\item $x \mapsto \sqrt{x}$.
+			\end{enumerate}
+		\end{multicols}}
+	\vspace*{-1.1\parskip}
+\end{enumerate}
+
+\smallskip
+
+\exonum{6}
+
+\begin{enumerate}
+	\item Déterminer la dérivée des fonctions suivantes (sans se soucier de l'ensemble de dérivabilité) :
+	\begin{enumerate}
+		\item $f(x)=4x^2+10x-7$ ;
+		\item $g(x)=\dfrac{3}{x}-8\sqrt{x}$ ;
+		\item $h(x)=\dfrac{1}{2}+\dfrac{5}{x^3}$.
+	\end{enumerate}
+	\item Déterminer la dérivée des fonctions suivantes (sans se soucier de l'ensemble de dérivabilité) :
+	\begin{enumerate}
+		\item $f(x)=\dfrac{6x+5}{x+4}$ ; \tabto{6.5cm}\textit{\footnotesize \faHandPointRight[regular] \small on essayera de simplifier le numérateur\ldots}
+		\item $g(x)=(x^2+x+1)(2x^3-4x+5)$ ; \tabto{6.5cm}\textit{\footnotesize \faHandPointRight[regular] \small il n'est pas nécessaire de développer/simplifier\ldots}
+		\item $h(x)=4\sqrt{7x+3}$.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\exonum{3}
+
+\medskip
+
+On considère la fonction $f$ définie sur $\R\backslash\{\strut-2\}$ par $f(x)=\dfrac{2x+13}{x+2}$. On note $\mathscr{C}_f$ sa courbe représentative dans un repère orthonormé.
+
+\begin{enumerate}
+	\item Calculer $f(1)$ puis déterminer, en utilisant la calculatrice, la valeur de $f'(1)$.
+	\item Déterminer une équation de $\mathscr{T}_1$, tangente à $\mathscr{C}_f$ au point d'abscisse $1$. %y=(-x+6)
+	\item Le point $L(-3,25\,;\,9)$ appartient-il à $\mathscr{T}_1$ ? Justifier la réponse.
+\end{enumerate}
+
+\pagebreak
+
+\exonum{3}
+
+\medskip
+
+On considère une fonction $h$, définie sur $\intervff{-4}{7}$, dont la courbe représentative $\mathscr{C}_h$ est donnée ci-dessous. Certaines tangentes à $\mathscr{C}_h$ ont été tracées.
+
+\begin{center}
+	\tunits{1.25}{1.25}
+	\tdefgrille{-4}{7}{1}{1}{-3}{5}{1}{1}
+	\begin{tikzpicture}[x=\xunit cm,y=\yunit cm]
+		%grilles & axes
+		\tgrilles[line width=0.3pt,lightgray] ;
+		\tgrillep[line width=0.6pt,lightgray] ;
+		\axestikz* ;
+		\axextikz[]{-4,-3,...,6} ;
+		\axeytikz[]{-3,-2,...,4} ;
+		\clip (\xmin,\ymin) rectangle (\xmax,\ymax) ; %on restreint les fonctions à la fenêtre
+		%les splines en pgf
+		\draw[line width=1.25pt,red,samples=200,domain=-4:-2] plot(\x,{0.5*\x*\x*\x+3.0*\x*\x+8.0*\x+11.0}) ;
+		\draw[line width=1.25pt,red,samples=200,domain=-2:1] plot(\x,{0.3333*\x*\x*\x+0.0*\x*\x+-2.0*\x+1.6667}) ;
+		\draw[line width=1.25pt,red,samples=200,domain=1:3] plot(\x,{-0.0*\x*\x*\x+0.25*\x*\x+-1.5*\x+1.25}) ;
+		\draw[line width=1.25pt,red,samples=200,domain=3:7] plot(\x,{0.0063*\x*\x*\x+0.1687*\x*\x+-1.1812*\x+0.8562}) ;
+		%tangentes
+		\draw[densely dashed,line width=1.25pt,blue,samples=200,domain=\xmin:\xmax] plot(\x,{2*(\x+2)+3}) ; %T(-2)
+		\draw[densely dashed,line width=1.25pt,orange,samples=200,domain=\xmin:\xmax] plot(\x,{-1*(\x-1)+0}) ; %T(1)
+		\draw[densely dashed,line width=1.25pt,ForestGreen,samples=200,domain=\xmin:\xmax] plot(\x,{0*(\x-3)-1}) ; %T(3)
+		%points de tangentes
+		\foreach \Point in {(-2,3),(1,0),(3,-1)} \filldraw \Point circle[radius=3pt] ;
+		\draw (5.85,2) node[red] {\Large $\mathscr{C}_h$} ;
+		\draw (-2,3) node[left=3pt] {\Large \blue \sf A} ;
+		\draw (1,0) node[above right=3pt] {\Large \sf \textcolor{orange}{B}} ;
+		\draw (3,-1) node[below right=3pt] {\Large \sf \textcolor{ForestGreen}{C}} ;
+	\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}
+	\item Expliquer pourquoi, graphiquement, la fonction $h$ semble être dérivable en toute valeur de $\intervFF{-4}{7}$.
+	\item Donner, par lecture graphique :
+	\begin{enumerate}
+		\item les valeurs de $h(-2)$, de $h(1)$ et de $h(3)$ ;
+		\item les valeurs de $h'(-2)$, de $h'(1)$ et de $h'(3)$ ;
+		\item le signe de $h'(6)$.
+	\end{enumerate}
+	\item[Bonus] Déterminer le tableau de signes de $h'(x)$.
+	%\item Déterminer une équation de $T_{-2}$ puis une équation de $T_1$.
+\end{enumerate}
+
+\medskip
+
+\exonum{4}
+
+\medskip
+
+Soit la fonction $f$ définie sur $\R$ par $f(x) = x^3 +3x^2 +2x +1$.
+
+\begin{enumerate}
+	\item Calculer $f'(x)$, pour tout réel $x$.
+	\item 
+	\begin{enumerate}
+		\item Résoudre dans $\R$ l'équation: $f'(x) = 0$.
+		\item Dresser le tableau de signes de $f'(x)$ sur $\R$.
+	\end{enumerate}
+	\item Expliquer comment on pourrait, grâce à $f'(x)$, déterminer les variations de $f$ sur $\R$.
+	\item Déterminer, en justifiant, si le point $S(-4\,;\,-3)$ appartient à la tangente à la courbe représentative de $f$ au point d'abscisse $x = -2$.
+\end{enumerate}
+
+\end{document}

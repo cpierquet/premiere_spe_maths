@@ -1,0 +1,110 @@
+% !TeX TXS-program:compile = txs:///arara
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode}
+% arara: pythontex: {rerun: modified} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('log', '(undefined references|Please rerun|Rerun to get)')
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[revgoku]{cp-base} %avec options possibles parmi breakable (tcbox), sujetl (exos),  (pour faire "comme avant"), etc...
+\graphicspath{{./graphics/}}
+%variables
+\donnees[classe=1\up{ère} 2M2,matiere={[SPÉ.MATHS]},typedoc=TD,numdoc=5,titre={Étude de salaires},mois=Mars,annee=2022]
+
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfborder=0 0 0,pdfstartview=FitH}
+%divers
+\lhead{\entete{\matiere}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - \mois{} \annee}}
+%\rhead{\entete{\classe{} - Chapitre }}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee{}}
+\rfoot{\pied{\numeropagetot}}
+
+\begin{document}
+
+\pagestyle{fancy}
+
+\part{TD05 - Étude de salaires}
+
+\smallskip
+
+\nomprenomtcbox
+
+\smallskip
+
+Camille et Dominique ont été embauchés au même moment dans une entreprise et ont négocié leur contrat :
+
+\begin{itemize}%[label=\scriptsize\faIcon{money-bill-alt}]
+	\item[\scriptsize\faIcon{money-bill-alt}] Camille a commencé en 2018 avec un salaire annuel de \num{14400}\,€ ;
+	\item[\scriptsize\faIcon{money-bill-alt}] le salaire de Dominique était, cette même année, de \num{13200}\,€ ;
+	\item[\scriptsize\faChartLine] le salaire de Camille augmente de 600\,€ par an ;
+	\item[\scriptsize\faChartLine] celui de Dominique augmente de 4\,\% par an. 
+\end{itemize} 
+%
+\begin{enumerate}
+	\item Quels étaient les salaires annuels de Camille et de Dominique en 2019 ? En 2020 ? Justifier les réponses.
+	\item \textbf{Étude du salaire de Camille.} On note $c_n$ le salaire de Camille en l’année $2018+n$. On a donc $c_0 = \num{14400}$.
+	\begin{enumerate}
+		\item Quelle est la nature de la suite $\suiten[c]$ ? Justifier la réponse.
+		\item Déterminer l'expression de $c_n$ en fonction de $n$. 
+		\item Calculer le salaire de Camille en 2028.
+		\item Déterminer, en détaillant la méthode, en quelle année le salaire de Camille dépassera \num{25000}\,€. 
+	\end{enumerate}
+	\item \textbf{Étude du salaire de Dominique.} On note $d_n$ le salaire de Dominique en l’année $2018+n$. 
+	\begin{enumerate}
+		\item Préciser la valeur de $d_0$.
+		\item Exprimer $d_{n+1}$ en fonction de $d_n$ puis en déduire la nature de la suite $\suiten[d]$.
+		\item Déterminer l'expression de $d_n$ en fonction de $n$.
+		\item Calculer le salaire de Dominique en 2028. On arrondira le résultat à l’euro. 
+	\end{enumerate}
+	\item \textbf{Évolution des deux salaires.} On veut déterminer à partir de quelle année le salaire de Dominique dépassera celui de Camille. Pour cela, on dispose du programme incomplet ci-dessous écrit 
+	en langage \calgpython.
+	\begin{enumerate}
+		\item Compléter les quatre parties en pointillé du programme ci-dessous : 
+		\begin{envpython}[12cm]
+			def algo() : 
+				C = 14400
+				D = 13200
+				n = 0
+				while .................. :
+					C = ................
+					D = ................
+					n = ................
+				return n
+		\end{envpython}
+		\item Déterminer, en détaillant, en quelle année le salaire de Dominique dépassera celui de Camille.
+	\end{enumerate}
+	\item \textbf{Salaires cumulés entre 2018 et 2028.}
+	\begin{enumerate}
+		\item Calculer la somme $\sum_{i=0}^{10} d_i = d_0+d_1+\ldots+d_{10}$ et interpréter le résultat.
+		\item Déterminer, en détaillant, le montant total des salaires perçus par Camille entre 2018 et 2028.
+		\item Compléter les algorithmes suivants, écrits en \calgpython, afin qu'ils permettent de retrouver le résultat des questions \ptno{5}\pta{a} et \ptno{5}\pta{b}.
+	\end{enumerate}
+	\begin{minipage}{0.45\textwidth}
+		\begin{envpython}[8.5cm]
+			def cumul_camille() : 
+				C = 14400
+				S = 14400 
+				for i in range(10):
+					C = ................
+					S = S + ............
+				return ...
+		\end{envpython}
+	\end{minipage}\hfill
+	\begin{minipage}{0.45\textwidth}
+		\begin{envpython}[8.5cm]
+			def cumul_dominique() : 
+				D = .....
+				S = 13200 
+				for i in range(10):
+					D = ................
+					S = S + ............
+				return ...
+		\end{envpython}
+	\end{minipage}
+\end{enumerate}
+
+\end{document}

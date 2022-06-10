@@ -1,0 +1,116 @@
+% !TeX TXS-program:compile = txs:///lualatex
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[revgoku]{cp-base}
+\graphicspath{{./graphics/}}
+%variables
+\donnees[%
+	classe=1\up{ère} 2M2,
+	matiere={[SPÉ.MATHS]},
+	mois=Janvier,
+	annee=2022,
+	typedoc=DM,
+	numdoc=06,
+	titre={Probabilités (v2)}
+	]
+
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfborder=0 0 0,pdfstartview=FitH}
+%divers
+\lhead{\entete{\matiere}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - \mois{} \annee}}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee{}}
+\rfoot{\pied{\numeropagetot}}
+\fancypagestyle{entetedm}{\fancyhead[L]{\entete{\matiere{} À rendre avant le\ldots}}}
+
+\begin{document}
+
+\pagestyle{fancy}
+
+\thispagestyle{entetedm}
+
+\setcounter{numexos}{0}
+
+\part{DM06 - Probabilités (v2)}
+
+\smallskip
+
+\exonum{}
+
+\medskip
+
+Lors d’une course cyclosportive, 70\,\% des participants sont licenciés dans un club, les autres ne sont pas licenciés. Aucun participant n’abandonne la course.
+
+Parmi les licenciés, 66\,\% font le parcours en moins de 5 heures ; les autres en plus de 5 heures.
+
+Parmi les non licenciés, 83\,\% font le parcours en plus de 5 heures; les autres en moins de 5 heures.
+
+On interroge au hasard un cycliste ayant participé à cette course et on note :
+%
+\begin{itemize}
+	\item L l’évènement « le cycliste est licencié dans un club » et $\overline{L}$ son évènement contraire,
+	\item M l’évènement « le cycliste fait le parcours en moins de 5 heures » et $\overline{M}$ son évènement contraire.
+\end{itemize}
+%
+\begin{enumerate}
+	\item À l’aide des données de l’énoncé préciser les valeurs de $P(L)$, $P_L(M)$ et $P_L \big( \overline{M} \big)$.
+	\item Construire un arbre pondéré suivant représentant la situation.
+	\item Calculer la proba. que le cycliste interrogé soit licencié dans un club et ait réalisé le parcours en moins de 5~h.
+	\item Justifier que $P(M) = 0,513$.
+	\item Un organisateur affirme qu’au moins 90\,\% des cyclistes ayant fait le parcours en moins de 5 heures sont licenciés dans un club. A-t-il raison ? Justifier la réponse.
+	\item Un journaliste interroge indépendamment trois cyclistes au hasard. On suppose le nombre de cyclistes suffisamment important pour assimiler le choix de trois cyclistes à un tirage aléatoire avec remise.
+	
+	Calculer la probabilité qu’exactement deux des trois cyclistes aient réalisé le parcours en moins de 5~h.
+\end{enumerate}
+
+\smallskip
+
+\exonum{}
+
+\medskip
+
+Un concessionnaire automobile vend deux versions de voitures pour une marque donnée: routière ou break. Pour chaque version il existe deux motorisations : essence ou diesel. Le concessionnaire choisit au hasard un client ayant déjà acheté une voiture. On note : 
+%
+\begin{itemize}
+	\item $R$ l'évènement: \og la voiture achetée est une routière \fg{} ;
+	\item $B$ l'évènement: \og la voiture achetée est une break \fg{}; 
+	\item $E$ l'évènement : \og la voiture est achetée avec une motorisation essence \fg{} ;
+	\item $D$ l'évènement : \og la voiture est achetée avec une motorisation diesel \fg. 
+\end{itemize}
+%
+On sait, de plus, que :
+%
+\begin{itemize}
+	\item[$\bullet~$]  65\,\% des clients achètent une voiture routière. 
+	\item[$\bullet~$] Lorsqu'un client achète une voiture break, il choisit dans 85\:\% des cas la motorisation diesel. 
+	\item[$\bullet~$] 27,3\,\% des clients achètent une voiture routière avec une motorisation diesel.
+\end{itemize}
+%
+\begin{enumerate}
+	\item Quelle est la probabilité $p(R)$ de l'événement $R$ ? 
+	\item 
+	\begin{enumerate}
+		\item Construire l'arbre de probabilité (qui sera complété petit à petit). 
+		\item Démontrer que $p_{R}(D) = 0,42$.
+		\item Calculer $p(D)$. 
+	\end{enumerate}
+	\item Lorsque le concessionnaire a choisi au hasard un client, on s'intéresse au prix de vente (en milliers d'euros) de la voiture achetée. Compléter le tableau suivant :
+	\begin{center}
+		\setlength{\arrayrulewidth}{1.1pt}
+		\renewcommand{\arraystretch}{1.05}
+		\textsf{\begin{tabularx}{0.9\linewidth}{|l|*{4}{Y|}}
+			\hline
+			Version &\multicolumn{2}{c|}{Routière} &\multicolumn{2}{c|}{Break} \\ \hline
+			Motorisation &Essence&Diesel &Essence &Diesel \\ \hline
+			$\mathsf{x_{i}}$ : prix de vente (en milliers d'€) &15 &18 &17 &20\\ \hline 
+			$\mathsf{p_{i}}$ : probabilité&& 0,273&&\\ \hline
+		\end{tabularx} }
+	\end{center}
+	Calculer le prix de vente moyen des voitures achetées.
+\end{enumerate}
+
+\end{document}

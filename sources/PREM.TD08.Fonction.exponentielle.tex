@@ -1,0 +1,86 @@
+% !TeX TXS-program:compile = txs:///arara
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode}
+% arara: pythontex: {rerun: modified} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('log', '(undefined references|Please rerun|Rerun to get)')
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[revgoku]{cp-base}
+\graphicspath{{./graphics/}}
+%variables
+\donnees[%
+	classe=1\up*{ère} 2M2,
+	matiere={[SPÉ.MATHS]},
+	typedoc=TD,
+	numdoc=08,
+	mois=Juin,
+	annee=2022
+	]
+
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfborder=0 0 0,pdfstartview=FitH}
+%divers
+\lhead{\entete{\matiere}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - \mois{} \annee}}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee{}}
+\rfoot{\pied{\numeropagetot}}
+
+\begin{document}
+
+\pagestyle{fancy}
+
+\part{TD08 - Fonction exponentielle en situation}
+
+Une start-up fabrique entre 100 et 2\,000 ordinateurs par jour. On admet que si la start-up fabrique $x$ \textbf{centaines d'ordinateurs}, le bénéfice en \textbf{centaines d'euros} est modélisé par : \[ f(x)=80x\,\e^{-0,2x} \text{, avec } x \in \intervFF{1}{20}.\]
+%
+On note $f'$ la dérivée de la fonction $f$, et on note $\mathscr{C}_f$ sa courbe représentative dans un repère orthogonal, donnée en ci-dessous.
+
+\begin{center}
+	\begin{tikzpicture}[x=0.6cm,y=0.06cm,xmin=0,xmax=21,xgrille=1,xgrilles=0.2,ymin=0,ymax=155,ygrille=10,ygrilles=2]
+		\tgrilles \tgrillep \axestikz*
+		\axextikz[size=\small]{0,1,...,20} \axeytikz[size=\small]{0,10,...,150}
+		%\clip (\xmin,\ymin) rectangle (\xmax,\ymax) ;
+		\draw[very thick,red,domain=1:20,samples=100] plot (\x,{80*\x*exp(-0.2*\x)}) ;
+		\draw[red] (1.5,65) node {\large $\mathscr{C}_f$} ;
+	\end{tikzpicture}
+\end{center}
+
+\textbf{\large Partie A -- Étude graphique}
+
+\medskip
+
+À l'aide du graphique et en laissant les traits de construction apparents :
+
+\begin{enumerate}
+	\item déterminer le maximum de la fonction $f$ sur l'intervalle $\intervFF{1}{20}$ ;
+	\item résoudre l'équation $f(x)=100$, avec la précision permise par le graphique.
+\end{enumerate}
+
+\textbf{\large Partie B - Étude de la fonction $\grasmaths{f}$}
+
+\begin{enumerate}
+	\item 
+	\begin{enumerate}
+		\item Justifier que, pour tout $x$ appartenant $\intervFF{1}{20}$, on a $f'(x)=\e^{-0,2x}(80-16x)$.
+		\item Étudier le signe de $f'(x)$ sur l'intervalle $\intervFF{1}{20}$.
+		\item En déduire le tableau de variation de la fonction $f$ (les images seront, si besoin, arrondies au centième).
+	\end{enumerate}
+	\item Démontrer que l'équation $f(x) = 100$ admet une unique solution sur l'intervalle $\intervFF{1}{5}$ puis en déterminer, à l'aide de la calculatrice, une valeur approchée au centième.
+	
+	\smallskip
+	
+	On admet que sur l'intervalle $\intervFF{5}{20}$ l'équation $f(x)=100$ admet également une unique solution égale à environ $10,76$.
+\end{enumerate}
+
+\textbf{\large Partie C -- Interprétation}
+
+\begin{enumerate}
+	\item Déterminer le bénéfice maximal à l'euro près réalisé par la start-up et le nombre d'ordinateurs fabriqués pour le réaliser
+	\item Entre quelles valeurs doit être compris le nombre d'ordinateurs fabriqués pour que la start-up réalise un bénéfice supérieur ou égal à 10\,000 euros ?
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,88 @@
+% !TeX TXS-program:compile = txs:///arara
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode}
+% arara: pythontex: {rerun: modified} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('log', '(undefined references|Please rerun|Rerun to get)')
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[revgoku]{cp-base}
+\graphicspath{{./graphics/}}
+%variables
+\donnees[%
+	classe=2M2,
+	matiere={[SPÉ.MATHS]},
+	typedoc=REMISE À NIVEAU~,
+	numdoc=2,
+	titre={}
+]
+
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfborder=0 0 0,pdfstartview=FitH}
+%fancy
+\lhead{\entete{\matiere}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - \mois{} \annee}}
+%\rhead{\entete{\classe{} - Chapitre }}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee{}}
+\rfoot{\pied{\numeropagetot}}
+
+\begin{document}
+
+\pagestyle{fancy}
+
+\part{Dérivation, tableaux de signes}
+
+\medskip
+
+\exonum{}
+
+\medskip
+
+Déterminer la dérivée des fonctions suivantes :
+%
+\begin{itemize}
+	\item l'ensemble de définition et l'ensemble de dérivabilité ne sont pas demandés ;
+	\item on essayera de mettre les fractions au même dénominateur et de simplifier les numérateurs.
+\end{itemize}
+
+\begin{enumerate}
+	\item $f(x)=10x-7$ ;					\hfill{}\mirror{\textit{classique}}
+	\item $g(x)=4x^2+2x-5$ ;				\hfill{}\mirror{\textit{classique}}
+	\item $h(x)=\dfrac{7}{x}+9\sqrt{x}$ ;	\hfill{}\mirror{\textit{classique}}
+	\item $i(x)=\dfrac{4x+1}{x-3}$ ;		\hfill{}\mirror{\textit{quotient}}
+	\item $j(x)=(x+1)\sqrt{x}$ ;			\hfill{}\mirror{\textit{produit}}
+	\item $k(x)=6\sqrt{3x-6}$ ;				\hfill{}\mirror{\textit{composée}}
+	\item $l(x)=10x+3+\dfrac{8}{x}$ ;		\hfill{}\mirror{\textit{classique \& même dénom}}
+	\item $m(x)=x^2 + x - \dfrac{3}{x}$ ;	\hfill{}\mirror{\textit{classique \& même dénom}}
+	\item $n(x)=\dfrac{x^2-1}{x^2+4}$ ;		\hfill{}\mirror{\textit{somme \& quotient \& même dénom}}
+	\item $o(x)=-x+3+\dfrac{x-1}{x+1}$.		\hfill{}\mirror{\textit{quotient}}
+\end{enumerate}
+
+\medskip
+
+\exonum{}
+
+\medskip
+
+Résoudre les inéquations suivantes :
+%
+\begin{itemize}
+	\item on essayera au maximum de passer par un tableau de signes ;
+	\item si besoin, les expressions doivent être \textit{transformées} pour se ramener à la \textsf{méthode ZPQ}.
+\end{itemize}
+
+\begin{enumerate}
+	\item $2x^2+6x-8 \pg 0$ ;					\hfill{}\mirror{\textit{ZPQ \& 2\up{d} degré}}
+	\item $(x-5)(x^2+4x+5) < 0$ ;				\hfill{}\mirror{\textit{ZPQ \& produit}}
+	\item $\dfrac{4x-5}{-x+7} \pp 0$ ;			\hfill{}\mirror{\textit{ZPQ \& quotient}}
+	\item $\dfrac{x^2+1}{(4x-12)^2} \pg 0$ ;	\hfill{}\mirror{\textit{ZPQ \& quotient}}
+	\item $ x -1 - \dfrac{5}{x+3} \pp 0$ ;		\hfill{}\mirror{\textit{même dénom \& ZPQ \& quotient}}
+	\item $\dfrac{3}{2x-5} < -4$ ;			\hfill{}\mirror{\textit{même dénom \& ZPQ \& quotient}}
+	\item $x(6x-18)^2 \pg 0$.						\hfill{}\mirror{\textit{ZPQ \& produit}}
+\end{enumerate}
+
+
+\end{document}

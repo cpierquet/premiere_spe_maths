@@ -1,0 +1,127 @@
+% !TeX TXS-program:compile = txs:///lualatex
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[revgoku]{cp-base}
+\graphicspath{{./graphics/}}
+%variables
+\donnees[%
+	classe=1\up{ère} 2M2,
+	matiere={[SPÉ.MATHS]},
+	mois=Février,
+	annee=2022,
+	typedoc=DM,
+	numdoc=07,
+	]
+
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfborder=0 0 0,pdfstartview=FitH}
+%divers
+\lhead{\entete{\matiere}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - \mois{} \annee}}
+%\rhead{\entete{\classe{} - Chapitre }}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee{}}
+\rfoot{\pied{\numeropagetot}}
+\fancypagestyle{entetedm}{\fancyhead[L]{\entete{\matiere{} À rendre avant le\ldots}}}
+
+\begin{document}
+
+\pagestyle{fancy}
+
+\thispagestyle{entetedm}
+
+\setcounter{numexos}{0}
+
+\part{DM07 - Dérivation locale (facultatif)}
+
+\medskip
+
+\exonum{3}
+
+\medskip
+
+Soit une fonction $f$ définie et dérivable sur $\R$.
+
+Sa courbe représentative {\red $\mathscr{C}_f$} passe par les points {\blue $A(-4\,;\,11)$}, \textcolor{ForestGreen}{$B(2\,;\,4)$} et \textcolor{purple}{$C(6\,;\,2)$}.
+
+Les nombres dérivés de $f$ en $-4$, en $2$ et en $6$ sont respectivement égaux à $-\frac{1}{5}$, à $\frac{1}{5}$ et à $0,465$.
+
+\smallskip
+
+On appelle {\blue $T_A$}, \textcolor{ForestGreen}{$T_B$} et \textcolor{purple}{$T_C$} les tangentes à {\red $\mathscr{C}_f$} respectivement en {\blue $A$}, en \textcolor{ForestGreen}{$B$} et en \textcolor{purple}{$C$}.
+
+\begin{center}
+	\tunits{0.45}{0.45}
+	\tdefgrille{-10}{14}{2}{2}{-4}{12}{2}{2}
+	\begin{tikzpicture}[x=\xunit cm,y=\yunit cm]
+		%grilles & axes
+		\tgrilles[line width=0.3pt,lightgray!50] ;
+		\tgrillep[line width=0.6pt,lightgray!50] ;
+		\axestikz* ;
+		\axextikz[]{-10,-8,...,12} ;
+		\axeytikz[]{-4,-2,...,10} ;
+		\clip (\xmin,\ymin) rectangle (\xmax,\ymax) ;
+		%splines
+		\def\liste{-6/-4/15§-4/11/-0.2§0/4/-0.5§2/4/0.2§6/2/0.465§8/12/8}
+		%splines ?
+		\splinetikz[liste=\liste,couleur=red,affpoints=false,coeffs=2§3§3§3§2]
+		%courbes pgf
+%		\draw[line width=1.25pt,red,samples=200,domain=-6:-4] plot(\x,{-0.05*\x*\x*\x+-4.55*\x*\x+-34.2*\x+-56.2}) ;
+%		\draw[line width=1.25pt,red,samples=200,domain=-4:0] plot(\x,{0.175*\x*\x*\x+1.0125*\x*\x+-0.5*\x+4.0}) ;
+%		\draw[line width=1.25pt,red,samples=200,domain=0:2] plot(\x,{-0.075*\x*\x*\x+0.4*\x*\x+-0.5*\x+4.0}) ;
+%		\draw[line width=1.25pt,red,samples=200,domain=2:6] plot(\x,{0.1041*\x*\x*\x+-1.2156*\x*\x+3.8138*\x+0.4025}) ;
+%		\draw[line width=1.25pt,red,samples=200,domain=6:8] plot(\x,{-0.6338*\x*\x*\x+15.1925*\x*\x+-113.4*\x+272.36}) ;
+		%tangentes
+		\draw[line width=1.25pt,densely dashed,blue,domain=\xmin:\xmax,samples=2] plot (\x,{-0.2*(\x+4)+11}) ;
+		\draw[line width=1.25pt,densely dashed,ForestGreen,domain=\xmin:\xmax,samples=2] plot (\x,{0.2*(\x-2)+4}) ;
+		\draw[line width=1.25pt,densely dashed,purple,domain=\xmin:\xmax,samples=2] plot (\x,{0.465*(\x-6)+2}) ;
+		%points
+		\foreach \Point/\Nom/\Couleur/\Position in {(-4,11)/A/blue/above right,(2,4)/B/ForestGreen/above left,(6,2)/C/purple/above left} \draw[\Couleur,fill=\Couleur] \Point circle[radius=2pt] node[\Couleur,\Position] {\ppoint{\Nom}} ;
+		%labels
+		\draw (-7,11) node[blue] {\large $\mathsf{T_A}$} ;
+		\draw (-9,1) node[ForestGreen] {\large $\mathsf{T_B}$} ;
+		\draw (9,2.5) node[purple] {\large $\mathsf{T_C}$} ;
+		\draw (8.5,10.75) node[red] {\Large $\mathscr{C}_f$} ;
+	\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}
+	\item Déterminer l'équation réduite de chacune des tangentes {\blue $T_A$}, \textcolor{ForestGreen}{$T_B$} et \textcolor{purple}{$T_C$}.
+	\item 
+	\begin{enumerate}
+		\item Déterminer les coordonnées du point d'intersection des droites {\blue $T_A$} et \textcolor{ForestGreen}{$T_B$}.
+		\item Les trois tangentes {\blue $T_A$}, \textcolor{ForestGreen}{$T_B$} et \textcolor{purple}{$T_C$} sont-elles concourantes ? Justifier.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\exonum{3}
+
+\medskip
+
+On donne une capture d'écran obtenue à l'aide d'un logiciel de calcul formel :
+
+\begin{center}
+	\begin{tikzpicture}[x=1cm,y=1cm,line width=1pt]
+		\paramCF[larg=14,esplg=2pt,titre=true]
+		\ligneCF{\textsf{f(x):=sqrt(x+8)}}{$\mathsf{x \mapsto \sqrt{x+8}}$}
+		\ligneCF{\textsf{limite((f(1+h)-f(1))/h,h,0)}}{$\mathsf{\tfrac16}$}
+		\ligneCF{\textsf{tangente(f,1)}}{$\mathsf{y=\tfrac16x+\tfrac{17}{6}}$}
+	\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}
+	\item Que permet de déterminer la commande saisie en \cxcas{L2} ?
+	\item 
+	\begin{enumerate}
+		\item Que permet de déterminer la commande saisie en \cxcas{L3} ?
+		\item Justifier, par calculs, le résultat obtenu à la ligne \cxcas{L3}.
+	\end{enumerate}
+	\item[Bonus :] Justifier, par calculs, le résultat obtenu à la ligne \cxcas{L2}.
+\end{enumerate}
+
+\end{document}

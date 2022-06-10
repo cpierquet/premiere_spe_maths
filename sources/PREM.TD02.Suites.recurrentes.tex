@@ -1,0 +1,165 @@
+% !TeX TXS-program:compile = txs:///pythonlualatex
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[revgoku,pythontex,breakable]{cp-base} %avec options possibles parmi breakable (tcbox), sujetl (exos),  (pour faire "comme avant"), etc...
+\graphicspath{{./graphics/}}
+%variables
+\donnees[%
+	classe={1\up{ère} 2M2},matiere={[SPÉ.MATHS]},mois=Octobre,annee=2021,typedoc=TD,numdoc=2]
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfborder=0 0 0,pdfstartview=FitH}
+%divers
+\lhead{\entete{\matiere}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - \mois{} \annee}}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee{}}
+\rfoot{\pied{\numeropagetot}}
+\urlstyle{same}
+
+\begin{document}
+
+\pagestyle{fancy}
+
+\part{TD02 - Suites récurrentes - Évolution d'abonnés}
+
+\medskip
+
+\begin{ccadre}
+Un youtubeur compte 75 abonnés le 1\up{er} janvier 2019. Il remarque que, \textit{chaque mois}, il en conserve 60\,\% et 100 nouvelles personnes le suivent. On souhaite modéliser l'évolution de son nombre d'abonnés.
+\end{ccadre}
+
+\begin{cmanip}[ - Questions préliminaires]
+\vspace{-0.4cm}
+\begin{enumerate}[leftmargin=*]
+	\item Montrer que le nombre d'abonnés au 1\up{er} février 2019 est 145.
+	\item On modélise la situation par une suite $\suiten$, où $u_n$ est le nombre d'abonnés $n$ mois après janvier 2019.
+	\begin{enumerate}
+		\item Déterminer $u_0$, $u_1$ puis montrer que $u_2=187$.
+		\item Expliquer pourquoi, pour tout entier naturel $n$, on a la relation $u_{n+1}=0,6u_n+100$.
+	\end{enumerate}
+\end{enumerate}
+\end{cmanip}
+
+\begin{cmanip}[ - À l'aide d'un tableur]
+\vspace{-0.4cm}
+\begin{enumerate}[leftmargin=*]
+	\item 
+	\begin{enumerate}
+		\item À l'aide d'un tableur et en utilisant le modèle suivant (\textit{à faire vérifier par le professeur}), faire afficher les 30 premiers termes de la suite $\suiten$.
+		\begin{center}
+			%\tablineheight{1.15em}
+			\begin{tikzpicture}[scale=0.7]
+				\tableur*[4]{A/4cm,B/4cm}
+				%L1
+				\celtxt[c]{A}{1}{n}
+				\celtxt[c]{B}{1}{u\_n}
+				%L2
+				\celtxt[c]{A}{2}{0}
+				\celtxt[c]{A}{3}{1}
+				\celtxt[c]{A}{4}{2}
+			\end{tikzpicture}
+		\end{center}
+		\item Préciser les \csheet{valeurs} ou \csheet{formules} nécessaires à la création de cette \csheet{feuille de classeur}.
+	\end{enumerate}
+	\item Comment évolue le nombre d'abonnés ? Vers quelle valeur semble \textit{tendre} le nombre d'abonnés lorsque $n$ devient très grand ?
+	\item À partir de combien de mois le youtubeur va-t-il dépasser 230 abonnés ? Justifier en utilisant le tableur.
+\end{enumerate}
+\end{cmanip}
+
+\begin{cmanip}[ - Graphiquement]
+\vspace{-0.4cm}
+\begin{enumerate}[leftmargin=*]
+	\item Déterminer l'expression de la fonction $f$ telle que $u_{n+1}=f(u_n)$.
+	\item En utilisant le graphique suivant, représenter (soigneusement) la courbe de la fonction $f$ précédemment trouvée ainsi que les 6 ou 7 premiers termes de la suite $\suiten$ obtenus à l'aide de la technique de la \og toile \fg{}.
+	\vspace{-0.2cm}
+	\begin{center}
+		\tunits{0.05}{0.02}
+		\tdefgrille{0}{260}{20}{10}{0}{275}{25}{25}
+		\begin{tikzpicture}[x=\xunit cm,y=\yunit cm,scale=0.9]
+			\tgrilles[line width=0.3pt,lightgray]
+			\tgrillep[line width=0.45pt,gray!50]
+			\draw[->,line width=1.25pt] (\xmin,0) -- (\xmax,0);
+			\draw[->,line width=1.25pt] (0,\ymin) -- (0,\ymax);
+			\foreach \x in {0,20,...,240}
+				\draw[line width=1.25pt] (\x,4pt) -- (\x,-4pt) node[below] {\small\num{\x}};
+			\foreach \y in {0,25,...,250}
+				\draw[line width=1.25pt] (4pt,\y) -- (-4pt,\y) node[left] {\small\num{\y}};
+			\draw[line width=1.25pt,red,domain=0:260,samples=200] plot(\x,{\x});
+			\draw (225,195) node[above right] {\red \large $\Delta$ : $y=x$} ;
+		\end{tikzpicture}
+	\end{center}
+	\vspace{-0.6cm}
+	\item Expliquer comment on peut retrouver graphiquement les résultats de la question \ptno{2} de la partie \textbf{tableur}.
+\end{enumerate}
+\end{cmanip}
+
+\newpage
+
+\begin{cmanip}[ - Par algorithme]
+\vspace{-0.4cm}
+\begin{enumerate}[leftmargin=*]
+	\item 
+	\begin{enumerate}
+		\item Compléter l'algorithme suivant, en \calg{pseudo-code}, afin qu'il permette de calculer et d'afficher le terme d'indice $n$ (saisi par l'utilisateur) de la suite $\suiten$ : \vspace{-0.05cm}
+\begin{envpseudocode}[12cm][center]
+Algorithme : CALCUL DU TERME D'INDICE n
+Variables : u == réel ; n == entier ; i == entier
+Début
+	Afficher("Saisir l'indice n : ") et Saisir(n)
+	u = ...
+	Pour i allant de 1 à ... Faire
+		u = ............
+	FinPour
+	Afficher(...)
+Fin
+\end{envpseudocode}
+		\item Compléter l'algorithme \calgpython{} suivant afin qu'il réponde également au problème précédent : \vspace{-0.05cm}
+		\begin{envpython}[12cm]
+			#calcul du terme d'indice n
+			n = int(input("Saisir l'indice n : "))
+			u = ...
+			for i in range(1,...):
+				u = .........
+			print(...)
+		\end{envpython}
+		On pourra créer (en utilisant \cshell{EduPython} ou \cshell{Thonny} ou le site \cshell{\url{https://console.basthon.fr}}), un \cpy{script} et le charger dans la \cpy{console} en vérifiant des valeurs numériques obtenues précédemment (\textit{à faire vérifier par le professeur}).
+	\end{enumerate}
+	\item
+	\begin{enumerate}
+		\item Compléter l'algorithme suivant afin qu'il détermine au bout de combien de mois le nombre d'abonnés sera supérieur à 230 : \vspace{-0.25cm}
+\begin{envpseudocode}[12cm][center]
+Algorithme : SEUIL 230
+Variables : u == réel ; n == entier
+Début
+	n = ...
+	u = ...
+	TantQue u ...... Faire
+		u = .........
+		n = n + 1
+	FinTantQue
+	Afficher(...)
+Fin
+\end{envpseudocode}
+	\item Le transcrire sur \calgpython{} et, une fois exécuté via \cshell{EduPython} ou \cshell{Thonny} ou le site \cshell{\url{https://console.basthon.fr}}, vérifier que le résultat est le même que celui obtenu dans la partie \textbf{tableur} à la question \ptno{3} : \vspace{-0.05cm}
+	\begin{envpython}[12cm]
+		#détermination du seuil 230
+		.
+		.
+		.
+		.
+		.
+		.
+	\end{envpython}
+	\end{enumerate}
+%	\item 
+%	\begin{enumerate}
+%		\item Modifier, en \calg{pseudo-code} ou en \calgpython{}, l'algorithme \calg{seuil 230} pour que l'utilisateur puisse choisir et saisir le nombre d'abonnés à dépasser.
+%		\item Programmer cet algorithme en \calgpython{} et déterminer (à faire vérifier par le professeur) le nombre de mois nécessaires pour que le nombre d'abonnés soit supérieur à 249.
+%	\end{enumerate}
+\end{enumerate}
+\end{cmanip}
+
+\end{document}

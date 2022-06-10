@@ -1,0 +1,114 @@
+% !TeX TXS-program:compile = txs:///arara
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode}
+% arara: pythontex: {rerun: modified} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('log', '(undefined references|Please rerun|Rerun to get)')
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[revgoku]{cp-base}
+\graphicspath{{./graphics/}}
+%variables
+\donnees[%
+	classe=1\up{ère} 2M2,
+	matiere={[SPÉ.MATHS]},
+	typedoc=TD,
+	numdoc=07,
+	mois=Mai,
+	annee=2022
+	]
+
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfborder=0 0 0,pdfstartview=FitH}
+%divers
+\lhead{\entete{\matiere}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - \mois{} \annee}}
+%\rhead{\entete{\classe{} - Chapitre }}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee{}}
+\rfoot{\pied{\numeropagetot}}
+
+\begin{document}
+
+\pagestyle{fancy}
+
+\part{TD07 - Probabilités et variable aléatoire}
+
+\smallskip
+
+%\nomprenomtcbox
+%
+%\medskip
+
+On dispose d'un paquet de cartes contenant un nombre identique de cartes de la catégorie \og Sciences \fg{} et de la catégorie \og Économie \fg. Une question liée à un de ces deux thèmes figure sur chaque carte.
+
+Les cartes sont mélangées et on en tire une au hasard dans le paquet. Ensuite, on essaye de répondre à la question posée.
+
+\smallskip
+
+Un groupe de copains participe à ce jeu. Connaissant leurs points forts et leurs faiblesses, on estime qu'il a :
+
+\begin{itemize}
+	\item 3 chances sur 4 de donner la bonne réponse lorsqu'il est interrogé en sciences ;
+	\item 1 chance sur 8 de donner la bonne réponse lorsqu'il est interrogé en économie.
+\end{itemize}
+
+On note $S$ l'évènement \og La question est dans la catégorie Sciences \fg{} et $B$ l'évènement \og La réponse donnée par le groupe est bonne \fg.
+
+\bigskip
+
+\textbf{-- Partie A --}
+%
+\begin{enumerate}
+	\item Construire un arbre pondéré modélisant la situation présentée dans l'énoncé.
+	\item Calculer $P(B \cap S)$.
+	\item Déterminer la probabilité que le groupe de copains réponde correctement à la question posée.
+	\item Calculer $P_B(E)$ et interpréter le résultat dans le contexte de l'exercice.
+	\item Les évènements $S$ et $B$ sont-ils indépendants ? Justifier.
+	\item On choisit successivement, et avec remise, deux cartes du paquet. Déterminer la probabilité que la bonne réponse est donnée pour les deux cartes.
+\end{enumerate}
+
+\textbf{-- Partie B --}
+
+\medskip
+
+Pour participer à ce jeu, on doit payer 5\,€ de droit d'inscription. On recevra :
+
+\begin{itemize}
+	\item 10\,€ si on est interrogé en sciences et que la réponse est correcte ;
+	\item 30\,€ si on est interrogé en économie et que la réponse est correcte ;
+	\item rien si la réponse donnée est fausse.
+\end{itemize}
+
+Soit $X$ la variable aléatoire qui, à chaque partie jouée, associe son gain. On appelle gain la différence en euros entre ce qui est reçu et les 5\,€ de droit d'inscription.
+
+\begin{enumerate}
+	\item Déterminer (sous forme de tableau) la loi de probabilité de $X$.
+	\item On considère la fonction \cpy{jeu} ci-dessous en langage \calgpython, pour laquelle les paramètres \cpy{L} et \cpy{G} sont des listes.
+		
+	\begin{envpython}[13cm]
+		def jeu(L,G) :
+			n = len(L)
+			E = 0
+			for i in range(n) :
+				E = E + L[i]*G[i]
+			return E
+	\end{envpython}
+	\begin{enumerate}
+		\item Que retourne la fonction \cpy{jeu} avec comme paramètres les listes ci-dessous ?
+		\begin{itemize}
+			\item \cpy{L = [-5 , 5 , 25]} ;
+			\item \cpy{G = [0.5625 , 0.375 , 0.0625]}
+		\end{itemize}
+		\item Interpréter le résultat dans le contexte de l'exercice.
+	\end{enumerate}
+\end{enumerate}
+
+
+
+
+
+
+\end{document}

@@ -1,0 +1,152 @@
+% !TeX TXS-program:compile = txs:///arara
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode}
+% arara: pythontex: {rerun: modified} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('log', '(undefined references|Please rerun|Rerun to get)')
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[revgoku]{cp-base}
+\graphicspath{{./graphics/}}
+%variables
+\donnees[%
+	classe=1\up{ère} 2M2,
+	matiere={[SPÉ.MATHS]},
+	typedoc=TD,
+	numdoc=06,
+	titre={Optimisation au rugby},
+	mois=Mai,
+	annee=2022
+	]
+
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfborder=0 0 0,pdfstartview=FitH}
+%divers
+\lhead{\entete{\matiere}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - \mois{} \annee}}
+%\rhead{\entete{\classe{} - Chapitre }}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee{}}
+\rfoot{\pied{\numeropagetot}}
+
+\begin{document}
+
+\pagestyle{fancy}
+
+\part{TD06 - Optimisation au rugby}
+
+\smallskip
+
+\nomprenomtcbox
+
+\medskip
+
+Lors d'un match de rugby, un joueur doit transformer un essai qui a été marqué au point $E$ (voir figure ci-contre) situé à l'extérieur du segment $[AB]$.
+
+La transformation consiste à taper le ballon par un coup de pied depuis un point $T$ que le joueur a le droit de choisir n'importe où sur le segment $[EM]$ perpendiculaire à la droite $(AB)$ sauf en $E$. La transformation est réussie si le ballon passe entre les poteaux repérés par les points $A$ et $B$ sur la figure.
+
+\begin{center}
+	\definecolor{field}{RGB}{0,156,0}
+	\begin{tikzpicture}[x=0.08cm,y=0.08cm,line join=bevel,font=\sffamily\large]
+		\filldraw[field!75] (-62.5,-37.5) rectangle (62.5,37.5) ;
+		\draw[white,ultra thick] (-60,-35) rectangle (60,35) ;
+		\draw[white,ultra thick] (0,-35)--(0,35) (-50,-35)--(-50,35) (50,-35)--(50,35) ;
+		\filldraw[white] (-50,-2.8) circle[radius=3pt] node[left=5pt] {A} (50,-2.8) circle[radius=3pt] (-50,2.8) circle[radius=3pt] node[left=5pt] {B} (50,2.8) circle[radius=3pt] ;
+		\draw[ultra thick,white,densely dashed] (-50,-27.8)--(0,-27.8) ;
+		\draw[ultra thick,white,densely dashed] (-50,-2.8)--(-20,-27.8)--(-50,2.8) ;
+		\draw (0,37.5) node[above] {Terrain vu de dessus} ;
+		\draw[white] (-20,-27.8) node[below=3pt] {T} ; \draw[white] (0,-27.8) node[right=2pt] {M} ; \draw[white] (-50,-27.8) node[left=2pt] {E} ;
+		\draw[white] (-35,-27.8) node[below=1pt] {$\mathsf{x}$} ;
+		\draw[white] (0,0) node[right=1pt] {\rotatebox{90}{Ligne médiane}} ;
+		\draw[white] (50,0) node[right=1pt] {\rotatebox{90}{Limite du terrain}} ;
+		\draw (-20,-27.8) node {\scriptsize\faFootballBall} ;
+		\draw (-50,-27.8) node {\scriptsize\faFootballBall} ;
+	\end{tikzpicture}
+\end{center}
+
+Pour maximiser ses chances de réussite, le joueur tente de déterminer la position du point $T$ qui rend l'angle $\widehat{ATB}$ le plus grand possible.
+
+\medskip
+
+Le but de cet exercice est donc de rechercher s'il existe une position du point $T$ sur le segment $[EM]$ pour laquelle l'angle $\widehat{ATB}$ est maximum et, si c'est le cas, de déterminer une valeur approchée de cet angle.
+
+Dans toute la suite, on note $x$ la longueur $ET$, qu'on cherche à déterminer.
+
+\smallskip
+
+On donne les dimensions : $EM=50$~m, $EA=25$~m et $AB=5,6$~m ; et on note $\alpha$ une mesure de l'angle $\widehat{ATB}$.
+
+\smallskip
+
+On se place dans le repère $\left( E\,;\vect{i},\vect{j} \right)$ de sorte que, dans ce repère, on a $T\coordpl{x}{0}$, $M\coordpl{50}{0}$ et $A\coordpl{0}{25}$. 
+
+\begin{enumerate}
+	\item Préciser l'intervalle, noté $I$, dans lequel peut varier $x$.
+	\item Déterminer les coordonnées du point $B$.
+	\item Dans cette question, on suppose que $x=15$.
+	\begin{enumerate}
+		\item Déterminer les coordonnées des vecteurs $\vect{TA}$ et $\vect{TB}$.
+		\item Déterminer la valeur de $\vect{TA} \cdot \vect{TB}$.
+		\item Calculer les longueurs $TA$ et $TB$.
+		\item En utilisant une autre expression du produit scalaire $\vect{TA} \cdot \vect{TB}$, déterminer une valeur approchée, au centième de degré près, de l'angle $\widehat{ATB}$.
+	\end{enumerate}
+	\item Dans cette question, on ne connaît pas la valeur de $x$.
+	\begin{enumerate}
+		\item Déterminer, en fonction de $x$, les coordonnées des vecteurs $\vect{TA}$ et $\vect{TB}$.
+		\item Déterminer, en fonction de $x$, la valeur de $\vect{TA} \cdot \vect{TB}$.
+		\item Calculer, en fonction de $x$, les longueurs $TA$ et $TB$.
+		\item En utilisant une autre expression du produit scalaire $\vect{TA} \cdot \vect{TB}$, vérifier que : \[\cos\left(\widehat{ATB}\right)=\dfrac{x^2+765}{\sqrt{x^2+625} \times \sqrt{x^2+936,36}}.\]
+	\end{enumerate}
+	\item On considère donc la fonction $f$ définie sur $I$ (donné dans la question \ptno{1}) par \[ f(x)=\cos^{-1} \left( \dfrac{x^2+765}{\sqrt{x^2+625} \times \sqrt{x^2+936,36}} \right).\]
+	\begin{enumerate}
+		\item En utilisant la calculatrice, paramétrée en degré, compléter le tableau de valeurs (arrondies à $0,01$) :
+		
+		\begin{center}
+			\renewcommand\arraystretch{1.1}
+			\begin{tabularx}{\linewidth}{|*{10}{Y|}}
+				\hline
+				$x$ & $5$ & $10$ & $15$ & $20$ & $21$ & $22$&$23$&$24$&$25$ \\ \hline
+				$f(x)$ &&&$4,85$&&&&&& \\ \hline
+				\hline
+				$x$ & $26$ & $27$ & $28$ & $29$ & $30$ & $35$ & $40$ & $45$ & $50$ \\ \hline
+				$f(x)$ &&&&&&&&&$4,90$ \\ \hline
+			\end{tabularx}
+		\end{center}
+		\item Dans le repère suivant, tracer la courbe $\mathscr{C}_f$ représentative de la fonction $f$ :
+		
+		\begin{center}
+			\tunits{0.3}{1.5}
+			\tdefgrille{0}{50}{2.5}{0.5}{0}{6}{0.5}{0.1}
+			\begin{tikzpicture}[x=\xunit cm,y=\yunit cm]
+				\def\f{acos((x*x+765)/(sqrt(x*x+625)*sqrt(x*x+936.36)))}
+				\tgrilles[line width=0.3pt,lightgray!75] ;
+				\tgrillep[line width=0.6pt,lightgray] ;
+				\axestikz* ; \axextikz{0,5,...,45} ; \axeytikz{0,0.5,...,5.5} ;
+				%\draw[very thick,red,domain=0:50,samples=500] plot function{\f*180/pi} ;
+				\foreach \Point in {(0,0),(15,4.85),(50,4.90)} \filldraw[red] \Point circle[radius=2.5pt] ;
+			\end{tikzpicture}
+		\end{center}
+		\vspace{-0.25cm}
+		\item Estimer graphiquement le maximum de $f$ ainsi que la valeur de $x$ pour laquelle $f$ est maximale.
+		\item Conclure quant au problème initial.
+	\end{enumerate}
+	\item On admet, après étude mathématique \og plus poussée \fg{} que, lorsque l'essai est marqué à l'extérieur des poteaux et à une distance $m$ du poteau ($m$ correspond à la longueur $EA$ et est typiquement entre 2 et 32 mètres), la valeur de $x$ qui rend maximal l'angle $\widehat{ATB}$ est donnée par \[ x = \sqrt{ m^2 + 5,6m}.\]
+	\begin{enumerate}
+		\item Vérifier que pour $m=25$, on retrouve approximativement la valeur de $x$ déterminée à la question \ptno{5}\pta{c}.
+		\item Si l'essai est marqué à peu près au milieu de la distance entre le poteau et le coin de l'aire de jeu (la largeur d'un terrain de rugby est d'environ 70~m), déterminer la position la plus favorable pour le transformer.
+		\item Compléter l'algorithme \calgpython{} suivant de sorte qu'un appel à la \calg{fonction} \cpy{distance} renvoie la distance optimale pour la transformation lorsque que l'essai est marqué à \cpy{m} mètres de l'un des poteaux :
+		\begin{envpython}[14cm]
+			from math import sqrt     #on importe la fonction racine
+			def distance(m):
+				res = ..............................................
+				return res
+		\end{envpython}
+		\item Vérifier, sur quelques exemples, que $x \approx m+2,5$ semble être une bonne approximation de la distance optimale.
+	\end{enumerate}
+\end{enumerate}
+
+
+
+\end{document}

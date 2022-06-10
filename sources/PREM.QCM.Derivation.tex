@@ -1,0 +1,317 @@
+% !TeX TXS-program:compile = txs:///arara
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode}
+% arara: pythontex: {rerun: modified} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('log', '(undefined references|Please rerun|Rerun to get)')
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[]{cp-base}
+
+%tableaux
+\usepackage{booktabs}
+\setlength\aboverulesep{0.65ex}
+\setlength\belowrulesep{0.65ex}
+\arrayrulecolor{titrebleu}
+
+%variables
+\graphicspath{{./graphics/}}
+\donnees[classe={1\up{ère} 2M2},matiere={[SPÉ.MATHS]},mois=Avril,annee=2022,typedoc=QCM,numdoc=1]
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+%\pdfminorversion=6
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfborder=0 0 0,pdfstartview=FitH}
+%divers
+\lhead{\entete{\matiere}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - \mois{} \annee}}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee}
+\rfoot{\pied{\numeropagetot}}
+
+%commandes pdfform
+\renewcommand\LayoutCheckField[2]{#2~~#1}
+\newcommand\choix[2]{%
+	\raisebox{-.15\baselineskip}{\CheckBox[name=#1#2,width=1em,height=1em,bordercolor=black]{}}%
+}
+\newcommand\reponse[2]{%
+	\raisebox{-.15\baselineskip}{\CheckBox[checkboxsymbol=\ding{95},color=red,name=#1#2,width=1em,height=1em,bordercolor=white]{}}%
+}
+
+\begin{document}
+
+\pagestyle{fancy}
+
+\begin{pycode}
+def qcmalea(a,b,c,d):
+	from random import shuffle
+	reponses = [a,b,c,d]
+	shuffle(reponses)
+	return reponses
+
+def qcmalea3(a,b,c):
+	from random import shuffle
+	reponses = [a,b,c]
+	shuffle(reponses)
+	return reponses
+
+#Question1 - A
+ENONCEQ1 = r"On considère une fonction $f$ définie sur $\intervFF{-3}{9}$ dont la courbe $\mathscr{C}_f$ est donnée ci-dessous."
+Q1A = r"\reponse{R1}{A}\choix{Q1}{A}~"
+Q1B = r"\reponse{R1}{B}\choix{Q1}{B}~"
+Q1C = r"\reponse{R1}{C}\choix{Q1}{C}~"
+Q1D = r"\reponse{R1}{D}\choix{Q1}{D}~"
+Q1A += r"$\intervFF{-3}{1}$ et sur $\intervFF{7}{9}$" #OK
+Q1B += r"$\intervFF{1}{9}$"
+Q1C += r"$\intervFF{-1}{9}$"
+Q1D += r"$\intervFF{-3}{-1}$"
+reponsesQ1 = qcmalea(Q1A,Q1B,Q1C,Q1D)
+
+#Question2 - A
+ENONCEQ2 = r"On considère la fonction $f$ définie et dérivable sur $\R \backslash \left\lbrace -2 \right\rbrace$ par $f(x)=\dfrac{x-3}{x+2}$. Alors la dérivée de $f$ est :"
+Q2A = r"\reponse{R2}{A}\choix{Q2}{A}~"
+Q2B = r"\reponse{R2}{B}\choix{Q2}{B}~"
+Q2C = r"\reponse{R2}{C}\choix{Q2}{C}~"
+Q2D = r"\reponse{R2}{D}\choix{Q2}{D}~"
+Q2A += r"$f'(x)=\dfrac{5}{(x+2)^2}$" #OK
+Q2B += r"$f'(x)=1\vphantom{\dfrac{5}{(x+2)^2}}$"
+Q2C += r"$f'(x)=\dfrac{-1}{(x+2)^2}$"
+Q2D += r"$f'(x)=2x-1\vphantom{\dfrac{5}{(x+2)^2}}$"
+reponsesQ2 = qcmalea(Q2A,Q2B,Q2C,Q2D)
+
+#Question3 - A
+ENONCEQ3 = r"Une équation de $\mathscr{T}_1$, tangente à la courbe représentative de la fonction $f(x)=\dfrac{3}{x}$ au point d'abscisse $1$ est :"
+Q3A = r"\reponse{R3}{A}\choix{Q3}{A}~"
+Q3B = r"\reponse{R3}{B}\choix{Q3}{B}~"
+Q3C = r"\reponse{R3}{C}\choix{Q3}{C}~"
+Q3D = r"\reponse{R3}{D}\choix{Q3}{D}~"
+Q3A += r"$y=-3x+6$" #OK
+Q3B += r"$y=-3x$"
+Q3C += r"$y=3x+6$"
+Q3D += r"$y=3x$"
+reponsesQ3 = qcmalea(Q3A,Q3B,Q3C,Q3D)
+
+#Question4 - A
+ENONCEQ4 = r"Soit $g$ la fonction définie sur $\intervFO{\dfrac{5}{7}}{+\infty}$ par $g(x)=\sqrt{7x-5}$. La fonction $g$ est dérivable sur $\intervOO{\dfrac{5}{7}}{+\infty}$ et on a :"
+Q4A = r"\reponse{R4}{A}\choix{Q4}{A}~"
+Q4B = r"\reponse{R4}{B}\choix{Q4}{B}~"
+Q4C = r"\reponse{R4}{C}\choix{Q4}{C}~"
+Q4D = r"\reponse{R4}{D}\choix{Q4}{D}~"
+Q4A += r"$g'(x)=\dfrac{7}{2\sqrt{7x-5}}$" #OK
+Q4B += r"$g'(x)=\dfrac{1}{2\sqrt{7x-5}}$"
+Q4C += r"$g'(x)=\vphantom{\dfrac{7}{2\sqrt{7x-5}}}\sqrt{7}$"
+Q4D += r"$g'(x)=\dfrac{-7}{7x-5}$"
+reponsesQ4 = qcmalea(Q4A,Q4B,Q4C,Q4D)
+
+#Question5 - A
+ENONCEQ5 = r"On considère la fonction $h$ définie sur $\intervFO{-2}{+\infty}$ par $h'(x)=\sqrt{3x+6}$. La fonction $h$ est dérivable sur :"
+Q5A = r"\reponse{R5}{A}\choix{Q5}{A}~"
+Q5B = r"\reponse{R5}{B}\choix{Q5}{B}~"
+Q5C = r"\reponse{R5}{C}\choix{Q5}{C}~"
+Q5D = r"\reponse{R5}{D}\choix{Q5}{D}~"
+Q5A += r"$\intervOO{-2}{+\infty}$" #OK
+Q5B += r"$\intervFO{-2}{+\infty}$"
+Q5C += r"$\intervOO{-\infty}{-2}$"
+Q5D += r"$\intervOF{-\infty}{-2}$"
+reponsesQ5 = qcmalea(Q5A,Q5B,Q5C,Q5D)
+
+#Question6 - A
+ENONCEQ6 = r"La fonction $k$ définie par $k(x)=(x+1)\sqrt{x+1}$ est dérivable sur $\intervFO{-1}{+\infty}$ et sa dérivée est :"
+Q6A = r"\reponse{R6}{A}\choix{Q6}{A}~"
+Q6B = r"\reponse{R6}{B}\choix{Q6}{B}~"
+Q6C = r"\reponse{R6}{C}\choix{Q6}{C}~"
+Q6D = r"\reponse{R6}{D}\choix{Q6}{D}~"
+Q6A += r"$k'(x)=\dfrac{3\sqrt{x+1}}{2}\vphantom{\dfrac{\sqrt{x+1}}{3\sqrt{x+1}}}$" #OK
+Q6B += r"$k'(x)=\dfrac{1}{2\sqrt{x+1}}\vphantom{\dfrac{\sqrt{x+1}}{3\sqrt{x+1}}}$"
+Q6C += r"$k'(x)=\sqrt{x+1}\vphantom{\dfrac{\sqrt{x+1}}{3\sqrt{x+1}}}$"
+Q6D += r"$k'(x)=\dfrac{x+1}{2\sqrt{x+1}}\vphantom{\dfrac{\sqrt{x+1}}{3\sqrt{x+1}}}$"
+reponsesQ6 = qcmalea(Q6A,Q6B,Q6C,Q6D)
+
+#Question7 - A
+ENONCEQ7 = r"On considère la fonction $m$ définie sur $\R$ par $m(x)=x^3+3x^2+3x+1$. Les solutions de $m'(x)=0$ sont :"
+Q7A = r"\reponse{R7}{A}\choix{Q7}{A}~"
+Q7B = r"\reponse{R7}{B}\choix{Q7}{B}~"
+Q7C = r"\reponse{R7}{C}\choix{Q7}{C}~"
+Q7D = r"\reponse{R7}{D}\choix{Q7}{D}~"
+Q7A += r"$\mathscr{S}=\left\lbrace -1 \right\rbrace$" #OK
+Q7B += r"$\mathscr{S}=\left\lbrace 1 \right\rbrace$"
+Q7C += r"$\mathscr{S}=\varnothing\vphantom{\left\lbrace -1 \right\rbrace}$"
+Q7D += r"$\mathscr{S}=\left\lbrace -1\,;\,1 \right\rbrace$"
+reponsesQ7 = qcmalea(Q7A,Q7B,Q7C,Q7D)
+
+#Question8 - A
+ENONCEQ8 = r"La fonction $p$ définie sur $\R$ par $p(x)=(4x-7)^3$ a pour dérivée :"
+Q8A = r"\reponse{R8}{A}\choix{Q8}{A}~"
+Q8B = r"\reponse{R8}{B}\choix{Q8}{B}~"
+Q8C = r"\reponse{R8}{C}\choix{Q8}{C}~"
+Q8D = r"\reponse{R8}{D}\choix{Q8}{D}~"
+Q8A += r"$p'(x)=12(4x-7)^2$" #OK
+Q8B += r"$p'(x)=3(4x-7)^2$"
+Q8C += r"$p'(x)=12(4x-7)\vphantom{(4x-7)^2}$"
+Q8D += r"$p'(x)=12x-21\vphantom{(4x-7)^2}$"
+reponsesQ8 = qcmalea(Q8A,Q8B,Q8C,Q8D)
+
+#Question9 - A
+ENONCEQ9 = r"Soit $r$ la fonction définie sur l'ensemble des nombres réels par $r(x)=\dfrac{2x}{x^2+1}$ et soit $\mathscr{C}$ sa courbe représentative dans un repère du plan."
+Q9A = r"\reponse{R9}{A}\choix{Q9}{A}~"
+Q9B = r"\reponse{R9}{B}\choix{Q9}{B}~"
+Q9C = r"\reponse{R9}{C}\choix{Q9}{C}~"
+Q9D = r"\reponse{R9}{D}\choix{Q9}{D}~"
+Q9A += r"La tangente à $\mathscr{C}$ au point d'abscisse $0$ a pour équation $y=2x$." #OK
+Q9B += r"La courbe $\mathscr{C}$ n'admet pas de tangente au point d'abscisse $0$."
+Q9C += r"La tangente à $\mathscr{C}$ au point d'abscisse $0$ a pour coefficient directeur $1$."
+Q9D += r"La tangente à $\mathscr{C}$ au point d'abscisse $0$ est parallèle à l'axe des abscisses."
+reponsesQ9 = qcmalea(Q9A,Q9B,Q9C,Q9D)
+
+#Question10 - A
+ENONCEQ10 = r"On considère la fonction $t(x)=2x^2+5x-3$, une approximation affine de $t$ en $-2$ est :"
+Q10A = r"\reponse{R10}{A}\choix{Q10}{A}~"
+Q10B = r"\reponse{R10}{B}\choix{Q10}{B}~"
+Q10C = r"\reponse{R10}{C}\choix{Q10}{C}~"
+Q10D = r"\reponse{R10}{D}\choix{Q10}{D}~"
+Q10A += r"$t(-2+h) \approx -3h-5$" #OK
+Q10B += r"$t(-2+h) \approx 4h+5$"
+Q10C += r"$t(-2+h) \approx -6h-17$"
+Q10D += r"$t(-2+h) \approx -3h+5$"
+reponsesQ10 = qcmalea(Q10A,Q10B,Q10C,Q10D)
+\end{pycode}
+
+\part*{QCM - Dérivation}
+
+\medskip
+
+\begin{Form}
+
+\textbf{\Large NOM Prénom : }~\raisebox{-.25\baselineskip}{\TextField[value=,width=10cm,height=2em,charsize=14pt,name=nomprenom,bordercolor=black]{}} \hfill~\textbf{\Large Note : }~\raisebox{-.25\baselineskip}{\TextField[width=2em,height=2em,charsize=14pt,name=note,bordercolor=black,color=1 0 0,align=1]{}}
+
+\bigskip
+
+\emph{Cet exercice est un questionnaire à choix multiple. Pour chacune des questions suivantes, \textbf{une seule} des quatre réponses proposées est exacte. Une bonne réponse rapporte un point. Une réponse fausse, une réponse multiple ou l’absence de réponse à une question ne rapporte ni n’enlève de point.\\
+Pour répondre, vous pouvez le compléter, à l'aide du logiciel {\small \red \textsf{Acrobat Reader} \faIcon[regular]{file-pdf}}}.
+
+\begin{enumerate}
+	\item \py{ENONCEQ1}
+	
+	\begin{center}
+		\tunits{1}{1}
+		\tdefgrille{-3}{9}{1}{1}{-3}{4}{1}{1}
+		\begin{tikzpicture}[x=\xunit cm,y=\yunit cm]
+			%grilles & axes
+			\tgrilles[line width=0.3pt,lightgray!50] ;
+			\tgrillep[line width=0.6pt,lightgray!50] ;
+			\axestikz* ;
+			\foreach \x in {-3,-2,...,8} \draw[line width=1.25pt] (\x,4pt) -- (\x,-4pt) ;
+			\foreach \y in {-3,-2,...,3} \draw[line width=1.25pt] (4pt,\y) -- (-4pt,\y) ;
+			\foreach \x in {1} \draw (\x,-4pt) node[below] {\small$\mathsf{\x}$} ;
+			\draw (-4pt,1) node[left] {\small$\mathsf{1}$} ;
+			\draw (0,0) node[below left] {\small\sf 0} ;
+			\clip (\xmin,\ymin) rectangle (\xmax,\ymax) ; %on restreint les fonctions à la fenêtre
+			%les splines en pgf
+			\draw[line width=1.25pt,red,samples=200,domain=-3:-2] plot(\x,{-(0.75*\x*\x*\x+6.0*\x*\x+12.75*\x+7.5)}) ;
+			\draw[line width=1.25pt,red,samples=200,domain=-2:1] plot(\x,{-(-0.0278*\x*\x*\x+0.3333*\x*\x+-0.5833*\x+-2.7222)}) ;
+			\draw[line width=1.25pt,red,samples=200,domain=1:4] plot(\x,{-(-0.0278*\x*\x*\x+0.3333*\x*\x+-0.5833*\x+-2.7222)}) ;
+			\draw[line width=1.25pt,red,samples=200,domain=4:7] plot(\x,{-(-0.0278*\x*\x*\x+0.3333*\x*\x+-0.5833*\x+-2.7222)}) ;
+			\draw[line width=1.25pt,red,samples=200,domain=7:9] plot(\x,{-(-0.0625*\x*\x*\x+1.125*\x*\x+-6.5625*\x+12.25)}) ;
+			%label
+			\draw (8.5,1.25) node[red] {\large$\mathscr{C}_f$} ;   
+		\end{tikzpicture}
+	\end{center}
+
+	On peut affirmer que $f'(x) \pg 0$ sur :
+	\begin{center}
+		%\renewcommand{\arraystretch}{1.25}
+		\begin{tabularx}{\linewidth}{@{}X@{}X@{}}
+			\toprule
+			\py{reponsesQ1[0]} & \py{reponsesQ1[1]} \\ \midrule
+			\py{reponsesQ1[2]} & \py{reponsesQ1[3]} \\ \bottomrule
+		\end{tabularx}
+	\end{center}
+	\item \py{ENONCEQ2}
+	\begin{center}
+		%\renewcommand{\arraystretch}{2.25}
+		\begin{tabularx}{\linewidth}{@{}X@{}X@{}}
+			\toprule
+			\py{reponsesQ2[0]} & \py{reponsesQ2[1]} \\ \midrule
+			\py{reponsesQ2[2]} & \py{reponsesQ2[3]} \\ \bottomrule
+		\end{tabularx}
+	\end{center}
+	\item \py{ENONCEQ3}
+	\begin{center}
+		%\renewcommand{\arraystretch}{1.75}
+		\begin{tabularx}{\linewidth}{@{}X@{}X@{}}
+			\toprule
+			\py{reponsesQ3[0]} & \py{reponsesQ3[1]} \\ \midrule
+			\py{reponsesQ3[2]} & \py{reponsesQ3[3]} \\ \bottomrule
+		\end{tabularx}
+	\end{center}
+	\pagebreak
+	\item \py{ENONCEQ4}
+	\begin{center}
+		%\renewcommand{\arraystretch}{1.75}
+		\begin{tabularx}{\linewidth}{@{}X@{}X@{}}
+			\toprule
+			\py{reponsesQ4[0]} & \py{reponsesQ4[1]} \\ \midrule
+			\py{reponsesQ4[2]} & \py{reponsesQ4[3]} \\ \bottomrule
+		\end{tabularx}
+	\end{center}
+	\item \py{ENONCEQ5}
+	\begin{center}
+		%\renewcommand{\arraystretch}{1.75}
+		\begin{tabularx}{\linewidth}{@{}X@{}X@{}}
+			\toprule
+			\py{reponsesQ5[0]} & \py{reponsesQ5[1]} \\ \midrule
+			\py{reponsesQ5[2]} & \py{reponsesQ5[3]} \\ \bottomrule
+		\end{tabularx}
+	\end{center}
+	\item \py{ENONCEQ6}
+	\begin{center}
+		%\renewcommand{\arraystretch}{1.75}
+		\begin{tabularx}{\linewidth}{@{}X@{}X@{}}
+			\toprule
+			\py{reponsesQ6[0]} & \py{reponsesQ6[1]} \\ \midrule
+			\py{reponsesQ6[2]} & \py{reponsesQ6[3]} \\ \bottomrule
+		\end{tabularx}
+	\end{center}
+	\item \py{ENONCEQ7}
+	\begin{center}
+		%\renewcommand{\arraystretch}{1.75}
+		\begin{tabularx}{\linewidth}{@{}X@{}X@{}}
+			\toprule
+			\py{reponsesQ7[0]} & \py{reponsesQ7[1]} \\ \midrule
+			\py{reponsesQ7[2]} & \py{reponsesQ7[3]} \\ \bottomrule
+		\end{tabularx}
+	\end{center}
+	\item \py{ENONCEQ8}
+	\begin{center}
+		%\renewcommand{\arraystretch}{1.75}
+		\begin{tabularx}{\linewidth}{@{}X@{}X@{}}
+			\toprule
+			\py{reponsesQ8[0]} & \py{reponsesQ8[1]} \\ \midrule
+			\py{reponsesQ8[2]} & \py{reponsesQ8[3]} \\ \bottomrule
+		\end{tabularx}
+	\end{center}
+	\item \py{ENONCEQ9}
+	\begin{center}
+		%\renewcommand{\arraystretch}{1.75}
+		\begin{tabularx}{\linewidth}{@{}X}
+			\toprule
+			\py{reponsesQ9[0]} \\ \midrule
+			\py{reponsesQ9[1]} \\ \midrule
+			\py{reponsesQ9[2]} \\ \midrule
+			\py{reponsesQ9[3]} \\ \bottomrule
+		\end{tabularx}
+	\end{center}
+	\item \py{ENONCEQ10}
+	\begin{center}
+		%\renewcommand{\arraystretch}{1.75}
+		\begin{tabularx}{\linewidth}{@{}X@{}X@{}}
+			\toprule
+			\py{reponsesQ10[0]} & \py{reponsesQ10[1]} \\ \midrule
+			\py{reponsesQ10[2]} & \py{reponsesQ10[3]} \\ \bottomrule
+		\end{tabularx}
+	\end{center}
+\end{enumerate}
+
+\end{Form}
+
+\end{document}

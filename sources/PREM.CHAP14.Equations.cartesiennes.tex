@@ -1,0 +1,437 @@
+% !TeX TXS-program:compile = txs:///arara
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode}
+% arara: pythontex: {rerun: modified} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('log', '(undefined references|Please rerun|Rerun to get)')
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[]{cp-base}
+\graphicspath{{./graphics/}}
+%variables
+\donnees[%
+classe=1\up{ère} 2M2,
+matiere={[SPÉ.MATHS]},
+typedoc=CHAPITRE~,
+numdoc=14,
+titre={Applications du produit scalaire}
+]
+
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfborder=0 0 0,pdfstartview=FitH}
+%divers
+\lhead{\entete{\matiere}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - Chapitre \thepart}}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee{}}
+\rfoot{\pied{\numeropagetot}}
+
+\begin{document}
+
+\pagestyle{fancy}
+
+\newcommand{\coord}[3]{\vect{#1}\begin{pmatrix}#2\\#3\end{pmatrix}}
+
+\part{CH14 - Compléments sur le produit scalaire}
+
+\section{Applications du produit scalaire}
+
+\subsection{Théorème d'Al-Kashi}
+
+\begin{cthm}
+Dans un triangle $ABC$, on pose $AB=c$, $AC=b$ et $BC=a$ alors :
+\begin{itemize}
+	\item $a^2=b^2+c^2-2bc \cos(\widehat{A})$.
+	\item $b^2=a^2+c^2-2ac \cos(\widehat{B})$.
+	\item $c^2=a^2+b^2-2ab \cos(\widehat{C})$.
+\end{itemize}
+\begin{center}
+	\begin{tikzpicture}[x=0.75cm,y=0.75cm,line join=bevel]
+		\tkzDefPoints{3/1/A,8/1/B,5/5/C}
+		\tkzLabelAngle[ForestGreen!50!black,pos=1.1](C,B,A){$\widehat{B}$}
+		\tkzLabelAngle[ForestGreen!50!black,pos=1.1](A,C,B){$\widehat{C}$}
+		\tkzLabelAngle[ForestGreen!50!black,pos=1.1](B,A,C){$\widehat{A}$}
+		\tkzMarkAngles[mark=none,thick,size=0.75](C,B,A B,A,C A,C,B)
+		\tkzFillAngles[fill=ForestGreen,size=0.75,opacity=.75](C,B,A B,A,C A,C,B)
+		\tkzLabelSegment[swap](B,C){$a$}
+		\tkzLabelSegment[](A,C){$b$}
+		\tkzLabelSegment[swap](A,B){$c$}
+		\tkzDrawPolygon[thick](A,B,C)
+		\tkzLabelPoints[above](C)
+		\tkzLabelPoints[below left](A)
+		\tkzLabelPoints[below right](B)
+	\end{tikzpicture}
+\end{center}
+\end{cthm}
+
+\begin{chistoire}
+\vspace{-0.22cm}
+\lettrine[findent=.5em,nindent=0pt,lines=3,image,novskip=0pt]{alkashi}{}À Samarkand, le savant perse Jemshid ibn Massoud al Kashi (1380--1430) vit sous la protection du prince Ulugh-Beg (1394--1449) qui a fondé une Université comprenant une soixantaine de scientifiques qui étudient la théologie et les 
+sciences.
+
+Dans son Traité sur le cercle (1424), al Kashi calcule le rapport de la circonférence à son rayon pour obtenir une valeur approchée de $2\pi$ avec une précision jamais atteinte. Il obtient 9 positions exactes en base 60 soit 16 décimales exactes : $2\pi \approx \num{6,2831853071795865}$.
+\end{chistoire}
+
+\begin{cdemo}[ n°1]
+On a, par exemple, $a^2=BC^2$.
+
+Et donc $a^2=BC^2=\vect{BC}^2=\left(\vect{BA}+\vect{AC}\right)^2=\left(\vect{AC}-\vect{AB}\right)^2=\vect{AC}^2+\vect{AB}^2-2\vect{AC}\cdot\vect{AB}$.
+
+Or $\vect{AC}\cdot\vect{AB}=AC \times AB \times \cos\big(\widehat{A}\big) = bc\,\cos\big(\widehat{A}\big)$.
+
+D'où $a^2=b^2+c^2-2bc\,\cos\big(\widehat{A}\big)$.
+\end{cdemo}
+
+\begin{cdemo}[ n°2]
+On a, par exemple, $\vect{AB}\cdot\vect{AC}=AB \times AC \times \cos\big(\widehat{A}\big)=bc\,\cos\big(\widehat{A}\big)$.
+
+Et $\vect{AB}\cdot\vect{AC}=\dfrac{1}{2} \left( AB^2+AC^2-BC^2 \right)=\dfrac{1}{2} \left( b^2+c^2-a^2 \right)$.
+
+Ainsi $b^2+c^2-a^2=2bc\,\cos\big(\widehat{A}\big) \ssi a^2=b^2+c^2-2bc\,\cos\big(\widehat{A}\big)$.
+\end{cdemo}
+
+\begin{cvoc}
+\og Résoudre un triangle \fg{}, c'est déterminer tous les côtés et les angles du triangle.
+\end{cvoc}
+
+\begin{crmq}
+Le théorème d'Al-Kashi est également nommé \og théorème de Pythagore généralisé \fg{}, car en effet le théorème de Pythagore est un cas particulier du théorème d'Al-Kashi avec un angle droit (de $\cos=0$).
+\end{crmq}
+
+\subsection{Étude d'un ensemble de points}
+
+\begin{cthm}[ de la médiane]
+Soit $ABC$ un triangle et $I$ est le milieu de $[AB]$, on a $\vect{CA} \cdot \vect{CB} =CI^2- \dfrac{AB^2}{4}$.
+\begin{center}
+	\begin{tikzpicture}[x=0.75cm,y=0.75cm,line join=bevel]
+		\tkzDefPoints{3/0/A,8/1/B,4/4/C}
+		\tkzDefMidPoint(A,B) \tkzGetPoint{I}
+		\tkzDrawPolygon[thick](A,B,C)
+		\tkzDrawSegments[thick,densely dashed](C,I)
+		\tkzLabelPoints[above](C)
+		\tkzLabelPoints[below](I)
+		\tkzLabelPoints[below left](A)
+		\tkzLabelPoints[below right](B)
+		\tkzMarkSegments[mark=s||,size=4pt](A,I I,B)
+	\end{tikzpicture}
+\end{center}
+\end{cthm}
+
+\begin{cdemo}
+On a $\vect{CA} \cdot \vect{CB} = \left(\vect{CI}+\vect{IA}\right)\cdot\left(\vect{CI}+\vect{IB}\right)=\left(\vect{CI}+\vect{IA}\right)\cdot\left(\vect{CI}-\vect{IA}\right)=CI^2-IA^2=CI^2-\left(\dfrac{AB}{2}\right)^2=CI^2-\dfrac{AB^2}{4}$.
+\end{cdemo}
+
+\subsection{Caractérisation d'un cercle}
+
+\begin{cprop}
+Un point $M$ appartient au cercle $\mathscr{C}$ de diamètre $[AB]$ si et seulement si $\vect{MA}\cdot \vect{MB}=0$.
+\begin{center}
+	\begin{tikzpicture}[scale=0.75,line join=bevel]
+		\tkzDefPoints{3/0/A,8/1/B}
+		\tkzDefMidPoint(A,B)\tkzGetPoint{I}
+		%\tkzDefCircle[diameter](A,B)\tkzGetPoint{O}
+		\tkzDefPointBy[rotation=center I angle 50](B)
+		\tkzGetPoint{M}
+		\tkzMarkRightAngle[thick,fill=ForestGreen!50,size=.3](A,M,B)
+		\tkzDrawPoint(I)
+		\tkzDrawCircle[thick](I,B)
+		%\tkzDrawCircle[diameter,thick](A,B)
+		\tkzDrawSegments[thick](A,B M,A M,B)
+		\tkzLabelPoints[left](A)
+		\tkzLabelPoints[below](I)
+		\tkzLabelPoints[right](B)
+		\tkzLabelPoints[above](M)
+	\end{tikzpicture}
+\end{center}
+\end{cprop}
+
+\begin{cdemo}
+Soit $\mathscr{C}$ le cercle de diamètre $[AB]$.
+
+Le cercle de diamètre $[AB]$, privé de $A$ et de $B$, est l'ensemble des points $M$ du plan tels que le triangle $MAB$ est rectangle en $M$, c'est à dire l'ensemble des points $M$ tels que : $\vect{MA}\cdot\vect{MB}=0$ avec $\vect{MA}\neq0$ et $\vect{MB}\neq0$.
+
+De plus, si $M=A$ ou si $M=B$, on a $\vect{MA}\cdot\vect{MB}=0$.
+\end{cdemo}
+
+\begin{crmq}
+Au collège, cette propriété est connue comme celle d'un \og triangle inscrit dans un cercle de diamètre l'un des côtés \fg. C'est également une conséquence de \og l'angle au centre \fg.
+\end{crmq}
+
+\pagebreak
+
+\section{Équation cartésienne de droites}
+
+\subsection{Vecteur directeur}
+
+\begin{cdefi}
+Soit $\mathscr{D}$ une droite. Un vecteur non nul $\vect{d}$ est dit \textbf{directeur} de la droite $\mathscr{D}$ s'il a la même direction que la droite.
+
+Il peut être  \og sur \fg{} la droite, c'est-à-dire avec une origine et une extrémité qui sont des points de la droite, ou sur une droite parallèle. Ci-dessous, $\vect{d}$ et $\vect{u}$ dirigent $\mathscr{D}$ mais pas $\vect{w}$.
+
+
+\begin{center}
+	\definecolor{qqccqq}{rgb}{0.,0.8,0.}
+	\definecolor{ffqqqq}{rgb}{1.,0.,0.}
+	\definecolor{qqqqff}{rgb}{0.,0.,1.}
+	\begin{tikzpicture}[line cap=round,line join=round,>=latex,x=0.8cm,y=0.8cm]
+		\begin{axis}[x=0.5cm,y=0.5cm,axis lines=middle,%
+			ymajorgrids=true,xmajorgrids=true,xmin=-1.1,xmax=7.1,%
+			ymin=-4.1,ymax=6.1,xtick={0,2,4,6},ytick={-4,-2,2,4}]
+			\clip(-1.1,-4.1) rectangle (7.1,6.1);
+			\draw (-0.35,-0.35) node  {$0$};
+			\draw [line width=1.pt,color=qqqqff,domain=-1.1:7.1] plot(\x,{(-1.+2.*\x)/1.});
+			\draw [color=qqqqff](3.4,5.56) node[anchor=north west] {$\mathscr{D}$};
+			\draw [->,line width=2.pt,color=ffqqqq] (1.,1.) -- (2.,3.);
+			\draw [color=ffqqqq](1.52,2.16) node[anchor=north west] {$\vect{d}$};
+			\draw [color=ffqqqq](1.7,-1.54) node[anchor=north west] {$\vect{u}$};
+			\draw [color=qqccqq](5.62,2.82) node[anchor=north west] {$\vect{w}$};
+			\draw [->,line width=2.pt,color=ffqqqq] (3,1.) --(1.,-3.) ;
+			\draw [->,line width=2.pt,color=qqccqq] (5.,3.) -- (6.,1.);
+		\end{axis}
+	\end{tikzpicture}
+\end{center}
+\end{cdefi}
+
+\begin{crmq}
+Pour deux droites, on dit qu'elles sont \emph{parallèles}, deux vecteurs seront dits plutôt \emph{colinéaires}, dans le cas d'un vecteur et d'une droite, on dira que le vecteur \emph{dirige} la droite ou en est un \emph{vecteur directeur}.
+\end{crmq}
+
+\begin{cprop}
+Si $\vect{d}$ dirige $\mathscr{D}$, alors tout vecteur non nul \textbf{colinéaire} à $\vect{d}$ est aussi un vecteur directeur de $\mathscr{D}$.
+\end{cprop}
+
+\begin{cprop}
+Une droite de coefficient directeur $m$ est dirigée par le vecteur de coordonnées  $\begin{pmatrix}  1\\ m \end{pmatrix}$.
+\end{cprop}
+
+\subsection{Vecteur normal}
+
+\begin{cdefi}
+Soit $\mathscr{D}$ une droite de vecteur directeur $\vect{d}$. Un vecteur non nul $\vect{n}$ est dit \textbf{normal} à la droite $\mathscr{D}$ si $\vect{n} \cdot \vect{d}=0$.
+
+Ci-dessous, $\vect{n}$ est un vecteur normal à $\mathscr{D}$. Sa direction est \emph{perpendiculaire} à celle de $\mathscr{D}$.
+\begin{center}	
+	\definecolor{qqccqq}{rgb}{0.,0.8,0.}
+	\definecolor{ffqqqq}{rgb}{1.,0.,0.}
+	\definecolor{qqqqff}{rgb}{0.,0.,1.}
+	\begin{tikzpicture}[line cap=round,line join=round,>=latex,x=1.0cm,y=1.0cm]
+		\begin{axis}[x=0.5cm,y=0.5cm,axis lines=middle,ymajorgrids=true,xmajorgrids=true,%
+			xmin=-1.1,xmax=7.1,ymin=-4.1,ymax=6.1,xtick={},ytick={4,-2,2,4}]
+			\clip(-1.1,-4.1) rectangle (7.1,6.1);
+			\draw (-0.35,-0.35) node  {$0$};
+			\draw[line width=1.pt] (0.9794733192202056,0.010263340389897152) -- (1.1692099788303085,0.38973665961010284) -- (0.7897366596101029,0.5794733192202057) -- (0.6,0.2) -- cycle;
+			\draw [line width=1.pt,color=qqqqff,domain=-1.1:7.1] plot(\x,{(-1.+2.*\x)/1.});
+			\draw [color=qqqqff](3.4,5.56) node[anchor=north west] {$\mathscr{D}$};
+			\draw [->,line width=2.pt,color=ffqqqq] (1.,1.) -- (2.,3.);
+			\draw [color=ffqqqq](1.52,2.16) node[anchor=north west] {$\vect{d}$};
+			\draw [color=qqccqq](4,-1) node[anchor=north west] {$\vect{n}$};
+			\draw [->,line width=2.pt,color=qqccqq] (3.,-1.) -- (6.,-2.5);
+			\draw [line width=1.pt,dotted,domain=-1.1:6.1] plot(\x,{(--1.-1.*\x)/2.});
+		\end{axis}
+	\end{tikzpicture}
+\end{center}
+\end{cdefi}
+
+\begin{cmethode}
+Pour définir la \textit{direction} d'une droite, on peut soit en donner un vecteur directeur, soit un vecteur normal, suivant les situations.
+\end{cmethode}
+
+\begin{cprop}[s]
+\vspace{-0.2cm}
+\begin{itemize}[leftmargin=*]
+	\item Si $\vect{n}$ est un vecteur normal à $\mathscr{D}$, alors tout vecteur non nul \textbf{colinéaire} à $\vect{n}$ est également un vecteur normal de $\mathscr{D}$ ;
+	\item Tout vecteur normal à $\mathscr{D}$ est \textbf{orthogonal} à tout vecteur directeur de $\mathscr{D}$.
+\end{itemize}
+\end{cprop}
+
+\subsection{Équation cartésienne de droite}
+
+\begin{cprop}
+Soit $\mathscr{D}$ une droite passant par un point $A$ et de vecteur normal $\vect{n}$.
+
+Un point $M$ du plan appartient à la droite $\mathscr{D}$ si et seulement si $\overrightarrow{AM} \cdot \vect{n}=0$.
+
+\smallskip
+
+Ici, $M$ est sur la droite, mais $N$ ne l'est pas car $\vect{AN} \cdot \vect{n} \neq 0$.
+
+\begin{center}
+	\definecolor{sqsqsq}{rgb}{0.12549019607843137,0.12549019607843137,0.12549019607843137}
+	\definecolor{ffqqqq}{rgb}{1.,0.,0.}
+	\definecolor{qqwuqq}{rgb}{0.,0.39215686274509803,0.}
+	\definecolor{qqccqq}{rgb}{0.,0.8,0.}
+	\definecolor{qqqqff}{rgb}{0.,0.,1.}
+	\begin{tikzpicture}[line cap=round,line join=round,>=latex,x=1.0cm,y=1.0cm]
+		\begin{axis}[x=0.5cm,y=0.5cm,axis lines=middle,ymajorgrids=true,xmajorgrids=true,%
+			xmin=-1,xmax=7,ymin=-1,ymax=6,xtick={2,4,6},ytick={2,4},]
+			\clip(-4.08,-11.04) rectangle (21.,6.22);
+			\draw (-0.35,-0.35) node  {$0$};
+			\draw[line width=1.pt,color=qqwuqq,fill=qqwuqq,fill opacity=0.10000000149011612] (4.379473319220206,3.189736659610103) -- (4.189736659610102,3.569209978830308) -- (3.810263340389897,3.3794733192202058) -- (4.,3.) -- cycle; 
+			\draw [line width=1.pt,color=qqqqff,domain=-4.08:21.] plot(\x,{(--1.--0.5*\x)/1.});
+			\draw [color=qqqqff](6.06,5.18) node[anchor=north west] {$\mathscr{D}$};
+			\draw [color=qqccqq](3.54,4.82) node[anchor=north west] {$\vect{n}$};
+			\draw [->,line width=2.pt,color=qqccqq] (4.,3.) -- (3.,5.);
+			\draw [->,line width=1.pt,color=ffqqqq] (2.,2.) -- (5.552,3.776);
+			\draw [->,line width=1.pt] (2.,2.) -- (6.,2.);
+			\begin{scriptsize}
+				\draw [color=ffqqqq] (2.,2.)-- ++(-2.5pt,0 pt) -- ++(5.0pt,0 pt) ++(-2.5pt,-2.5pt) -- ++(0 pt,5.0pt);
+				\draw[color=ffqqqq] (1.8,2.37) node {$A$};
+				\draw [color=ffqqqq] (5.552,3.776)-- ++(-2.5pt,0 pt) -- ++(5.0pt,0 pt) ++(-2.5pt,-2.5pt) -- ++(0 pt,5.0pt);
+				\draw[color=ffqqqq] (5.6,4.25) node {$M$};
+				\draw [color=sqsqsq] (6.,2.)-- ++(-2.5pt,0 pt) -- ++(5.0pt,0 pt) ++(-2.5pt,-2.5pt) -- ++(0 pt,5.0pt);
+				\draw[color=sqsqsq] (6.14,2.37) node {$N$};
+			\end{scriptsize}
+		\end{axis}
+	\end{tikzpicture}
+\end{center}
+\end{cprop}
+
+\begin{cthm}
+Toute droite du plan admet une équation cartésienne de la forme \[ax+by+c=0\]%
+où $a, b $ et $c$ sont des réels non tous nuls et où $\begin{pmatrix}  a\\ b \end{pmatrix}$ sont les coordonnées d'un vecteur \textbf{normal} à la droite.
+\end{cthm}
+
+\begin{cexemple}[ n°1]
+Soit $\mathscr{D}$ est la droite passant par $A(6\,;\,4)$ et de vecteur normal $\vect{n}$ de coordonnées $\begin{pmatrix} \textcolor{ForestGreen}{-1}\\ \textcolor{orange}{2} \end{pmatrix}$ donc la droite $\mathscr{D}$ a une équation cartésienne de la forme $\textcolor{ForestGreen}{-1}x+\textcolor{orange}{2}y+c=0$.
+
+Pour trouver la valeur de $c$, on utilise le point $A(\textcolor{red}{6\,;\,4})$ qui est sur la droite et dont les coordonnées vérifient l'équation : $\textcolor{ForestGreen}{-1}\times \textcolor{red}{6} + \textcolor{orange}{2}\times \textcolor{red}{4} +c=0 \ssi 2+c=0 \ssi c = -2$ et donc $\mathscr{D}$ a pour équation cartésienne $-x+2y-2=0$.
+\end{cexemple}
+
+\begin{cexemple}[ n°2]
+$\bullet~~$Soit  $\mathscr{D'}$ : $5x-3y+8=0$.
+
+On cherche un vecteur normal $\vect{m}$ en relevant les coefficients devant le $x$ et le $y$ dans l'équation : ici, $\vect{m}\begin{pmatrix}	5\\-3 \end{pmatrix}$.
+
+On cherche ensuite un point $B$ de la droite en cherchant des coordonnées $(x\,;\,y)$ qui vérifient l'équation, par exemple ici $B(-1\,;\,1)$car $5 \times (-1) - 3 \times 1 +8 = 0$ (on essaie si possible de trouver des coordonnées entières, mais sinon, on peut aussi choisir n'importe quelle valeur pour l'une des deux coordonnées et calculer la seconde !).
+
+\medskip
+
+$\bullet~~\Delta : 2x-3=0$ a pour vecteur normal $\vect{n} \begin{pmatrix}	2\\0 \end{pmatrix}$ (donc $\Delta$ est verticale) et passe par le point de coordonnées $(1,5\,;\,0)$ . 
+\end{cexemple}
+
+\begin{cdemo}
+Soit $\mathscr{D}$ la droite de vecteur normal $\vect{n} \begin{pmatrix} a\\b \end{pmatrix}$ et passant par $A(x_A\,;\,y_A)$. Si $M(x\,;\,y)$ est un point quelconque,
+\begin{flalign*}
+	M(x;y) \in \mathscr{D} &\ssi \vect{AM} \cdot \vect{n}=0 \\ & \ssi \begin{pmatrix} x-x_A\\y-y_A \end{pmatrix} \cdot \begin{pmatrix} a\\b \end{pmatrix} =0 \\ & \ssi a(x-x_A)+b(y-y_A)=0 \\ & \ssi ax+by+(-ax_A-by_A)=0 &
+\end{flalign*}
+et on retrouve bien la forme annoncée en appelant $c$ ce qui est dans la parenthèse.
+\end{cdemo}
+
+\begin{crmq}[s -- lien avec les équations réduites de droites, de la forme \boldmath$y=mx+p$\unboldmath]
+\vspace{-0.2cm}
+\begin{itemize}[leftmargin=*]
+	\item On connaissait déjà les \textbf{équations réduites} de droites. Mais les équations réduites ne sont valables que pour les droites \textit{non verticales} (représentations de fonctions affines), tandis que \textit{toutes} les droites ont une équation cartésienne, même les droites verticales.
+	\item À partir d'une équation réduite, on obtient une équation cartésienne en passant tout dans le même membre pour avoir \og  $=0$ \fg .
+	\item On peut retrouver l'équation réduite $y=mx+p$ d'une droite à partir de l'équation cartésienne en isolant le $y$ d'un côté de l'égalité !
+	
+	Mais ceci n'est toutefois possible que s'il y a $y$ dans l'équation de la droite, autrement dit si $b \neq 0$.
+	\item Une droite est verticale si et seulement si il n'y a pas de $y$ dans ses équations cartésiennes (donc si $b=0$).
+	
+	\item \textbf{Une} droite donnée admet une \textbf{infinité} d'équations cartésiennes, puisqu'elle admet une infinité de vecteurs normaux.
+	
+	Par contre, si elle admet une équation réduite, elle n'en a qu'une seule.
+\end{itemize}
+\end{crmq}
+
+\section{Équation cartésienne de cercles}
+
+\subsection{Cercle défini par centre et rayon}
+
+\begin{cthm}
+Soit $A(x_A\,;\,y_A) $ un point du plan et $r$ un réel strictement positif.
+
+Alors le cercle $\mathscr{C}$ de centre $A$ et de rayon $r$ a pour équation cartésienne  : \[(x-x_A)^2+(y-y_A)^2=r^2.\]
+\end{cthm}
+
+\begin{cdemo}
+Soit $\mathscr{C}$ le cercle de centre $A(x_A\,;\,y_A)$ et de rayon $r$. Si $M(x\,;\,y)$ est un point quelconque,
+\begin{flalign*}
+	M \in \mathscr{C} &\ssi AM=r \\ & \ssi \sqrt{(x-x_A)^2+(y-y_A)^2}=r \\ & \ssi (x-x_A)^2+(y-y_A)^2=r^2. &
+\end{flalign*}
+\end{cdemo}
+
+\begin{cexemple}
+Soit le cercle $\mathscr{C}$ ayant centre $A(2\,;\,-1)$ et pour rayon 5. Il a pour équation cartésienne  $(x-2)^2+(y+1)^2=25$.
+
+\medskip
+
+Le point $B(\textcolor{ForestGreen}{6}\,;\,\textcolor{ForestGreen}{2}) \in \mathscr{C}$ car $\textcolor{ForestGreen}{6}-2)^2+(\textcolor{ForestGreen}{2}+1)^2=16+9=25$.
+
+\medskip
+
+Mais le point $D\textcolor{red}{(-3\,;\,-2)}  \notin \mathscr{C}$ car $(\textcolor{red}{-3}-2)^2+(\textcolor{red}{-2}+1)^2=25+1=26 \neq 25$.
+\end{cexemple}
+
+\begin{crmq}
+Autrement dit, l'ensemble des points $M$ du plan dont les coordonnées vérifient une égalité du type $(x-x_A)^2+(y-y_A)^2=r^2$ est l'ensemble des points du cercle de centre $A$ et de rayon $r$.
+
+\smallskip
+
+Il arrive aussi qu'on donne une équation cartésienne de cercle sous forme développée. Dans ce cas, il est un peu plus difficile de repérer les coordonnées du centre et le rayon : il faut alors revenir aux \textit{formes canoniques}
+
+Par exemple,
+\begin{flalign*}
+	x^2+y^2-4x+5y+3=0 &\ssi \textcolor{blue}{x^2-4x }+ \textcolor{ForestGreen}{y^2+5y}=-3&\\& \ssi \textcolor{blue}{x^2-4x +2^2 }+ \textcolor{ForestGreen}{y^2+5y+2,5^2}=-3 \textcolor{blue}{+2^2} \textcolor{ForestGreen}{+2,5^2}\\ & \ssi \textcolor{blue}{(x-2)^2 }+ \textcolor{ForestGreen}{(y+2,5)^2}=-3 +4 +\frac{25}{4} \\ &\ssi (x-2)^2 + (y+2,5)^2=\frac{29}{4}  
+\end{flalign*}
+Donc il s'agit du cercle de centre $A(2\,;\,-2,5)$ et de rayon $\frac{\sqrt{29}}{2}$.
+\end{crmq}
+
+\subsection{Cercle défini par un diamètre}
+
+\begin{crappel}
+Soient $A$ et $B$ deux points. L'ensemble des points $M$ du plan vérifiant $\overrightarrow{MA} \cdot \overrightarrow{MB}=0 $ est le cercle de diamètre $[AB]$.
+
+Autrement dit, le cercle de diamètre $[AB]$ est l'ensemble des points $M$ tels que le triangle $AMB$ est rectangle en $M$.
+\end{crappel}
+
+\begin{cdemo}
+Notons $\mathscr{C}$ le cercle de diamètre $[AB]$, $I$ le milieu de $[AB]$ et $r$ la distance $AI=IB$.
+\begin{flalign*}
+	\overrightarrow{MA} \cdot \overrightarrow{MB}=0 & \ssi (\overrightarrow{MI} +\overrightarrow{IA}) \cdot (\overrightarrow{MI} +\overrightarrow{IB}) =0 & \\
+	& \ssi \overrightarrow{MI} \cdot \overrightarrow{MI} + \overrightarrow{MI} \cdot \overrightarrow{IB} + \overrightarrow{IA} \cdot \overrightarrow{MI} + \overrightarrow{IA} \cdot \overrightarrow{IB} =0 \\
+	& \ssi MI^2 + \overrightarrow{MI} \cdot (\overrightarrow{IA}+\overrightarrow{IB}) - IA \times IB=0\\
+	& \ssi MI^2 + \overrightarrow{MI} \cdot \vec{0} - r \times r=0\\
+	& \ssi MI^2=r^2\\
+	& \ssi MI=r\\
+	& \ssi M \in \mathscr{C}
+\end{flalign*}
+\end{cdemo}
+
+\begin{cexemple}[ v1]
+Déterminer une équation cartésienne du cercle de diamètre $[AB]$ où $A(1;-5)$ et $B(3;0)$.
+
+Le milieu de $[AB]$ a pour coordonnées $I\left( \frac{1+3}{2}:\frac{-5+0}{2}\right)=(2;-2,5)$ et $AB=\sqrt{(3-1)^2+(0-(-5))^2}=\sqrt{29}$.
+
+Ainsi $r=\frac{\sqrt{29}}{2}$ et donc $\mathscr{C}$ a donc pour équation cartésienne $(x-2)^2+(y+2,5)^2=\frac{29}{4}$.
+\end{cexemple}
+
+\begin{cexemple}[ v2]
+Déterminer une équation cartésienne du cercle de diamètre $[AB]$ où $A(1;-5)$ et $B(3;0)$.	
+\begin{flalign*}
+	M(x;y) \in \mathscr{C} &\ssi \vect{MA} \cdot \vect{MB} = 0 \\ &\ssi \begin{pmatrix}	1-x\\-5-y \end{pmatrix} \cdot \begin{pmatrix} 3-x\\-y \end{pmatrix}=0 & \\&\ssi (1-x)(3-x)+(-5-y)(-y)=0 \\&\ssi 3-x-3x+x^2+5y+y^2=0 \\&\ssi x^2+y^2-4x+5y+3=0
+\end{flalign*}
+On retrouve bien la même équation de cercle, sous forme développée ou sous forme canonique suivant la méthode utilisée.
+\end{cexemple}
+
+\begin{cexercice}
+Donner la nature (droite, cercle, parabole, \ldots) des ensembles de points ci-dessous et en préciser les éléments caractéristiques (pour une droite : un point et un vecteur normal ou un vecteur directeur, pour un cercle : le centre et le rayon, \ldots) 
+
+\begin{enumerate}
+	\begin{minipage}{0.5\linewidth}
+		\item $5x+4y-3=0$
+		\item $x=5$
+		\item $(x-3)^2+(y+7)^2=12$
+		\item $x^2+y^2=1$
+		\item $(x-2)+(y-5)=4$
+	\end{minipage}  \hfill 	\begin{minipage}{0.5\linewidth}
+		\item $3x-5=2y+1$
+		\item $x^2+y^2+6x+2y-6=0$
+		\item $y=3x^2-5x+1$
+		\item $x^2-y^2=0$
+	\end{minipage}
+\end{enumerate}
+\end{cexercice}
+
+\end{document}

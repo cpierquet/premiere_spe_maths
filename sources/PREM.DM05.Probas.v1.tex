@@ -1,0 +1,101 @@
+% !TeX TXS-program:compile = txs:///pythonlualatex
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[pythontex,revgoku]{cp-base}
+\graphicspath{{./graphics/}}
+%variables
+\donnees[classe=1\up{ère} 2M2,matiere={[SPÉ.MATHS]},mois=Janvier,annee=2022,typedoc=DM,numdoc=5,titre={Probabilités conditionnelles}]
+
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfborder=0 0 0,pdfstartview=FitH}
+%divers
+\lhead{\entete{\matiere}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - \mois{} \annee}}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee{}}
+\rfoot{\pied{\numeropagetot}}
+\fancypagestyle{entetedm}{\fancyhead[L]{\entete{\matiere{} À rendre avant le\ldots}}}
+
+\begin{document}
+
+\pagestyle{fancy}
+
+\thispagestyle{entetedm}
+
+\setcounter{numexos}{0}
+
+\part{DM05 - Probabilités conditionnelles}%barbazo exo37p296
+
+\smallskip
+
+\exonum{2}
+
+\medskip
+
+Une entreprise conditionne du sucre blanc provenant de deux exploitations U et V en paquets de 1 kg et de différentes qualités. Le sucre extra fin est conditionné séparément dans des paquets portant le label « extra fin ».
+
+\smallskip
+
+Les résultats seront arrondis, si nécessaire, au millième.
+
+\smallskip
+
+On sait que 3\,\% du sucre provenant de l’exploitation U est extra fin et 5\,\% du sucre provenant de l’exploitation V est extra fin. On prélève au hasard un paquet de sucre dans la production de l’entreprise et, dans un souci de traçabilité, on s’intéresse à la provenance de ce paquet.
+
+\smallskip
+
+On considère les évènements suivants :
+%
+\begin{itemize}
+	\item U : « Le paquet contient du sucre provenant de l’exploitation U » ;
+	\item V : « Le paquet contient du sucre provenant de l’exploitation V » ;
+	\item E : « Le paquet porte le label "extra fin" ».
+\end{itemize}
+%
+\begin{enumerate}
+	\item Dans cette question, on admet que l’entreprise fabrique 30\,\% de ses paquets avec du sucre provenant de l’exploitation U et les autres avec du sucre provenant de l’exploitation V, sans mélanger les sucres des deux exploitations.
+	\begin{enumerate}
+		\item Construire un arbre pondéré représentant la situation.
+		\item Quelle est la probabilité que le paquet prélevé porte le label « extra fin » ? 
+		\item Sachant qu’un paquet porte le label « extra fin », quelle est la probabilité que le sucre qu’il contient provienne de l’exploitation U ? 
+	\end{enumerate}
+	\item L’entreprise souhaite modifier son approvisionnement auprès des deux exploitations afin que, parmi les paquets portant le label « extra fin », 30\,\% d’entre eux contiennent du sucre provenant de l’exploitation U. On cherche à déterminer comment elle doit s’approvisionner auprès des 
+	exploitations U et V.
+	
+	On ne connaît donc pas, dans cette question, $P(U)$, et on va noter $P(U)=x$.
+	\begin{enumerate}
+		\item Construire, à l'aide de $x$, un arbre de pondéré représentant la situation.
+		\item Déterminer, en détaillant la démarche, les valeurs de $P(U)$ et de $P(V)$.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\exonum{2}
+
+\medskip
+
+Une urne contient \textcolor{ForestGreen}{cinq bulletins verts} et {\blue trois bulletins bleus}. Lucien a écrit le script \calgpython{} d’une fonction \cpy{tirage}.
+
+\begin{envpython}[12cm]
+	from random import randint
+	def tirage():
+		tirage=[]
+		for i in range(2):
+			if randint(1,8)<=3:
+				tirage.append("bleu")
+			else :
+				tirage.append("vert")
+		return(tirage)
+\end{envpython}
+
+\begin{enumerate}
+	\item Que renvoie cette fonction ?
+	\item Quelle est la probabilité que cette fonction renvoie \cpy{['bleu','bleu']} ?
+	\item[Bonus] Modifier le script de la fonction \cpy{tirage} pour qu’elle renvoie le nombre de bulletins bleus obtenus lors de deux tirages avec remise dans l’urne.
+\end{enumerate}
+
+\end{document}

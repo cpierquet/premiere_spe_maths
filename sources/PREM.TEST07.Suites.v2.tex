@@ -1,0 +1,71 @@
+% !TeX TXS-program:compile = txs:///arara
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode}
+% arara: pythontex: {rerun: modified} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('log', '(undefined references|Please rerun|Rerun to get)')
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[revgoku]{cp-base}
+\graphicspath{{./graphics/}}
+%variables.
+\donnees[classe={1\up{ère} 2M2},matiere={[SPÉ.MATHS]},mois={Jeudi 24 Mars},annee=2022,typedoc=TEST~,numdoc=7,duree={15 minutes}]
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfborder=0 0 0,pdfstartview=FitH}
+%divers
+\lhead{\entete{Durée : \duree}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - \mois{} \annee}}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee{}}
+\fancypagestyle{sujetA}{\fancyhead[R]{\entete{\classe{}A - \mois{} \annee}}}
+\fancypagestyle{sujetB}{\fancyhead[R]{\entete{\classe{}B - \mois{} \annee}}}
+
+\begin{document}
+
+\pagestyle{fancy}
+
+
+\part{TEST07 - Suites, v2}%SUJETA
+
+\setcounter{numexos}{0}
+
+\medskip
+
+\nomprenomtcbox
+
+\medskip
+
+\exonum{}
+
+\medskip
+
+On considère la suite $\suiten$ définie par $\begin{dcases} u_0 = 10 \\ u_{n+1} = u_n + 3 \text{ pour tout entier }n \end{dcases}$.
+
+\begin{enumerate}
+	\item Déterminer, en justifiant, la nature de la suite $\suiten$.
+	\item Déterminer la formule explicite de $u_n$ en fonction de $n$.
+	\item Calculer $u_{10}$.
+	\item Déterminer, en justifiant, le sens de variation de la suite $\suiten$.
+\end{enumerate}
+
+\papierseyes{21}{9}
+
+\medskip
+
+\exonum{}
+
+\medskip
+
+On considère la suite $\suiten[v]$ géométrique de premier terme $v_1=100$ et de raison $q=0,95$.
+
+\begin{enumerate}
+	\item Donner la formule de récurrence liée à la suite $\suiten[v]$.
+	\item Déterminer la formule explicite donnant $v_n$ en fonction de $n$.
+	\item En déduire, arrondie au millième, la valeur de $v_9$.
+\end{enumerate}
+
+\papierseyes{21}{8}
+
+\end{document}

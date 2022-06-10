@@ -1,0 +1,165 @@
+% !TeX TXS-program:compile = txs:///lualatex
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[revgoku]{cp-base}
+\graphicspath{{./graphics/}}
+%variables
+\donnees[%
+	classe=1\up{ère} 2M2,matiere={[SPÉ.MATHS]},typedoc=TD~,numdoc=01,mois=Septembre,titre={Second degré}
+	]
+
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfborder=0 0 0,pdfstartview=FitH}
+\lhead{\entete{\matiere}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - \mois{} \annee}}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee{}}
+\rfoot{\pied{\numeropagetot}}
+%divers
+
+\begin{document}
+
+\pagestyle{fancy}
+
+\setcounter{numexos}{0}
+
+\part{TD01 - Second degré}
+
+\medskip
+
+\exonum{0}
+
+\smallskip
+
+\begin{enumerate}
+	\item Déterminer la forme canonique et le tableau de variations des trinômes suivants :
+	\begin{enumerate}
+		\item $f(x)=-2x^2+4x+7$.
+		\item $g(x)=-6x^2+9x+13$.
+		\item $h(x)=0,5x^2-10x$.
+	\end{enumerate}
+	\item Déterminer le discriminant, les éventuelles racines et l'éventuelle factorisation des trinômes suivants :
+	\begin{enumerate}
+		\item $f(x)=7x^2-7x+8$.
+		\item $g(x)=-x^2+10x-25$.
+		\item $h(x)=-2x^2+x+1$.
+	\end{enumerate}
+	\item Résoudre les équations suivantes :
+	\begin{enumerate}
+		\item $2x^2-12x+10=0$.
+		\item $-2x^2+4x-6=0$.
+		\item $0,25x^2+3,5x+12,25=0$.
+	\end{enumerate}
+\end{enumerate}
+
+\medskip
+
+\exonum{1}
+
+\medskip
+
+Résoudre les équations suivantes :
+%
+\begin{enumerate}
+	\item $(x-3)(x^2+6x+5)=0$.
+	\item $3x^2+4x-5 = x^2 +4x+3$.
+	\item $\dfrac{3}{x+5}=x-3$ (pour $x \neq -5$).
+\end{enumerate}
+
+\medskip
+
+\exonum{2}
+
+\medskip
+
+On donne ci-dessous la courbe représentative d'un polynôme du second degré $f(x)$.
+
+\begin{center}
+	\tunits{0.55}{0.55}
+	\tdefgrille{-1}{7}{1}{0.5}{-3}{7}{1}{0.5}
+	\begin{tikzpicture}[x=\xunit cm,y=\yunit cm]
+		\tgrillep[densely dashed,line width=0.6pt,gray!50]
+		\draw[->,line width=1.25pt] (\xmin,0) -- (\xmax,0);
+		\draw[->,line width=1.25pt] (0,\ymin) -- (0,\ymax);
+		\foreach \x in {-1,0,...,6} %à compléter avec itération ou complètement
+			\draw[line width=1.25pt] (\x,4pt) -- (\x,-4pt) node[below] {\scriptsize \num{\x}}; %éventuellement \xx et taille...
+		\foreach \y in {-3,-2,...,6}
+			\draw[line width=1.25pt] (4pt,\y) -- (-4pt,\y) node[left] {\scriptsize \num{\y}};
+		\draw[line width=1.25pt,red,domain=-1:7,samples=200] plot(\x,{0.5*(\x-3)*(\x-3)-2});
+	\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}
+	\item \textit{Aucun calcul n'est attendu dans cette première question.}
+	\begin{enumerate}
+		\item Donner les valeurs de $\alpha$, $\beta$ et des racines si elles existent (inutile de justifier).
+		\item Sans faire de calcul, que peut-on dire du coefficient $a$ ? Justifier.
+		\item Sans faire de calcul, que peut-on dire de $\Delta$ ? Justifier.
+	\end{enumerate}
+	\item Déterminer une expression de la fonction $f(x)$ :
+	\begin{enumerate}
+		\item en utilisant la forme canonique (pour $\alpha$, $\beta$) et un point autre que le sommet (pour $a$) ;
+		\item en utilisant la forme factorisée (pour $x_1$, $x_2$) et un point autre que les racines (pour $a$).
+	\end{enumerate}
+\end{enumerate}
+
+\newpage
+
+\exonum{1}
+
+\medskip
+
+Dans chacun des cas suivants, tracer une parabole représentant un trinôme ($ax^2+bx+c$, $a \neq 0$) dont on donne certaines caractéristiques.
+
+\begin{multicols}{2}
+	\begin{enumerate}
+		\item $\Delta = 0$ et $a > 0$ :
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm,xmin=-3,xmax=3,ymin=-3,ymax=3]
+				\tgrillep[densely dashed,line width=0.6pt,gray!50] \axestikz*
+				\axextikz*{-3,-2,...,2} \axeytikz*{-3,-2,...,2} 
+			\end{tikzpicture}
+		\end{center}
+		\item $\Delta > 0$ et $a > 0$ :
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm,xmin=-3,xmax=3,ymin=-3,ymax=3]
+				\tgrillep[densely dashed,line width=0.6pt,gray!50] \axestikz*
+				\axextikz*{-3,-2,...,2} \axeytikz*{-3,-2,...,2} 
+			\end{tikzpicture}
+		\end{center}
+		\item $\Delta < 0$ et $a > 0$ :
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm,xmin=-3,xmax=3,ymin=-3,ymax=3]
+				\tgrillep[densely dashed,line width=0.6pt,gray!50] \axestikz*
+				\axextikz*{-3,-2,...,2} \axeytikz*{-3,-2,...,2} 
+			\end{tikzpicture}
+		\end{center}
+		\item $\Delta = 0$ et $a < 0$ :
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm,xmin=-3,xmax=3,ymin=-3,ymax=3]
+				\tgrillep[densely dashed,line width=0.6pt,gray!50] \axestikz*
+				\axextikz*{-3,-2,...,2} \axeytikz*{-3,-2,...,2} 
+			\end{tikzpicture}
+		\end{center}
+		\item $\Delta > 0$ et $a < 0$ :
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm,xmin=-3,xmax=3,ymin=-3,ymax=3]
+				\tgrillep[densely dashed,line width=0.6pt,gray!50] \axestikz*
+				\axextikz*{-3,-2,...,2} \axeytikz*{-3,-2,...,2} 
+			\end{tikzpicture}
+		\end{center}
+		\item $\Delta < 0$ et $a < 0$ :
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm,xmin=-3,xmax=3,ymin=-3,ymax=3]
+				\tgrillep[densely dashed,line width=0.6pt,gray!50] \axestikz*
+				\axextikz*{-3,-2,...,2} \axeytikz*{-3,-2,...,2} 
+			\end{tikzpicture}
+		\end{center}
+	\end{enumerate}
+\end{multicols}
+
+
+\end{document}

@@ -1,0 +1,354 @@
+% !TeX TXS-program:compile = txs:///arara
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode}
+% arara: pythontex: {rerun: modified} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('log', '(undefined references|Please rerun|Rerun to get)')
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[breakable]{cp-base} %avec options possibles parmi breakable (tcbox), sujetl (exos),  (pour faire "comme avant"), etc...
+\graphicspath{{./graphics/}}
+%variables
+\donnees[typedoc=CHAPITRE~,numdoc=10,classe=1\up{ère} 2M2,matiere={[SPÉ.MATHS]},annee=2022,]
+
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfborder=0 0 0,pdfstartview=FitH}
+%divers
+\lhead{\entete{\matiere}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - Chapitre \thepart}}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee{}}
+\rfoot{\pied{\numeropagetot}}
+
+\begin{document}
+
+\newcommand{\coord}[3]{\vect{#1}\begin{pmatrix}#2\\#3\end{pmatrix}}
+
+\pagestyle{fancy}
+
+\part{Calcul vectoriel, produit scalaire}
+
+%\section{Rappels sur les vecteurs}
+%
+%\subsection{Vecteurs et coordonnées}
+%
+%\begin{cdefi}
+%Un \textbf{vecteur} $\vect{u}$ matérialise un \textbf{déplacement}, en décrivant sa \textbf{direction}, son \textbf{sens} et sa longueur, appelée \textbf{norme} (et notée $\| \vect{u} \|$).
+%
+%On le représente à l'aide d'une flèche qui peut se placer \emph{n'importe où dans le plan}.
+%\end{cdefi}
+%
+%\begin{cprop}[s]
+%\vspace{-0.2cm}
+%\begin{itemize}[leftmargin=*]
+%	\item Pour additionner deux vecteurs, on les place bout à bout ou on ajoute leurs coordonnées.
+%	\item Multiplier un vecteur par un nombre $k$ revient à multiplier sa longueur par $k$ (et changer son sens si le nombre est négatif), et à multiplier ses coordonnées par $k$.
+%	\item Dans un repère $\Rij$, si $A(x_A\,;\,y_A)$ et $ B(x_B\,;\,y_B)$ alors $\vect{AB}\coordeux{x_B-x_A}{y_B-y_A}$ (extrémité - origine).
+%	\item Dans un repère orthonormé, $\| \vect{u} \| = \sqrt{\big(\text{abscisse de } \vect{u}\big)^2+\big(\text{ordonnée de } \vect{u}\big)^2}$.
+%	\item Relation de Chasles : Pour tous points $A, B$ et $C$; $\vect{AC}=\vect{AB}+\vect{BC}$.
+%\end{itemize}
+%\end{cprop}
+%
+%\subsection{Vecteurs et colinéarité}
+%
+%\begin{cdefi}
+%La \textbf{colinéarité} est aux vecteurs ce que le \textbf{parallélisme} est aux droites.
+%\end{cdefi}
+%
+%\begin{cthm}
+%Soient $\coord{u}{x}{y}$ et $\coord{v}{x'}{y'} $ deux vecteurs non nuls.
+%\begin{itemize}
+%	\item $\vect{u}$ et $\vect{v}$ sont \textbf{colinéaires} si et seulement si on peut exprimer l'un en fonction de l'autre, autrement  dit si il existe un réel $k$ tel que $\vect{u}=k \vect{v} $.
+%	\item $\vect{u}$ et $\vect{v}$ sont \textbf{colinéaires} $\ssi xy'-yx'=0$
+%	\item Par convention, le vecteur nul est colinéaire à tout autre.
+%\end{itemize}
+%\end{cthm}
+%
+%\section{Produit scalaire}
+%
+%\subsection{Définition}
+%
+%\begin{cdefi}
+%Le \textbf{produit scalaire} est une opération entre \textbf{deux vecteurs} et dont le résultat est un \textbf{nombre réel}.
+%
+%Soient $\vect{u}$ et $\vect{v}$ deux vecteurs et $A$, $B$ et $C$ trois points tels que $\vect{u}=\vect{AB}$ et $\vect{v}=\vect{AC}$.
+%
+%Le \textbf{produit scalaire} de $\vect{u}$ et $\vect{v}$ , noté $\vect{u}\cdot\vect{v}$ est le nombre réel défini par :
+%\begin{itemize}
+%	\item $\vect{u}\cdot\vect{v}=0$ si l'un des deux vecteurs est nul
+%	\item $\vect{u}\cdot\vect{v}= AB \times AC \times \cos(\widehat{BAC})$ sinon.
+%\end{itemize}
+%\vspace{-0.2cm}
+%\begin{center}
+%	\begin{tikzpicture}[scale=0.7,thick,>=stealth']
+%		\coordinate (A) at (0,0) ; \coordinate (C) at (3,-0.75) ; \coordinate (B) at (5,1.25) ;
+%		\tkzMarkAngle[thick,mark=none,darkgray,size=1](C,A,B)
+%		\tkzFillAngle[mark=none,fill=orange!50,size=1](C,A,B)
+%		\draw[->] (A) -- (B) node[midway,above] {$\vect{u}$} ;
+%		\draw[densely dashed,->] (A) -- (C) node[midway,below] {$\vect{v}$} ;
+%		\draw[->] ($(A)+(-2,-0.8)$) -- ($(C)+(-2,-0.8)$) node[midway,below] {$\vect{v}$} ;
+%		\draw (A) node[left] {$A$} ; \draw (B) node[right] {$B$} ; \draw (C) node[right] {$C$} ;
+%	\end{tikzpicture}
+%\end{center}
+%\end{cdefi}
+%
+%\begin{chistoire}
+%\vspace{-0.22cm}
+%\lettrine[findent=.5em,nindent=0pt,lines=3,image,novskip=0pt]{hamilton}{}Le produit scalaire est à l'origine une notion physique : le produit linéaire. Cet outil fut élaboré par le physicien prussien \textit{Hermann Grassman} (1809--1877) et le physicien américain Josiah Gibbs (1839--1903). Mais c'est le mathématicien irlandais \textit{William Hamilton} (1805--1865, présenté en médaillon) qui en donna une première définition mathématique en 1853.
+%\end{chistoire}
+%
+%\begin{cexemple}[s]
+%\vspace{-0.2cm}
+%\begin{itemize}[leftmargin=*]
+%	\item $ABC$ est un triangle équilatéral de côté 5. Calculer $\vect{AB}\cdot\vect{AC}$
+%	\item $ABCD$ est un carré de côté 1. Calculer $\vect{CA}\cdot\vect{CD}$
+%\end{itemize}
+%\end{cexemple}
+%
+%\begin{crmq}
+%Si l'angle $\widehat{BAC}$ est aigu, le produit scalaire est positif, mais si l'angle est obtus, le produit scalaire est négatif (il suffit de voir le signe du cosinus dans le cercle trigo !).
+%\end{crmq}
+%
+%\subsection{Cas des vecteurs colinéaires}
+%
+%\begin{cprop}
+%\vspace{-0.2cm}
+%\begin{itemize}[leftmargin=*]
+%	\item Si deux vecteurs sont \textbf{colinéaires de même sens}, leur produit scalaire est \textbf{positif} et est égal au produit de leurs normes.
+%	\item Si deux vecteurs sont \textbf{colinéaires de sens contraire}, leur produit scalaire est \textbf{négatif} : c'est l'opposé du produit de leurs normes. 
+%\end{itemize}
+%\end{cprop}
+%
+%\begin{crmq}
+%Pour tout vecteur $\vect{u}$, $\vect{u}\cdot\vect{u}$ se note aussi $\vect{u}^2$. On parle de \textbf{carré scalaire} ; et $\vect{u}^2=\vect{u}\cdot\vect{u}=\|\vect{u}\|^2$.
+%\end{crmq}
+%
+%\subsection{Cas des vecteurs orthogonaux}
+%
+%\begin{cdefi}
+%L'\textbf{orthogonalité} est aux vecteurs ce que la \textbf{perpendicularité} est aux droites. Autrement dit :
+%
+%Deux vecteurs $\vect{u}$ et $\vect{v}$ sont dit orthogonaux si les droites qui les supportent sont perpendiculaires, ou si l'un des vecteurs est nul (par convention). On note $ \vect{u} \perp \vect{v}$.
+%\end{cdefi}
+%
+%\begin{cprop}
+%Si deux vecteurs sont orthogonaux, alors leur produit scalaire est nul.
+%\end{cprop}
+%
+%\begin{cdemo}
+%En effet, si l'angle entre les deux vecteurs est droit, alors sa mesure est $\pm\frac{\pi}{2}$, et donc son cosinus est nul !
+%\end{cdemo}
+%
+%\section{Expressions du produit scalaire}
+%
+%\subsection{Expression géométrique}
+%
+%\begin{cprop}
+%Comme on l'a vu dans la définition, $\vect{u}\cdot\vect{v}= AB \times AC \times \cos(\widehat{BAC})$ avec $\vect{u}=\vect{AB}$ et $\vect{v}=\vect{AC}$.
+%\end{cprop}
+%
+%\begin{crmq}
+%On peut donc réutiliser le chapitre précédent pour tout ce qui concerne les valeurs remarquables et les propriétés du $\cos$.
+%\end{crmq}
+%
+%\subsection{Projection orthogonale}
+%
+%\begin{cprop}
+%Soient trois points distincts $A$, $B$ et $C$.
+%
+%Si $H$ est le projeté orthogonal de $C$ sur la droite $(AB)$, alors $\vect{AB}\cdot\vect{AC}=\vect{AB}\cdot\vect{AH}$.
+%
+%\begin{center}
+%	\begin{tikzpicture}[thick,>=stealth',scale=0.8]
+%		\coordinate (A) at (0,0) ; \coordinate (B) at (6,0) ; \coordinate (C) at (2.5,2) ; \coordinate (H) at (2.5,0) ;
+%		\tkzMarkAngle[thick,mark=none,darkgray,size=0.5](B,A,C)
+%		\tkzFillAngle[mark=none,fill=blue!50,size=0.5](B,A,C)
+%		\tkzMarkRightAngle[fill=red!50,size=0.35](B,H,C)
+%		\draw[->] (A) -- (B) ; \draw[->] (A) -- (C) ;
+%		\draw (A) node[below] {A} ; \draw (B) node[below] {B} ; 
+%		\draw (C) node[above] {C} ; \draw (H) node[below] {H} ;
+%		\draw[densely dashed] (C) -- (H) ;
+%	\end{tikzpicture}
+%	\hspace{0.5cm}
+%	\begin{tikzpicture}[thick,>=stealth',scale=0.8]
+%		\coordinate (A) at (0,0) ; \coordinate (B) at (6,0) ; \coordinate (C) at (-2.25,2) ; \coordinate (H) at (-2.25,0) ;
+%		\tkzMarkAngle[thick,mark=none,darkgray,size=0.5](B,A,C)
+%		\tkzFillAngle[mark=none,fill=blue!50,size=0.5](B,A,C)
+%		\tkzMarkRightAngle[fill=red!50,size=0.35](B,H,C)
+%		\draw[->] (A) -- (B) ; \draw[->] (A) -- (C) ;
+%		\draw (A) node[below] {A} ; \draw (B) node[below] {B} ; 
+%		\draw (C) node[above] {C} ; \draw (H) node[below] {H} ;
+%		\draw[densely dashed] (C) |- (A) ;
+%	\end{tikzpicture}
+%\end{center}
+%$\blacktriangleright$ L'avantage étant que $\vect{AB}$ et $\vect{AH}$ sont colinéaires, donc de produit scalaire facile à calculer.
+%\end{cprop}
+%
+%\begin{cdemo}
+%Dans le cas d'un angle aigu, $\vect{AB}\cdot\vect{AC}=AB \times AC \times \cos(\widehat{BAC})=AB \times AC \times \frac{AH}{AC}=AB \times AH$.
+%\end{cdemo}
+%
+%\subsection{Expression analytique}
+%
+%\begin{cthm}
+%Si le plan est muni d'un repère orthonormal et que les vecteurs $\vect{u}$ et $\vect{v}$ y ont pour coordonnées respectives $\coord{u}{x}{y}$ et $\coord{v}{x'}{y'}$, alors $\vect{u}\cdot\vec{v}=xx'+yy'$.
+%\end{cthm}
+%
+%\begin{cdemo}
+%Soient $\vect{u}$ et $\vect{v}$ deux vecteurs, d'angle $\theta$, $O$ un point du plan.
+%
+%$A$ le point défini par $\vect{OA}=\frac{\vec{u}}{||\vec{u}||}$ et $B$ tel que le triangle $OAB$ soit isocèle rectangle en $O$.
+%
+%Alors $OA=OB=1$ et le repère $\left(O\,;\,\vect{OA}\,,\,\vect{OB}\right)$ est orthonormal.
+%\begin{center}
+%	\begin{tikzpicture}[thick,>=stealth']
+%		\coordinate (O) at (0,0) ; \coordinate (A) at (25:1) ; \coordinate (K) at (25:5) ; 
+%		\coordinate (B) at (115:1) ; \coordinate (C) at (58:3) ;
+%		\tkzDefPointBy[projection=onto O--K](C) \tkzGetPoint{H}
+%		\tkzMarkAngle[thick,mark=none,darkgray,size=0.75](A,O,C)
+%		\tkzFillAngle[mark=none,fill=blue!50,size=0.75](A,O,C)
+%		\tkzMarkRightAngle[fill=red!50,size=0.35](A,O,B)
+%		\draw (46.5:0.92) node {\footnotesize \blue $\theta$} ;
+%		\draw[densely dashed] (O) -- (K) ; \draw[->] (O) -- (25:4) node[midway,below] {$\vect{u}$};
+%		\draw[densely dashed] (O) -- (115:3) ; \draw[->] (O) -- (C) node[midway,above=4pt] {$\vect{v}$} ;
+%		\draw[densely dotted] (C) -- (H) ;
+%		\filldraw (A) circle[radius=2pt] (B) circle[radius=2pt] ;
+%		\draw (O) node[below] {$O$} ; \draw (A) node[below] {$A$} ; \draw (B) node[left] {$B$} ;
+%		\draw (C) node[above right] {$C$} ;
+%	\end{tikzpicture}
+%\end{center}
+%Dans ce repère, $\coord{u}{||\vect{u}||}{0}$ et $\coord{v}{||\vect{v}||\cos(\theta)}{||\vect{v}||\sin(\theta)}$, donc si on calcule $xx'+yy'$ on obtient :
+%
+%$xx'+yy'=||\vect{u}|| \times ||\vect{v}||\cos(\theta)+0\times||\vect{v}||\sin(\theta)=||\vect{u}|| \times ||\vect{v}||\cos(\theta)=\vect{u}\cdot\vect{v}$.
+%
+%On admet que ce résultat ne dépend pas du repère choisi.
+%\end{cdemo}
+%
+%\begin{ccscq}
+%La norme (ou longueur) du vecteur $\coord{u}{x}{y}$ est $||\vect{u}||=\sqrt{x^2+y^2}$.
+%
+%\smallskip
+%
+%En effet, d'une part $\vect{u}\cdot\vect{u}=||\vect{u}||^2$ et d'autre part $\vect{u}\cdot\vect{u}=x^2+y^2$.
+%\end{ccscq}
+
+\setcounter{section}{3}
+
+\section{Propriétés du produit scalaire}
+
+\subsection{Condition d'orthogonalité}
+
+\begin{cthm}
+Deux vecteurs $\vect{u}$ et $\vect{v}$ sont orthogonaux si et seulement si leur produit scalaire est nul :
+
+\hfill$ \vect{u} \perp \vect{v} \ssi \vect{u} \cdot\vect{v}=0 \ssi xx'+yy'=0$\hfill~
+\end{cthm}
+
+\begin{cdemo}
+\vspace{-0.2cm}
+\begin{itemize}[leftmargin=*]
+	\item Si l'un des vecteurs est nul, le produit scalaire est nul et les vecteurs sont orthogonaux par convention.
+	\item Sinon, notons $A$, $B$ et $C$ trois points \emph{distincts} tels que $\vect{u}=\vect{AB}$ et $\vect{v}=\vect{AC}$.
+	
+	Si 	$\vect{u} \cdot \vect{v}=0$, alors $ AB \times AC \times \cos(\widehat{BAC})=0$ et donc $ \cos(\widehat{BAC})=0$ car les points étant distincts, les distances ne peuvent pas être nulles.
+	
+	Or les seuls angles à avoir un cosinus nul sont ceux dont le point-image sur le cercle trigonométrique est sur l'axe des ordonnées, autrement dit $\frac{\pi}{2}$ et $-\frac{\pi}{2}$ , qui sont des angles de $90\ensuremath{^\circ}$.
+	
+	Ainsi, la réciproque de la propriété vue ci-dessus est vraie :  $ \vect{u} \perp \vect{v} \ssi \vect{u}\cdot\vect{v}=0$.
+\end{itemize}
+\end{cdemo}
+
+\subsection{Symétrie et bilinéarité}
+
+\begin{cprop}[s]
+Soient $\vect{u}$, $\vect{v}$ et $ \vect{w}$ trois vecteurs, et $k$ un nombre réel. Alors :
+\begin{itemize}
+	\item $\vect{u}\cdot\vect{v}=\vect{v}\cdot\vect{u}$ ;
+	\item $\vect{u}\cdot\big(\vect{v}+ \vect{w}\big)=\vect{u}\cdot\vect{v} + \vect{u}\cdot\vect{w}$ ;
+	\item $\vect{u}\cdot\big(k\vect{v}\big)=k \times \vect{u}\cdot\vect{v} = \big(k\vect{u}\big)\cdot\vect{v}$.
+\end{itemize}
+\end{cprop}
+
+\begin{cdemo}
+La première propriété est immédiate avec la définition. Les deux autres se prouvent facilement en utilisant la formule avec les coordonnées.
+\end{cdemo}
+
+\begin{ccscq}
+On développe les produits scalaires de la même façon que les produits de réels, et en particulier, on a les identités remarquables :
+\begin{itemize}
+	\item $(\vect{u}+\vect{v})^2=||\vect{u}||^2+2\vect{u}\cdot\vect{v}+||\vect{v}||^2$ ;
+	\item $(\vect{u}-\vect{v})^2=||\vect{u}||^2-2\vec{u}\cdot\vect{v}+||\vect{v}||^2$ ;
+	\item $(\vect{u}+\vect{v})\cdot(\vect{u}-\vect{v})=||\vect{u}||^2-||\vect{v}||^2$.
+\end{itemize}
+\end{ccscq}
+
+\begin{cdemo}
+$(\vect{u}+\vect{v})^2=\big(\vect{u}+\vect{v}\big)\cdot\big(\vect{u}+\vect{v}\big)=\vect{u}\cdot\vect{u}+\vect{u}\cdot\vect{v}+\vect{v}\cdot\vect{u}+\vect{v}\cdot\vect{v}=||\vect{u}||^2+2\vect{u}\cdot\vect{v}+||\vect{v}||^2$.
+\end{cdemo}
+
+\subsection{Normes et produit scalaire}
+
+\begin{cprop}[s]
+Grâce aux identités remarquables, on peut donner encore une nouvelle façon de calculer un produit scalaire\ldots
+
+Soient $\vect{u}$ et $\vect{v}$ deux vecteurs. Alors : 
+\begin{itemize}
+	\item $\vect{u}\cdot\vect{v}=\tfrac{1}{2}\left(||\vect{u}+\vect{v}||^2-||\vect{u}||^2-||\vect{v}||^2\right)$ ;
+	\item $\vect{u}\cdot\vect{v}=\tfrac{1}{2}\left(||\vect{u}||^2+||\vect{v}||^2-||\vect{u}-\vect{v}||^2\right)$.
+\end{itemize}
+\end{cprop}
+
+\begin{cdemo}
+On a vu ci-dessus $||\vect{u}+\vect{v}||^2=\big(\vect{u}+\vect{v}\big)^2=||\vect{u}||^2+2\vect{u}\cdot\vect{v}+||\vect{v}||^2$.
+
+Il suffit alors d'isoler $\vect{u}\cdot\vect{v}$ dans cette égalité.
+
+\smallskip
+
+Même chose avec l'autre identité remarquable pour la deuxième expression.
+\end{cdemo}
+
+\subsection{Décomposition de vecteurs}
+
+\begin{cmethode}[ : Décomposition de vecteurs]
+On a vu qu'il était facile de calculer le produit scalaire de vecteurs colinéaires ou orthogonaux. Pour calculer le produit scalaire de deux vecteurs quelconques dont on ne connaît pas les coordonnées, on peut décomposer un (ou même les deux) vecteur(s) en somme de vecteurs suivant des directions perpendiculaires. En développant avec les règles habituelles, les produits scalaires qui interviennent seront soit nuls (vecteurs orthogonaux) soit des produits de longueurs (vecteurs colinéaires).
+\end{cmethode}
+
+\begin{cexemple}
+On peut retrouver l'expression analytique du produit scalaire en décomposant les vecteurs sur la base $(\vec{i},\vec{j})$.
+
+En effet, si $\coord{u}{x}{y}$ et $\coord{v}{x'}{y'}$, alors $\vect{u}=x\vect{\imath}+y\vect{\jmath}$ et $\vect{v}=x'\vect{\imath}+y'\vect{\jmath}$.
+
+Ainsi, $\vect{u}\cdot\vect{v}=\big(x\vect{\imath}+y\vect{\jmath}\big)\cdot\big(x'\vect{\imath}+y'\vect{\jmath}\big)=xx'\vect{\imath}\cdot\vect{\imath}+xy'\vect{\imath}\cdot\vect{\jmath}+x'y\vect{\jmath}\cdot\vect{\imath}+yy'\vect{\jmath}\cdot\vect{\jmath}$.
+
+$\vect{\imath}$ et $\vect{\jmath}$ étant orthogonaux, $\vect{\imath}\cdot\vect{\jmath}=0$.
+
+Les deux autres produits scalaires sont des produits scalaires de vecteurs colinéaires, donc il suffit de multiplier les longueurs : $\vect{\imath}\cdot\vect{\imath}=||\vect{\imath}||^2=1$ puisque le vecteur est unitaire. Même chose pour $\vect{\jmath}\cdot\vect{\jmath}$.
+
+Il reste donc bien $\vect{u}\cdot\vect{v}=xx'+yy'$.
+\end{cexemple}
+
+\begin{cexercice}
+Dans le carré $ABCD$, $I$ est le milieu de $[AB]$ et $J$ est le milieu de $[AD]$.
+
+Calculer $\vect{DI}\cdot\vect{CJ}$ en décomposant les vecteurs. Que peut-on en conclure ?
+\end{cexercice}
+
+\vfill
+
+\begin{chistoire}
+\vspace{-0.22cm}
+\lettrine[findent=.5em,nindent=0pt,lines=4,image,novskip=0pt]{hamilton}{}Le produit scalaire est à l'origine une notion physique : le produit linéaire. Cet outil fut élaboré par le physicien prussien \textit{Hermann Grassman} (1809--1877) et le physicien américain Josiah Gibbs (1839--1903). Mais c'est le mathématicien irlandais \textit{William Hamilton} (1805--1865, présenté en médaillon) qui en donna une première définition mathématique en 1853.
+
+\smallskip
+
+La notation du produit scalaire à l'aide d'un point ou d'une croix provient de Josiah Willard Gibbs, dans les années 1880.
+
+\smallskip
+
+Le produit scalaire possède de multiples applications. En physique, il est, par exemple, utilisé pour modéliser le travail d'une force. En géométrie analytique il permet de déterminer le caractère perpendiculaire de deux droites ou d'une droite et d'un plan.
+\end{chistoire}
+
+\end{document}

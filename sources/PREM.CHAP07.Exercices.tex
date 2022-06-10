@@ -1,0 +1,189 @@
+% !TeX TXS-program:compile = txs:///pythonlualatex
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[revgoku]{cp-base}
+\graphicspath{{./graphics/}}
+%variables
+\donnees[%
+	classe={1\up{ère} 2M2},matiere={[SPÉ.MATHS]},mois=Février,annee=2022,typedoc=CHAP,numdoc=7
+	]
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfstartview=FitH,pdfborder=0 0 0}
+%divers
+\lhead{\entete{\matiere}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - \mois{} \annee}}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee{}}
+\rfoot{\pied{\numeropagetot}}
+
+\begin{document}
+
+\pagestyle{fancy}
+
+\part{CH07 - Dérivation locale - Exercices}
+
+\medskip
+
+\begin{caide}
+{\setlength\arrayrulewidth{1.5pt} \arrayrulecolor{titrebleu!35}
+\begin{tabularx}{\linewidth}{Y|Y|Y|Y|Y|Y}
+	\niveaudif{0}~~\textsf{Basique} & \niveaudif{1}~~\textsf{Modérée} & \niveaudif{2}~~\textsf{Élevée} & \niveaudif{3}~~\textsf{Très élevée} & \niveaudif{4}~~\textsf{Extrême} & \niveaudif{5}~~\textsf{Insensée} \\
+\end{tabularx}}
+\end{caide}
+
+\exonum{0}
+
+\medskip
+
+Soit $f$ la fonction définie et dérivable sur $\R\setminus\left\lbrace2\right\rbrace$ par $f(x)=\dfrac{x+1}{2-x}$. On note $\mathscr{C}_f$ sa courbe représentative dans un repère orthogonal.
+
+\begin{enumerate}
+	\item Calculer $f(3)$ puis, à l'aide de la calculatrice, déterminer la valeur de $f'(3)$.
+	\item En déduire une équation de $T_3$, tangente à $\mathscr{C}_f$ au point d'abscisse $3$.
+\end{enumerate} 
+
+\medskip
+
+\exonum{1}
+
+\medskip
+
+On considère la fonction $g$ définie sur $\R$ par $g(x)=\dfrac{2}{x^2+1}$. On note $\mathscr{C}_g$ sa courbe dans un repère orthogonal.
+%
+\begin{enumerate}
+	\item Calculer $g(1)$.
+	\item On admet que, pour $h \neq 0$, on a $\dfrac{g(1+h)-g(1)}{h}=\dfrac{-h-2}{h^2+2h+2}$.
+	
+	En déduire que $g$ est dérivable en $a=1$ et déterminer la valeur de $g'(1)$ (on pourra vérifier ce résultat à l'aide de la calculatrice).
+	\item Déterminer une équation de $T_1$, tangente à $\mathscr{C}_g$ au point d'abscisse $1$.
+\end{enumerate}
+
+\medskip
+
+\exonum{2}
+
+\medskip
+
+On considère une fonction $h$, définie sur $\intervFF{-3}{9}$, dont la courbe représentative $\mathscr{C}_h$ est donnée ci-dessous.
+%
+\begin{center}
+	\tunits{1}{1}
+	\tdefgrille{-3}{9}{1}{1}{-4}{3}{1}{1}
+	\begin{tikzpicture}[x=\xunit cm,y=\yunit cm,scale=0.9]
+		%grilles & axes
+		\tgrilles[line width=0.3pt,lightgray!50]
+		\tgrillep[line width=0.6pt,lightgray!50]
+		\axestikz*
+		\foreach \x in {-3,-2,...,8} \draw[line width=1.25pt] (\x,4pt) -- (\x,-4pt) ;
+		\foreach \y in {-4,-3,...,2} \draw[line width=1.25pt] (4pt,\y) -- (-4pt,\y) ;
+		\foreach \x in {1,5} \draw (\x,-4pt) node[below] {\small$\mathsf{\x}$} ;
+		\draw (-4pt,1) node[left] {\small$\mathsf{1}$} ;
+		\draw (0,-1.5) node[left] {\small$\mathsf{-1,5}$} ;
+		\draw (0,0) node[below left] {\small\sf 0} ;
+		\clip (\xmin,\ymin) rectangle (\xmax,\ymax) ; %on restreint les fonctions à la fenêtre
+		%les splines en pgf
+		\draw[line width=1.25pt,red,samples=200,domain=-3:-2] plot(\x,{0.75*\x*\x*\x+6.0*\x*\x+12.75*\x+7.5}) ;
+		\draw[line width=1.25pt,red,samples=200,domain=-2:1] plot(\x,{-0.0278*\x*\x*\x+0.3333*\x*\x+-0.5833*\x+-2.7222}) ;
+		\draw[line width=1.25pt,red,samples=200,domain=1:4] plot(\x,{-0.0278*\x*\x*\x+0.3333*\x*\x+-0.5833*\x+-2.7222}) ;
+		\draw[line width=1.25pt,red,samples=200,domain=4:7] plot(\x,{-0.0278*\x*\x*\x+0.3333*\x*\x+-0.5833*\x+-2.7222}) ;
+		\draw[line width=1.25pt,red,samples=200,domain=7:9] plot(\x,{-0.0625*\x*\x*\x+1.125*\x*\x+-6.5625*\x+12.25}) ;
+		%tangentes
+		\draw[line width=1.25pt,blue,samples=200,domain=\xmin:\xmax] plot(\x,{-2.25*(\x+2)}) ;
+		\draw[line width=1.25pt,orange,samples=200,domain=\xmin:\xmax] plot(\x,{0*(\x-1)-3}) ;
+		\draw[line width=1.25pt,ForestGreen,samples=200,domain=\xmin:\xmax] plot(\x,{0.75*(\x-4)-1.5}) ;
+		%points de tangentes
+		\draw[darkgray,line width=1.25pt,densely dashed] (4,0) |- (0,-1.5) ;
+		\foreach \Point in {(-2,0),(1,-3),(4,-1.5)} \filldraw \Point circle[radius=2pt] ;
+		\draw (-2.5,0.25) node[blue] {\small$\mathsf{T_{-2}}$} ;
+		\draw (-2.5,-3.25) node[orange] {\small$\mathsf{T_{1}}$} ;
+		\draw (8.5,1.33) node[ForestGreen] {\small$\mathsf{T_{4}}$} ;
+		\draw (8.5,-1) node[red] {\large$\mathscr{C}_h$} ;   
+	\end{tikzpicture}
+\end{center}
+%
+Les droites $T_{-2}$, $T_1$ et $T_4$ sont les tangentes à $\mathscr{C}_h$ aux points d'abscisses respectifs $-2$ ; $1$ et $4$.
+%
+\begin{enumerate}
+	\item Expliquer pourquoi, graphiquement, la fonction $h$ semble être dérivable en toute valeur de $\intervFF{-3}{9}$.
+	\item Donner, par lecture graphique :
+	\begin{enumerate}
+		\item les valeurs de $h(4)$ et $h'(4)$ ;
+		\item les valeurs de $h(1)$ et $h'(1)$ ;
+		\item le signe de $h'(-2)$.
+	\end{enumerate}
+	\item Déterminer une équation de $T_1$ puis une équation de $T_4$.
+	\item[Bonus] Sur quel(s) intervalle(s) peut-on affirmer que $h'(x) \pg 0$.
+\end{enumerate}
+
+\newpage
+
+\exonum{4}
+
+\medskip
+
+Dans cet exercice, on va essayer de préparer la transition \tcbox[arc=3mm,colback=red!5!white,colframe=red!75!black,size=small,left=1pt,right=1pt,top=0pt,bottom=0pt,boxsep=1pt,boxrule=0.75pt,on line,sharp corners,rounded corners=southeast]{\textbf{\red\og dérivation locale \fg{}} {\red\ldots\footnotesize\faBicycle\normalsize\ldots} \textbf{\red\og dérivation globale \fg}}.
+
+\begin{enumerate}
+	\item On considère la fonction $f$ définie sur $\R$ par $f(x)=x^2$.
+	\begin{enumerate}
+		\item En utilisant la technique du \og taux d'accroissement \fg{}, déterminer la valeur de $f'(1)$.
+		\item En utilisant la technique du \og taux d'accroissement \fg{}, déterminer la valeur de $f'(2)$.
+		\item Soit maintenant $a$ un réel \uline{quelconque}.
+		
+		On admet que, pour $h \neq 0$, on a $\dfrac{f(a+h)-f(a)}{h}=2a+h$.
+		
+		En déduire que $f$ est dérivable en $a$, puis déterminer la valeur de $f'(a)$.
+		\item En utilisant la formule obtenue à la question \ptno{1}\pta{c}, expliquer comment on peut retrouver -- facilement -- les résultats des questions \ptno{1}\pta{a} et \ptno{1}\pta{b}.
+	\end{enumerate}
+	\textbf{NB : }on vient en fait de déterminer la \og fonction dérivée \fg{} de la fonction carrée !
+	\item On considère désormais la fonction $g$ définie sur $\R^*$ par $g(x)=\dfrac{1}{x}$.
+	\begin{enumerate}
+		\item Déterminer, à l'aide de la calculatrice, les valeurs de $g'(2)$, $g'(4)$ et $g'(-5)$.
+		\item Conjecturer une formule permettant de calculer $g'(a)$ pour tout réel $a$ non nul.
+		\item Soit donc $a$ un réel non nul.
+		\begin{enumerate}
+			\item Déterminer, en fonction de $a$, les valeurs de $g(a)$ et de $g(a+h)$.
+			\item En déduire, pour $h \neq 0$, une écriture simplifiée de $\dfrac{g(a+h)-g(a)}{h}$.
+			\item En déduire que $g$ est dérivable en $a$, puis déterminer la valeur de $g'(a)$.
+			\item Comparer avec la conjecture faite en \ptno{2}\pta{b}.
+		\end{enumerate}
+	\end{enumerate}
+	\textbf{NB : }on vient en fait de déterminer la \og fonction dérivée \fg{} de la fonction inverse !
+\end{enumerate}
+
+\medskip
+
+\exonum{5}
+
+\medskip
+
+On considère le script \calgpython{} suivant :
+
+\begin{envpython}[10cm]
+def f(x):
+	return x**2
+
+def g(x):
+	return 1/x
+
+def mystere(fonc,a,h):
+	return (fonc(a+h)-fonc(a))/h
+\end{envpython}
+
+\begin{enumerate}
+	\item Dans cette question, on se réfèrera aux données et résultats de l'\textcolor{titrebleu}{exercice 4}.
+	\begin{enumerate}
+		\item De quelle valeur le résultat obtenu à l'aide de la commande \cpy{mystere(f,2,0.0001)} est-il très proche ?
+		\item De quelle valeur le résultat obtenu à l'aide de la commande \cpy{mystere(g,-5,0.0001)} est-il très proche ?
+	\end{enumerate}
+	\item On souhaiterait utiliser le script précédent pour vérifier le résultat obtenu à la question \ptno{2} de l'\textcolor{titrebleu}{exercice 2}.
+	\begin{enumerate}
+		\item Proposer une modification de la ligne \cpy{L5} afin de déclarer la fonction $g$.
+		\item Quelle \cpy{commande}, utilisant la fonction \cpy{mystere()} permettrait de répondre à la problématique ?
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,104 @@
+% !TeX TXS-program:compile = txs:///lualatex
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[revgoku]{cp-base}
+\graphicspath{{./graphics/}}
+%variables.
+\donnees[classe={1\up{ère} 2M2},matiere={[SPÉ.MATHS]},mois={Jeudi 27 Janvier},annee=2022,typedoc=TEST~,numdoc=5,duree={15 minutes}]
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfstartview=FitH}
+%divers
+\lhead{\entete{Durée : \duree}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - \mois{} \annee}}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee{}}
+\fancypagestyle{sujetA}{\fancyhead[R]{\entete{\classe{}A - \mois{} \annee}}}
+\fancypagestyle{sujetB}{\fancyhead[R]{\entete{\classe{}B - \mois{} \annee}}}
+\usepackage{tabularray}
+\newcommand\cercletrigo{%
+	\draw (0,0) circle[radius=2] ;
+	\draw (-2.25,0) -- (2.25,0) ;
+	\draw (0,-2.25) -- (0,2.25) ;
+	\draw[->,>=stealth'] (0,0) -- (2,0) ;
+	\draw[->,>=stealth'] (0,0) -- (0,2) ;
+	%\draw (0,0) node[below left] {$O$} ;
+}
+
+\begin{document}
+
+\pagestyle{fancy}
+
+\part{TEST05 - Trigonométrie}%SUJETA
+
+\setcounter{numexos}{0}
+
+\medskip
+
+\nomprenomtcbox
+
+\medskip
+
+\exonum{}
+
+\medskip
+
+À l'aide des informations présentes sur le cercle trigonométrique suivant, déterminer un angle, en radian, associé à chacun des points M, N et P.
+
+\medskip
+
+\begin{minipage}{3.25cm}
+	\begin{tikzpicture}[x=0.75cm,y=0.75cm,thick]
+		\cercletrigo
+		\draw[densely dotted] (-60:2)--(60:2) (0,0)--(-135:2) (-1,0)--(-120:2) (0,-1)--(-150:2);
+		\filldraw (60:2) circle[radius=2pt] node[font=\sffamily,above right=0pt] {$M$} (-135:2) circle[radius=2pt]  node[font=\sffamily,below left=0pt] {$N$} (-180:2) circle[radius=2pt]  node[font=\sffamily,above left=0pt] {$P$} ;
+		\draw (0.5,0) node[font=\scriptsize] {/\!/} (1.5,0) node[font=\scriptsize] {/\!/} ;
+	\end{tikzpicture}
+\end{minipage}\hfill~
+\begin{minipage}{14cm}
+	\papierseyes*{17}{4}
+\end{minipage}
+
+\medskip
+
+\exonum{}
+
+\medskip
+
+Pour chacun des angles suivants, donner sa mesure principale, son cosinus ainsi que son sinus :
+
+\begin{center}
+	\begin{tblr}{hlines,vlines,width=0.85\linewidth,colspec={X[c]X[c]X[c]X[c]},row{1}={font=\sffamily\bfseries},row{2-Z}={1.05cm}}
+	angle & mesure principale & cosinus & sinus \\
+	$\dfrac{17\pi}{4}$ & & & \\
+	$\dfrac{-35\pi}{2}$ & & & \\
+	$\dfrac{112\pi}{3}$ & & & \\
+	$\dfrac{-5\pi}{6}$ & & & \\
+\end{tblr}
+\end{center}
+
+\medskip
+
+\exonum{}
+
+\medskip
+
+Résoudre les équations suivantes :
+
+\begin{enumerate}
+	\item $\cos(x)=-\dfrac12$ ;
+\end{enumerate}
+\papierseyes{22}{2}
+\begin{enumerate}[resume]
+	\item $\sin(x)=\dfrac{\sqrt{2}}{2}$ ;
+\end{enumerate}
+\papierseyes{22}{2}
+\begin{enumerate}[resume]
+	\item $3\sin(x)-3=0$.
+\end{enumerate}
+\papierseyes{22}{3}
+
+
+\end{document}

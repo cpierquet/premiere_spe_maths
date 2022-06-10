@@ -1,0 +1,335 @@
+% !TeX TXS-program:compile = txs:///arara
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode}
+% arara: pythontex: {rerun: modified} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('pytxcode', 'PYTHONTEX#py')
+% arara: lualatex: {shell: no, synctex: yes, interaction: batchmode} if found('log', '(undefined references|Please rerun|Rerun to get)')
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[]{cp-base}
+\graphicspath{{./graphics/}}
+%variables
+\donnees[%
+	classe=1\up{ère} 3M3,
+	matiere={[SPÉ.MATHS]},
+	typedoc=CHAPITRE~,
+	numdoc=12,
+	titre={Variables aléatoires}
+	]
+
+%formatage
+\author{Pierquet}
+\title{\nomfichier}
+\hypersetup{pdfauthor={Pierquet},pdftitle={\nomfichier},allbordercolors=white,pdfborder=0 0 0,pdfstartview=FitH}
+%divers
+\lhead{\entete{\matiere}}
+\chead{\entete{\lycee}}
+\rhead{\entete{\classe{} - Chapitre \thepart}}
+\lfoot{\pied{\matiere}}
+\cfoot{\logolycee{}}
+\rfoot{\pied{\numeropagetot}}
+
+\tcbset{cartepoker/.style={%
+		fontupper={\vphantom{pf}\scriptsize\sffamily},colback=white,nobeforeafter,%
+		box align=base,boxsep=0pt,enhanced,width=16pt,tcbox width=forced center,%
+		boxrule=0.7pt,left=2pt,right=2pt,top=0pt,bottom=0pt
+	}
+}
+
+\begin{document}
+
+\newcommand\carte[2]{
+	\ifthenelse{\equal{#2}{T}}{\tcbox[cartepoker]{#1\ding{168}}}{}
+	\ifthenelse{\equal{#2}{P}}{\tcbox[cartepoker]{#1\ding{171}}}{}
+	\ifthenelse{\equal{#2}{C}}{\tcbox[cartepoker]{\red #1\ding{170}}}{}
+	\ifthenelse{\equal{#2}{K}}{\tcbox[cartepoker]{\red #1\ding{169}}}{}
+}
+
+\newcommand\ecartv{$\vphantom{\dfrac{1}{32}}$}
+
+\pagestyle{fancy}
+
+\part{CH12 - Variables aléatoires}
+
+\medskip
+
+\begin{ccadre}
+Dans toute la leçon qui suit, on considère une expérience aléatoire dont l'univers $\Omega$ est un ensemble fini.
+\end{ccadre}
+
+\section{Variable aléatoire}
+
+\subsection{Définition}
+
+\begin{cdefi}
+Une \textbf{variable aléatoire} réelle $X$ est une fonction définie sur $\Omega$ à valeurs dans  $\R$.
+
+C'est-à-dire qu'à chaque issue de l'expérience aléatoire, on va associer un nombre réel.
+\end{cdefi}
+
+\begin{cexemple}
+On tire une carte au hasard dans un jeu de 32 cartes :
+\begin{itemize}
+	\item si la carte tirée est le 7 de cœur, on marque 18 points ;
+	\item si c'est un as, on marque 5 points ;
+	\item si c'est une tête (roi, dame ou valet), on marque 2 points ;
+	\item on ne marque pas de point sinon.
+\end{itemize}
+L'univers $\Omega$ de cette expérience aléatoire est l'ensemble de toutes les cartes du jeu qu'il est possible de tirer :
+
+\tabula{}$\Omega=\left\lbrace \carte{A}{T}\,;\,\carte{R}{T}\,;\,\ldots\,;\,\carte{7}{T}\,;\,\carte{A}{K}\,;\,\carte{R}{K}\,;\,\ldots\,;\,\carte{7}{K}\,;\,\carte{A}{C}\,;\,\carte{R}{C}\,;\,\ldots\,;\,\carte{7}{C}\,;\,\carte{A}{P}\,;\,\carte{R}{P}\,;\,\ldots\,;\,\carte{7}{P} \right\rbrace$.
+
+\smallskip
+
+Si on appelle $X$ la \textbf{variable aléatoire} égale au \textbf{nombre de points marqués}, $X$ va associer à chaque carte un nombre de points : $X\big(\carte{A}{P}\big)=5$ \quad $X\big(\carte{7}{C}\big)=18$ \quad $X\big(\carte{9}{P}\big)=0$ \quad \ldots
+
+\smallskip
+
+L'\textbf{univers image} de $X$ est l'ensemble des valeurs prises par $X$, on le note $X(\Omega)$.
+
+Ici, il s'agit des scores possibles : $X(\Omega)=\{18\,;\,5\,;\,2\,;\,0\strut\}$.
+	
+L'\textbf{événement} $\{X=5\strut\}$ est l'ensemble des issues de l'expérience aléatoire qui ont pour image 5.
+
+Ici, ce sont toutes les cartes qui permettent de remporter 5 points : $\{\strut X=5\}=\left\lbrace \strut \carte{A}{T}\,;\,\carte{A}{K}\,;\,\carte{A}{C}\,;\,\carte{A}{P} \right\rbrace$.
+
+\smallskip
+
+La \textbf{probabilité} que $X$ soit égale à 5, notée $p(X=5)$, est donc la probabilité d'obtenir un as : $p(X=5)=\frac{4}{32}=0,125$.
+\end{cexemple}
+
+\begin{cexercice}
+Dans l'exemple ci-dessus :
+\begin{enumerate}[noitemsep,topsep=2pt]
+	\item Décrire $\{X=18\strut\}$ puis déterminer sa probabilité.
+	\item Calculer $p(X=2)$ et $p(X=0)$.
+	\item Décrire $\{X<4\strut\}$ puis déterminer sa probabilité.
+\end{enumerate}
+\end{cexercice}	
+
+\begin{crmq}
+L'avantage d'une variable aléatoire est que l'on peut rendre \og numérique \fg{} une expérience de probabilités qui ne l'est au départ pas du tout ! Et du coup des \og calculs \fg vont pouvoir être effectués !
+\end{crmq}
+
+\begin{cnota}	
+Une variable aléatoire se note toujours avec une lettre majuscule. On réserve souvent celles du début de l'alphabet aux \textit{événements}, et celles de la fin aux \textit{variables aléatoires}.
+\end{cnota}
+
+\subsection{Loi de probabilité}
+
+\begin{cdefi}
+On appelle \textbf{loi de probabilité} d'une variable aléatoire $X$ la donnée d'un \textbf{tableau} dans lequel figurent :
+\begin{itemize}
+	\item en première ligne, la liste des \textbf{valeurs possibles} $x_i$ pour $X$ ;
+	\item en deuxième ligne, les \textbf{probabilités} $p(X=x_i)$ correspondantes.
+\end{itemize}
+On la présente en général sous la forme : 
+\begin{center}
+	\begin{tblr}{hlines,vlines,width=6cm,colspec={c*{4}{X[c]}}}
+		$x_i$		 & $x_1$ & $x_2$ & \ldots & $x_n$ \\
+		$p(X=x_i)$	 & $p_1$ &$ p_2$ & \ldots &$ p_n$  \\
+	\end{tblr}
+\end{center}
+\end{cdefi}
+
+\begin{cexemple}
+La loi de probabilité de la variable $X$ de l'exemple précédent est donc :
+\begin{center}
+	\begin{tblr}{hlines,vlines,colspec={l*{4}{Q[c,0.8cm]}},rowsep=6pt}
+		Nombre de points & 18 & 5 & 2 & 0 \\
+		Probabilité & $\dfrac{1}{32}$	& $\dfrac{1}{8}$ & $\dfrac{3}{8}$ &$ \dfrac{15}{32}$
+	\end{tblr}
+\end{center}
+\end{cexemple}
+
+\begin{cprop}
+Dans une loi de probabilité, la \textbf{somme des probabilités} (c'est-à-dire pour la seconde ligne du tableau) doit toujours être \textbf{égale à 1}.
+\end{cprop}
+
+\begin{cdemo}
+En effet, le tableau doit lister 100\% des cas !
+\end{cdemo}
+
+\begin{cexemple}
+On peut en effet vérifier que  $\dfrac{1}{32}+ \dfrac{1}{8}+\dfrac{3}{8}+ \dfrac{15}{32} =1$.
+\end{cexemple}
+
+\section{Paramètres d'une variable aléatoire}
+
+\subsection{Espérance mathématique}
+
+\begin{cdefi}
+Soit $X$ une variable aléatoire définie sur $\Omega$ et qui prend les $n$ valeurs $x_1$, $x_2$, \ldots, $x_n$ de probabilités respectives $p_1$, $p_2$, \ldots, $p_n$, c'est-à-dire dont la loi de probabilité est :
+\begin{center}
+	\begin{tblr}{hlines,vlines,width=6cm,colspec={c*{4}{X[c]}}}
+		$x_i$ & \color{blue} $x_1$ & \color{blue} $x_2$ & \dots & \color{blue} $x_n$ \\
+		$p(X=x_i)$ &  \color{ForestGreen}{$p_1$} &  \color{ForestGreen}{$p_2$} & \dots &  \color{ForestGreen}{$p_n$} \\
+	\end{tblr}
+\end{center}
+On appelle \textbf{espérance mathématique} de la variable aléatoire $X$, et on note $\esp{X}$ le nombre réel défini par : \[\esp{X}=\textcolor{blue}{x_1} \times \textcolor{ForestGreen}{p_1}+\textcolor{blue}{x_2} \times \textcolor{ForestGreen}{p_2} + \dots +\textcolor{blue}{x_n} \times \textcolor{ForestGreen}{p_n}. \]
+\end{cdefi}
+
+\pagebreak
+
+\begin{crmq}[s]
+\vspace{-0.2cm}
+\begin{itemize}[leftmargin=*]
+	\item Si $X$ a une unité (\euro, centimètre, ...) alors $\esp{X}$ a la même unité.
+	\item Il existe une notation qui permet d'éviter d'écrire cette formule avec des pointillés. On écrit aussi \[\esp{X}= \sum_{i=1}^{n}x_i  p_i\] ($\Sigma$ se lit \og sigma \fg) et qui signifie \og somme pour $i$ variant de $1$ jusqu'à $n$ des termes de la forme $x_ip_i$ \fg.
+\end{itemize}
+\end{crmq}
+
+\begin{cexemple}
+Dans l'exemple précédent, on a $\esp{X}=18\times \frac{1}{32}+5\times \frac{1}{8}+2\times \frac{3}{8}+0\times \frac{15}{32}=\frac{31}{16} \approx 1,9 \text{ points}$.
+\end{cexemple}
+
+\begin{cprop}
+L'\textbf{espérance} est la \textbf{moyenne} que l'on peut \og espérer\fg{} si l'on répète l'expérience un grand nombre de fois.
+\end{cprop}
+
+\begin{cdemo}
+En effet, le calcul de l'espérance en probabilités correspond à celui de la moyenne pondérée en statistiques : \[\frac{p_1 \times x_1 +p_2 \times x_2 + \dots + p_n \times x_n  }{p_1+p_2+\dots+p_n}=\frac{p_1 \times x_1 +p_2 \times x_2 + \dots + p_n \times x_n  }{1}=p_1 \times x_1 +p_2 \times x_2 + \dots + p_n \times x_n.\]
+\end{cdemo}
+
+\begin{cdefi}
+Lors d'un jeu d'argent, on appelle \textbf{gain algébrique} la différence entre la \textit{somme gagnée} à la fin du jeu et la \textit{somme misée} au début pour avoir le droit de jouer. Ce \textit{gain} algébrique peut donc être \textit{négatif}.
+\end{cdefi}
+
+\begin{cexemple}
+Dans le cas de notre jeu, si on décide de faire miser 2\,€, avant de laisser le passant tirer la carte, et qu'il gagne des euros au lieu de gagner des points : 18\,€, pour le sept de cœur, 5\,€, pour un as et 2\,€, pour une tête, rien sinon. On appelle alors $Y$ la variable aléatoire égale au gain algébrique du joueur :
+\begin{itemize}
+	\item s'il tire le 7 de cœur, il a misé 2\,€, et en récupère 18, donc au final il a 16\,€ ; cela avec une probabilité de $\tfrac{1}{32}$ ;
+	\item s'il tire un as, alors $Y=5-2=3$ ;
+	\item si c'est une tête, il récupère juste sa mise, donc il n'aura ni perdu ni gagné d'argent : $Y=0$ ;
+	\item s'il tire une autre carte, il aura définitivement perdu ses 2\,€, donc $Y=-2$.
+\end{itemize}
+L'univers image de $Y$ est $Y(\Omega)=\{\strut 16\,;\,3\,;\,0\,;\,-2\}$ et sa loi de probabilité :
+\begin{center}
+	\begin{tblr}{hlines,vlines,colspec={l*{4}{Q[c,0.8cm]}},rowsep=6pt}
+		Gain algébrique & 16 & 3 & 0 & $-2$ \\
+		Probabilité & $\dfrac{1}{32}$ &$ \dfrac{1}{8}$ & $\dfrac{3}{8}$ &$ \dfrac{15}{32}$ \\
+	\end{tblr}
+\end{center}
+\end{cexemple}
+
+\begin{cprop}
+Si une variable aléatoire $X$ correspond au \textit{gain algébrique} dans un jeu d'argent, on dit que le jeu est \textbf{équitable} lorsque $X$ a \textbf{une espérance nulle}.
+\end{cprop}
+
+\begin{cexercice}
+Calculer l'espérance $\esp{Y}$ de la variable aléatoire $Y$ de l'exemple précédent.
+
+Le jeu est-il équitable ? Si non, à qui profite-t-il ?
+\end{cexercice}
+
+\begin{crmq}
+La plupart du temps, les jeux d'argent permettent à leurs organisateurs de faire du profit. Dans ce cas, l'espérance du gain algébrique sera \textit{négative} puisque, en moyenne, les joueurs \textit{perdront} de l'argent.
+\end{crmq}
+
+\subsection{Variance et écart-type}
+
+\begin{cdefi}[s]
+On considère toujours une variable aléatoire $X$ de loi de probabilité :
+\begin{center}
+	\begin{tblr}{hlines,vlines,width=6cm,colspec={c*{4}{X[c]}}}
+		$x_i$		 & $x_1$ & $x_2$ & \ldots & $x_n$ \\
+		$p(X=x_i)$	 & $p_1$ &$ p_2$ & \ldots &$ p_n$  \\
+	\end{tblr}
+\end{center}
+On appelle \textbf{variance} de la variable aléatoire $X$, et on note $\var{X}$, le nombre réel \textbf{positif} : \[\var{X}=\esp{X^2}-\esp{X}^2=x_1^2 \times p_1+x_2^2 \times p_2 + \dots +x_n ^2\times p_n-\esp{X}^2.\]
+On appelle \textbf{écart-type} de $X$, et on note $\sigma(X)$, la racine carrée de sa variance : $\sigma(X)=\sqrt{\var{X}}$.
+\end{cdefi}
+
+\begin{cexemple}
+Reprenons la loi de probabilité de la variable aléatoire $X$ définie plus haut, dont on a déjà calculé l'espérance qui est $\esp{X}=\frac{31}{16}$ : 
+\begin{center}
+	\begin{tblr}{hlines,vlines,colspec={l*{4}{Q[c,0.8cm]}},rowsep=6pt}
+		Nombre de points & \color{blue}18 & \color{blue}5 & \color{blue}2 & \color{blue}0 \\
+		Probabilité & \color{ForestGreen}$\frac{1}{32}$ &\color{ForestGreen}$ \frac{1}{8}$ & \color{ForestGreen}$\frac{3}{8}$ &\color{ForestGreen}$ \frac{15}{32}$  \\
+	\end{tblr}
+\end{center}
+\[\var{X}=\textcolor{blue}{18}^{\textcolor{red}{2}}\times
+\textcolor{ForestGreen}{\frac{1}{32}}+\textcolor{blue}{5}^{\textcolor{red}{2}}\times
+\textcolor{ForestGreen}{\frac{1}{8}}+\textcolor{blue}{2}^{\textcolor{red}{2}}\times 
+\textcolor{ForestGreen}{\frac{3}{8}}+\textcolor{blue}{0}^{\textcolor{red}{2}}\times
+\textcolor{ForestGreen}{\frac{15}{32}}-
+\left(\frac{31}{16}\right)^{\textcolor{red}{2}}=\frac{2815}{256} \approx 11 \mbox{ et } \sigma(X)=\sqrt{\var{X}}\approx \sqrt{11} \approx 3,3 \mbox{ points}
+\]
+\end{cexemple}
+
+\begin{crmq}[s]
+\vspace{-0.2cm}
+\begin{itemize}[leftmargin=*]
+	\item avec la notation $\Sigma$ comme ci-dessus, on a : \[\var{X}=\sum_{i=1}^nx_i^2p_i-\esp{X}^2\]
+	\item on a aussi la formule suivante, qui est équivalente : \[\var{X}=\sum_{i=1}^{n}p_i\left(x_i-\esp{X}\right)^2\]
+	\item Si $X$ a une unité (\euro, centimètre, ...) alors $\sigma(X)$ a la même unité, mais pas la variance.
+\end{itemize}
+\end{crmq}
+
+\begin{cprop}
+L'\textbf{écart-type} est une caractéristique de \textbf{dispersion} \og espérée \fg{} pour la loi de probabilité de la variable aléatoire.
+\end{cprop}
+
+\begin{cexercice}
+Calculer la variance et l'écart-type de la variable aléatoire $Y$ égale au gain algébrique. Que remarque-t-on ?
+\end{cexercice}
+
+\begin{crmq}
+En raison de la mise au carré des écarts, l'unité de la variance est le \textit{carré} de celle du caractère , d'où l'impossibilité d'additionner la \textit{moyenne} et la \textit{variance}. On a donc défini l'\textit{écart type} qui, lui, le peut !
+\end{crmq}
+
+\section{Simulation, modélisation}
+
+\subsection{Simulation}
+
+\begin{cpython}
+En \calgpython, on peut \textit{simuler} une expérience aléatoire, pour déterminer -- par \textit{simulation} -- une loi de probabilités possible pour une variable aléatoire.
+
+\begin{tcpythoncode}[15cm]
+	\begin{pyverbatim}[][fontsize=\footnotesize,numbers=left,numbersep=10pt]
+		# somme de deux dés (résultats possibles := 2...12)
+		from random import randint
+		def simul(n) :
+			tirage = [randint(1,6)+randint(1,6) for i in range(n)]
+			result = [round(tirage.count(i)/n,3) for i in range(2,12)]
+			return result
+	\end{pyverbatim}
+\end{tcpythoncode}
+
+\begin{pyconcode}
+from random import randint
+def simul(n) :
+	tirage = [randint(1,6)+randint(1,6) for i in range(n)]
+	result = [round(tirage.count(i)/n,3) for i in range(2,12)]
+	return result
+	
+
+\end{pyconcode}
+	
+\begin{consolepython}[15cm]
+\begin{pyconsole}[][framesep=3mm,frame=single,label={[\scriptsize Début de la console \logopython]\scriptsize Fin de la console \logopython},fontsize=\footnotesize,framerule=1pt,rulecolor=\color{ForestGreen}]
+simul(1000)
+simul(10000)
+\end{pyconsole}
+\end{consolepython}
+\end{cpython}
+
+\subsection{Modélisation}
+
+\begin{cmethode}
+\textbf{Modéliser} une expérience aléatoire, c’est lui associer un univers et une loi de probabilité.
+
+Deux approches sont possibles pour \og choisir \fg{} ce modèle :
+\begin{itemize}
+	\item avec un raisonnement \textit{a priori} s’appuyant sur les hypothèses de l’énoncé : par exemple en listant l’ensemble des issues possibles avec un arbre ou une autre représentation puis en déterminant la valeur associée à chaque issue.
+	\item avec une estimation \textit{a posteriori} s’appuyant sur des fréquences observées par statistique ou simulation. La fréquence d’une issue tend vers sa probabilité quand le nombre d’expériences augmente. Ce résultat s’appelle la \textbf{Loi des grands nombres}, et fut énoncé pour la première fois par le mathématicien Jacques Bernoulli en 1713 (8 ans après sa mort).
+\end{itemize}
+\end{cmethode}
+
+\begin{chistoire}
+\vspace{-0.22cm}
+\lettrine[findent=.5em,nindent=0pt,lines=3,image,novskip=0pt]{bernoulli}{}\textbf{Jacob Bernoulli} (1654/1705, $\vcenter{\hbox{\includegraphics[height=0.5\baselineskip]{ch}}}$) est l'ainé de la famille des \textit{Bernoulli}, famille de mathématiciens suisses d'origine belge. Ses parents, qui sont de riches commerçants, souhaitent qu'il étudie la théologie et la philosophie, ce qu'il fait d'ailleurs puisqu'il obtint un diplôme dans ces deux disciplines, mais ses intérêts se portent rapidement vers l'astronomie et les mathématiques.
+
+\lettrine[findent=.5em,nindent=0pt,lines=4,image,novskip=0pt]{bernoulli_tombe}{}Il aimait particulièrement la spirale logarithmique, et ses propriétés d'invariance. Il demanda à ce que l'on en grave une sur sa tombe, accompagnée des mots \og Eadem mutata resurgo \fg, qui signifient \og Elle renait changée en elle-même \fg. Hélas, le graveur, mauvais mathématicien, dessina une spirale d'Archimède !
+\end{chistoire}
+
+\end{document}
