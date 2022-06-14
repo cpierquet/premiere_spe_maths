@@ -28,7 +28,6 @@
 \lfoot{\pied{\matiere}}
 \cfoot{\logolycee{}}
 \rfoot{\pied{\numeropagetot}}
-
 %divers
 
 \begin{document}
@@ -41,7 +40,7 @@
 
 \pagestyle{fancy}
 
-\part{CH16 - En Route vers la Terminale !}
+\part*{En route vers la Terminale}
 
 \smallskip
 
@@ -74,7 +73,7 @@ Calculer les 3 premiers termes de chacune des suites suivantes, en précisant si
 	\begin{enumerate}
 		\item Expliquer pourquoi cette suite est géométrique.
 		\item Donner sa définition par récurrence.
-		\item Montrer que la somme $S=v_1+v_2+\ldots+v_{10}$ vaut environ $7,996$.
+		\item Montrer que la somme $S=v_0+v_2+\ldots+v_{10}$ vaut environ $7,996$.
 	\end{enumerate}
 \end{enumerate}
 \end{cexercice}
@@ -176,13 +175,15 @@ Dans l’étude de certaines maladies, on voudrait savoir si le fait de fumer jo
 On dispose des statistiques ci-contre concernant une population de \num{20000} personnes.
 %
 \begin{center}
-	\begin{tabularx}{0.8\linewidth}{|Y|Y|Y|Y|}
-		\hline
-		 & \textbf{Malades} & \textbf{Sains} & \textbf{Total} \\ \hline
-		\textbf{Fumeurs} & 400 & \num{4600} &  \\ \hline
-		\textbf{Non-Fumeurs} & 600 & \num{14400} & \\ \hline
-		\textbf{Total} & & & \\ \hline
-	\end{tabularx}
+	\begin{tblr}{width=0.8\linewidth,colspec={X[c]X[c]X[c]X[c]},%rows={7mm},
+			hline{1}={2-5}{solid,0.8pt},hline{2-5}={solid,0.8pt},
+			vline{1}={2-5}{solid,0.8pt},vline{2-5}={solid,0.8pt},
+			cell{1}{2,3,4}={lightgray!50},cell{2,3,4}{1}={lightgray!50}
+			}
+		 & \textbf{Malades} & \textbf{Sains} & \textbf{Total} \\
+		\textbf{Fumeurs} & 400 & \num{4600} &  \\
+		\textbf{Non-Fumeurs} & 600 & \num{14400} & \\
+		\textbf{Total} & & & \\	\end{tblr}
 \end{center}
 %
 On note M l’événement « la personne est malade » et F l’événement « la personne fume ».
@@ -219,15 +220,18 @@ Dans une enquête menée auprès d’une population, on a constaté que :
 
 \begin{cexercice}[ B4 : loi de probabilité]
 La loi de probabilité d’une variable aléatoire $X$ est donnée par le tableau ci-dessous :
-
+%
 \begin{center}
-	\begin{tabularx}{0.8\linewidth}{|c|Y|Y|Y|Y|Y|Y|Y|Y|Y|}
-		\hline
-		Valeurs$x_i$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ \hline
-		$P(X=x_i)$ & $0,10$ & $0,05$ & $0,15$ & $0,05$ & $0,10$ & $0,20$ & $0,10$ & $0,10$ & $a$ \\ \hline
-	\end{tabularx}
+	\begin{tblr}{
+			hlines={0.8pt},vlines={0.8pt},width=0.8\linewidth,
+			colspec={X[2.5,c]X[c]X[c]X[c]X[c]X[c]X[c]X[c]X[c]X[c]},%rows={7mm},
+			cell{1,2}{1}={lightgray!50}
+		}
+		\textbf{Valeurs} $\grasmaths{x_i}$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+		$\grasmaths{P(X=x_i)}$ & $0,10$ & $0,05$ & $0,15$ & $0,05$ & $0,10$ & $0,20$ & $0,10$ & $0,10$ & $a$ \\
+	\end{tblr}
 \end{center}
-
+%
 \begin{enumerate}
 	\item Déterminer la valeur de $a$.
 	\item 
@@ -420,7 +424,7 @@ On modélise la vitesse (en mètre par seconde) du caillou au bout de $t$ second
 	\item 
 	\begin{enumerate}
 		\item Déterminer une expression de $f'(t)$.
-		\item Étudier les variations de $t$ sur $\intervFO{0}{+\infty}$.
+		\item Étudier les variations de $f$ sur $\intervFO{0}{+\infty}$.
 	\end{enumerate}
 	\item La vitesse du caillou dépassera-t-elle les 10 m.s\up{-1} ?
 \end{enumerate}
@@ -482,9 +486,9 @@ Dans le plan muni d’un repère $\Rij$ orthonormé, on considère les quatre po
 	\item 
 	\begin{enumerate}
 		\item Calculer les longueurs $AB$ et $AD$.
-		\item Déterminer une valeur approchée au dixième de degré, de l'angle $\widehat{DAB}$.
+		\item Déterminer une valeur de l'angle $\widehat{DAB}$.
 	\end{enumerate}
-	\item Démontrer que le quadrilatère $ABCD$ est un rectangle.
+	\item Démontrer que le quadrilatère $ABCD$ est un carré.
 \end{enumerate}
 \end{cexercice}
 
@@ -571,6 +575,7 @@ Compléter la fonction \cpy{Suite} suivante écrite en \calgpython{} qui permet 
 \begin{envcodepythontex}[largeur=8cm,lignes,centre=true]
 	def Suite() :
 		S = 0
+		U = 400
 		for i in range(20) :
 			S = ...............
 			U = ...............
@@ -583,9 +588,7 @@ Un apiculteur souhaite étendre son activité de production de miel à une nouve
 
 Au printemps 2019, il achète $300$ colonies d’abeilles qu’il installe dans cette région.
 
-Il consulte les services spécialisés de la région et s’attend à perdre 8\,\% des colonies chaque hiver. Pour maintenir son activité et la développer, il prévoit d’installer 50 nouvelles colonies chaque printemps, à partir de l’année suivante.
-
-On donne le programme suivant écrit en langage \calgpython{} :
+Il consulte les services spécialisés de la région et s’attend à perdre 8\,\% des colonies chaque hiver. Pour maintenir son activité et la développer, il prévoit d’installer 50 nouvelles colonies chaque printemps, à partir de l’année suivante. On donne le programme suivant écrit en langage \calgpython{} :
 \begin{envcodepythontex}[largeur=8cm,lignes,centre=true]
 	def algo() :
 		C = 300
@@ -598,13 +601,12 @@ On donne le programme suivant écrit en langage \calgpython{} :
 
 \begin{enumerate}
 	\item Recopier et compléter (en arrondissant à l'entier le plus proche) en ajoutant des colonnes, le tableau ci-dessous qui reproduit l’avancement du programme pas à pas :
-	
+	%
 	\begin{center}
-		\begin{tabularx}{12cm}{|c|Y|Y|Y|Y}
-			\hline
-			C 					&300	& 326	& \dotfill 	& \\ \hline
-			\og C < 400 \fg{} ?	& oui	& oui 	& \dotfill	& \\ \hline
-		\end{tabularx}
+		\begin{tblr}{hlines,colspec={|Q[c,3cm]|Q[c,2cm]|Q[c,2cm]|Q[c,2cm]|Q[c,2cm]},cells={font=\ttfamily}}
+		C 					&300	& 326	& \dotfill 	& \\
+		\og C < 400 \fg{} ?	& oui	& oui 	& \dotfill	& \\
+	\end{tblr}
 	\end{center}
 	\item Quelle est la valeur de \cpy{N} renvoyée par le programme ? Interpréter cette valeur dans le contexte de l’exercice.
 \end{enumerate}
